@@ -1,0 +1,43 @@
+  <%= f.fields_for :stat do |builder| %>
+    <%= builder.label :health, 'health' %>
+    <%= builder.text_field :health %>
+
+    <%= builder.label :patk, 'patk' %>
+    <%= builder.text_field :patk %>
+
+    <%= builder.label :pdef, 'pdef' %>
+    <%= builder.text_field :pdef %>
+
+    <%= builder.label :matk, 'matk' %>
+    <%= builder.text_field :matk %>
+
+    <%= builder.label :mdef, 'mdef' %>
+    <%= builder.text_field :mdef %>
+
+    <%= builder.label :speed, 'speed' %>
+    <%= builder.text_field :speed %>
+  <% end %>
+  <br>
+  <%= f.fields_for :skills do |skill| %>
+    <%= skill.label :name, "Nome" %>
+    <%= skill.text_field :name %>
+
+    <%= skill.label :cost, "Custo" %>
+    <%= skill.text_field :cost %>
+    
+    <%= skill.label :description, "Descrição" %>
+    <%= skill.text_field :description %>
+
+    <%= skill.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
+
+  <% end %>
+
+
+
+  stat_attributes: [:health, :patk, :pdef, :matk, :mdef, :speed],
+
+skills_attributes: [:name, :cost, :description, effect_ids: [], skill_up: []])
+  

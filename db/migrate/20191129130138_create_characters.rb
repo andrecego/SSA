@@ -3,6 +3,7 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
     create_table :characters do |t|
       t.string :name
       t.string :rank
+      t.string :constellation
 
       t.timestamps
     end

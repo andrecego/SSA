@@ -11,8 +11,6 @@ class CharactersController < ApplicationController
 
   def create
     @character = Character.new(character_params)
-    @character.stat = Stat.new(character_params[:stat_attributes])
-    byebug
     if @character.save
       flash[:success] = 'Personagem salvo com êxito'
       redirect_to @character
@@ -28,9 +26,6 @@ class CharactersController < ApplicationController
 
   private
   def character_params
-    params.require(:character).permit(:name, 
-                                      :rank, 
-                                      stat_attributes: [:health, :patk, :pdef, :matk, :mdef, :speed],
-                                      skills_attributes: [:name, :cost, :description, effect_ids: []])
+    params.require(:character).permit(:name, :rank)
   end
 end
