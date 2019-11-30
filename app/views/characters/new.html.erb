@@ -7,7 +7,7 @@
   <%= f.label :rank, 'Rank' %>
   <%= f.text_field :rank %>
 
-  <%= f.fields_for :base_attibute do |builder| %>
+  <%= f.fields_for :stat do |builder| %>
     <%= builder.label :health, 'health' %>
     <%= builder.text_field :health %>
 

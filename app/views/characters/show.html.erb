@@ -3,5 +3,10 @@
 <ul>
   <li>Nome: <%= @character.name %></li>
   <li>Rank: <%= @character.rank %></li>
-  <li>Rank: <%= @character %></li>
+  <li>Vida: <%= @character.stat.health %></li>
+  <li>Ataque: <%= @character.stat.patk %></li>
+  <li>Defesa: <%= @character.stat.pdef %></li>
+  <li>Ataque Mágico: <%= @character.stat.matk %></li>
+  <li>Defesa Mágica: <%= @character.stat.mdef %></li>
+  <li>Velocidade: <%= @character.stat.speed %></li>
 </ul>

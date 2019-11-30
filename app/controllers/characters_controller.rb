@@ -5,11 +5,12 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
-    @base_attribute = @character.build_base_attribute
+    @stat = @character.build_stat
   end
 
   def create
     @character = Character.new(character_params)
+    @character.stat = Stat.new(character_params[:stat_attributes])
     byebug
     if @character.save
       flash[:success] = 'Personagem salvo com êxito'
@@ -26,6 +27,6 @@ class CharactersController < ApplicationController
 
   private
   def character_params
-    params.require(:character).permit(:name, :rank, base_attribute: [:health, :patk, :pdef, :matk, :mdef, :speed])
+    params.require(:character).permit(:name, :rank, stat_attributes: [:health, :patk, :pdef, :matk, :mdef, :speed])
   end
 end

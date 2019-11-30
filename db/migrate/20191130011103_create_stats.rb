@@ -1,13 +1,13 @@
-class CreateBaseAttributes < ActiveRecord::Migration[5.2]
+class CreateStats < ActiveRecord::Migration[5.2]
   def change
-    create_table :base_attributes do |t|
+    create_table :stats do |t|
       t.integer :health
       t.integer :patk
       t.integer :pdef
       t.integer :matk
       t.integer :mdef
       t.integer :speed
-      t.belongs_to :character
+      t.references :character, foreign_key: true
 
       t.timestamps
     end

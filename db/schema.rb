@@ -10,12 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_133151) do
+ActiveRecord::Schema.define(version: 2019_11_30_020537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "base_attributes", force: :cascade do |t|
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.string "rank"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.integer "cost"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stats", force: :cascade do |t|
     t.integer "health"
     t.integer "patk"
     t.integer "pdef"
@@ -25,14 +40,8 @@ ActiveRecord::Schema.define(version: 2019_11_29_133151) do
     t.bigint "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_base_attributes_on_character_id"
+    t.index ["character_id"], name: "index_stats_on_character_id"
   end
 
-  create_table "characters", force: :cascade do |t|
-    t.string "name"
-    t.string "rank"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  add_foreign_key "stats", "characters"
 end
