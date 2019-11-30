@@ -26,6 +26,21 @@
     <%= builder.label :speed, 'speed' %>
     <%= builder.text_field :speed %>
   <% end %>
+  <br>
+  <%= f.fields_for :skills do |skill| %>
+    <%= skill.label :name, "Nome" %>
+    <%= skill.text_field :name %>
 
+    <%= skill.label :cost, "Custo" %>
+    <%= skill.text_field :cost %>
+    
+    <%= skill.label :description, "Descrição" %>
+    <%= skill.text_field :description %>
+
+    <%= skill.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
+  <% end %>
   <%= f.submit 'Enviar' %>
 <% end %>

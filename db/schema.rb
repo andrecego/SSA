@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_020537) do
+ActiveRecord::Schema.define(version: 2019_11_30_173725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,28 @@ ActiveRecord::Schema.define(version: 2019_11_30_020537) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "skills", force: :cascade do |t|
+  create_table "effects", force: :cascade do |t|
     t.string "name"
-    t.integer "cost"
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "effects_skills", id: false, force: :cascade do |t|
+    t.bigint "effect_id", null: false
+    t.bigint "skill_id", null: false
+    t.index ["effect_id", "skill_id"], name: "index_effects_skills_on_effect_id_and_skill_id"
+    t.index ["skill_id", "effect_id"], name: "index_effects_skills_on_skill_id_and_effect_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.string "cost"
+    t.text "description"
+    t.text "skill_up", array: true
+    t.bigint "character_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_skills_on_character_id"
   end
 
   create_table "stats", force: :cascade do |t|
@@ -43,5 +59,6 @@ ActiveRecord::Schema.define(version: 2019_11_30_020537) do
     t.index ["character_id"], name: "index_stats_on_character_id"
   end
 
+  add_foreign_key "skills", "characters"
   add_foreign_key "stats", "characters"
 end

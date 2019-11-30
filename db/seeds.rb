@@ -7,3 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # kikibase = BaseAttribute.create(health: '12041', patk: '0', matk: '2280', pdef: '454', mdef: '454', speed: '388')
 # kiki = Character.create(name: 'Kiki', rank: 'B', base_attribute_id: kikibase.id)
+efeitos = ['Ataque Básico', 'Ataque em Área', 'Alvo Único', 'Revidar']
+
+efeitos.map do |name|
+  Effect.create(name: name)
+end

@@ -6,6 +6,7 @@ class CharactersController < ApplicationController
   def new
     @character = Character.new
     @stat = @character.build_stat
+    @skills = @character.skills.build
   end
 
   def create
@@ -27,6 +28,9 @@ class CharactersController < ApplicationController
 
   private
   def character_params
-    params.require(:character).permit(:name, :rank, stat_attributes: [:health, :patk, :pdef, :matk, :mdef, :speed])
+    params.require(:character).permit(:name, 
+                                      :rank, 
+                                      stat_attributes: [:health, :patk, :pdef, :matk, :mdef, :speed],
+                                      skills_attributes: [:name, :cost, :description, effect_ids: []])
   end
 end

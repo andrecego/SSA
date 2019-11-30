@@ -3,10 +3,24 @@
 <ul>
   <li>Nome: <%= @character.name %></li>
   <li>Rank: <%= @character.rank %></li>
+  <h2>Status</h2>
   <li>Vida: <%= @character.stat.health %></li>
   <li>Ataque: <%= @character.stat.patk %></li>
   <li>Defesa: <%= @character.stat.pdef %></li>
   <li>Ataque Mágico: <%= @character.stat.matk %></li>
   <li>Defesa Mágica: <%= @character.stat.mdef %></li>
   <li>Velocidade: <%= @character.stat.speed %></li>
+  <h2>Skills</h2>
+  <% @character.skills.each do |skill| %>
+  <li>Nome: <%= skill.name %></li>
+  <li>Efeitos: 
+    <ul>
+      <% skill.effects.each do |effect| %>
+        <li><%= effect.name %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li>Custo: <%= skill.cost %></li>
+  <li>Descrição: <%= skill.description %></li>
+  <% end %>
 </ul>
