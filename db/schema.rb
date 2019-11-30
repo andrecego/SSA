@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_133151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attributes", force: :cascade do |t|
+  create_table "base_attributes", force: :cascade do |t|
     t.integer "health"
     t.integer "patk"
     t.integer "pdef"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_133151) do
     t.bigint "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_attributes_on_character_id"
+    t.index ["character_id"], name: "index_base_attributes_on_character_id"
   end
 
   create_table "characters", force: :cascade do |t|

@@ -1,6 +1,6 @@
-class CreateAttributes < ActiveRecord::Migration[5.2]
+class CreateBaseAttributes < ActiveRecord::Migration[5.2]
   def change
-    create_table :attributes do |t|
+    create_table :base_attributes do |t|
       t.integer :health
       t.integer :patk
       t.integer :pdef
