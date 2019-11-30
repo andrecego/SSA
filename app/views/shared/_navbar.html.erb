@@ -1,5 +1,21 @@
-<p>navbar</p>
-<ul>
-  <li><%= link_to  "Home", root_path %></li>
-  <li><%= link_to  "Constelações", constellations_path %></li>
-</ul>
+<nav id="navbar">
+   <ul>
+    <li><%= link_to  "Home", root_path %></li>
+    <li><%= link_to  "Constelações", constellations_path %></li>
+    <li>
+      <% if user_signed_in? %>
+        <%= link_to  "Meu Perfil", edit_user_registration_path %>
+        <%= link_to  "Sair", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to  "Registre-se", new_user_registration_path %> |
+        <%= link_to  "Entrar", new_user_session_path %>
+      <% end %>
+    </li>
+  </ul>
+</nav>
+
+<style>
+#navbar li{
+  display:inline-block;
+}
+</style>
