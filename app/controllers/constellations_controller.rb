@@ -36,6 +36,17 @@ class ConstellationsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @constellation = Constellation.find(params[:id])
+    if @constellation.destroy
+      flash[:success] = 'Constelação apagada com êxito'
+      redirect_to constellations_path
+    else
+      flash[:error] = 'Houve um erro ao apagar'
+      redirect_to constellations_path
+    end
+  end
   
   private
   def constellation_params
