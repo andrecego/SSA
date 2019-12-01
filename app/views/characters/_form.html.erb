@@ -1,0 +1,10 @@
+<%= f.label :name, 'Nome' %>
+<%= f.text_field :name %>
+
+<%= f.label :rank, 'Rank' %>
+<%= f.collection_select :rank_id, Rank.all, :id, :name %>
+
+<%= f.label :constelattion, 'Constelação' %>
+<%= f.collection_select :constellation_id, Constellation.all, :id, :name %>
+
+<%= f.submit 'Enviar' %>

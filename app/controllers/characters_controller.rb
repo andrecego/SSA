@@ -5,8 +5,8 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
-    @stat = @character.build_stat
-    @skills = @character.skills.build
+    # @stat = @character.build_stat
+    # @skills = @character.skills.build
   end
 
   def create
@@ -26,6 +26,6 @@ class CharactersController < ApplicationController
 
   private
   def character_params
-    params.require(:character).permit(:name, :rank)
+    params.require(:character).permit(:name, :rank_id, :constellation_id)
   end
 end

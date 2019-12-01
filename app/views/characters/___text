@@ -1,22 +1,3 @@
-  <%= f.fields_for :stat do |builder| %>
-    <%= builder.label :health, 'health' %>
-    <%= builder.text_field :health %>
-
-    <%= builder.label :patk, 'patk' %>
-    <%= builder.text_field :patk %>
-
-    <%= builder.label :pdef, 'pdef' %>
-    <%= builder.text_field :pdef %>
-
-    <%= builder.label :matk, 'matk' %>
-    <%= builder.text_field :matk %>
-
-    <%= builder.label :mdef, 'mdef' %>
-    <%= builder.text_field :mdef %>
-
-    <%= builder.label :speed, 'speed' %>
-    <%= builder.text_field :speed %>
-  <% end %>
   <br>
   <%= f.fields_for :skills do |skill| %>
     <%= skill.label :name, "Nome" %>
@@ -37,7 +18,6 @@
 
 
 
-  stat_attributes: [:health, :patk, :pdef, :matk, :mdef, :speed],
 
 skills_attributes: [:name, :cost, :description, effect_ids: [], skill_up: []])
   

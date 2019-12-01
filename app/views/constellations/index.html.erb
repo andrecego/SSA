@@ -1,15 +1,15 @@
 <h3>Constelações</h3>
 <%= link_to  "Cadastar nova constelação", new_constellation_path %>
-<% unless @contellations %>
+<% if @constellations.empty? %>
   <p>Não existe nenhuma constelação registrada</p>
 <% end %>
 <ul>
   <% @constellations.each do |constellation| %>
     <div class="list">
       <li>
-        <%= constellation.name %> |
-        <%= link_to  "Editar", edit_constellation_path(constellation) %>
-        <%= link_to  "Deletar", constellation_path(constellation), method: :delete %>
+        <%= constellation.name %> 
+        | <%= link_to  "Editar", edit_constellation_path(constellation) %>
+        | <%= link_to  "Deletar", constellation_path(constellation), method: :delete %>
       </li>
     </div>
   <% end %>

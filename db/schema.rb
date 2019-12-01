@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_235047) do
+ActiveRecord::Schema.define(version: 2019_11_30_232422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.string "rank"
-    t.string "constellation"
+    t.bigint "constellation_id"
+    t.bigint "rank_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["constellation_id"], name: "index_characters_on_constellation_id"
+    t.index ["rank_id"], name: "index_characters_on_rank_id"
   end
 
   create_table "constellations", force: :cascade do |t|
@@ -48,6 +50,12 @@ ActiveRecord::Schema.define(version: 2019_11_30_235047) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["skill_id"], name: "index_levels_on_skill_id"
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -79,13 +87,15 @@ ActiveRecord::Schema.define(version: 2019_11_30_235047) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "characters", "constellations"
+  add_foreign_key "characters", "ranks"
   add_foreign_key "levels", "skills"
   add_foreign_key "skills", "characters"
   add_foreign_key "stats", "characters"

@@ -1,14 +1,5 @@
 <h1>Cadastrar um novo Personagem</h1>
 
 <%= form_with model: @character do |f| %>
-  <%= f.label :name, 'Nome' %>
-  <%= f.text_field :name %>
-
-  <%= f.label :rank, 'Rank' %>
-  <%= f.text_field :rank %>
-
-  <%= f.label :constellation, 'Constelação' %>
-  <%= f.text_field :constellation %>
-
-  <%= f.submit 'Enviar' %>
+ <%= render  "form", f: f %>
 <% end %>

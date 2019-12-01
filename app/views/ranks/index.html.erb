@@ -1,0 +1,7 @@
+<h1>Todos os ranks</h1>
+<%= link_to  "Registrar novo rank", new_rank_path %>
+<ul>
+  <% @ranks.reverse_each do |rank| %>
+    <li><%= rank.name %></li>
+  <% end %>
+</ul>

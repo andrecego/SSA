@@ -2,6 +2,9 @@
    <ul>
     <li><%= link_to  "Home", root_path %></li>
     <li><%= link_to  "Constelações", constellations_path %></li>
+    <li><%= link_to  "Ranks", ranks_path %></li>
+    <li><%= link_to  "Personagens", characters_path %></li>
+
     <li>
       <% if user_signed_in? %>
         <%= link_to  "Meu Perfil", edit_user_registration_path %>
