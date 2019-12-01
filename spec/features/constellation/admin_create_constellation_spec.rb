@@ -10,7 +10,6 @@ end
 
 feature 'User dont see create path' do
   scenario 'successfully' do
-    byebug
     login(0)
 
     visit root_path

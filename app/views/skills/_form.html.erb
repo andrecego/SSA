@@ -1,0 +1,19 @@
+<%= f.label :name, "Nome" %>
+<%= f.text_field :name %>
+
+<%= f.label :cost, "Custo" %>
+<%= f.text_field :cost %>
+
+<%= f.label :description, "Descrição" %>
+<%= f.text_field :description %>
+
+<%= f.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
+  <%= b.check_box %>
+  <%= b.label %>
+<% end %>
+
+<%= f.label :level, "Skill" %>
+<%= f.text_field :level %>
+
+
+<%= f.submit 'Enviar' %>
