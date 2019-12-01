@@ -1,0 +1,5 @@
+<h3>Editar Constelação</h3>
+<%= render  "shared/errors", object: @constellation %>
+<%= form_for @constellation, url: constellation_path(@constellation) do |f| %>
+  <%= render  "form", f: f %>
+<% end %>

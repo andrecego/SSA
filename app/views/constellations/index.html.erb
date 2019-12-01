@@ -1,6 +1,15 @@
 <h3>Constelações</h3>
+<%= link_to  "Cadastar nova constelação", new_constellation_path %>
+<% unless @contellations %>
+  <p>Não existe nenhuma constelação registrada</p>
+<% end %>
 <ul>
   <% @constellations.each do |constellation| %>
-    <li><%= constellation.name %></li>
+    <div class="list">
+      <li>
+        <%= constellation.name %> |
+        <%= link_to  "Editar", edit_constellation_path(constellation) %>
+      </li>
+    </div>
   <% end %>
 </ul>

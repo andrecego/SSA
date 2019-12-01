@@ -1,0 +1,5 @@
+<h3>Nova Constelação</h3>
+<%= render  "shared/errors", object: @constellation %>
+<%= form_for @constellation do |f| %>
+  <%= render 'form', f: f %>
+<% end %>
