@@ -6,9 +6,10 @@ class StatsController < ApplicationController
 
   def create
     @stat = Stat.new(stat_params)
+    character = Character.find(params[:character_id])
     if @stat.save
       flash[:success] = 'Status salvos com êxito'
-      redirect_to @character
+      redirect_to character
     else
       flash[:error] = 'Algo deu errado'
       render :new
@@ -17,6 +18,6 @@ class StatsController < ApplicationController
 
   private
   def stat_params
-    params.require(:stat).permit(:health, :patk, :pdef, :matk, :mdef, :speed)
+    params.require(:stat).permit(:health, :patk, :pdef, :matk, :mdef, :speed).merge(character_id: params[:character_id])
   end
 end
