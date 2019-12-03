@@ -1,4 +1,4 @@
-<h1>Personagem</h1>
+<h1>Personagem - <%= link_to  "Editar", edit_character_path(@character) %></h1>
 <ul>
   <li>Nome: <%= @character.name %></li>
   <li>Rank: <%= @character.rank.name %></li>
@@ -15,19 +15,26 @@
     <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
   <% end %>
   
-  <h2>Skills</h2>
+  <h2>Skills -</h2>
   <% if @character.skills %>
     <% @character.skills.each do |skill| %>
-    <li>Nome: <%= skill.name %></li>
-    <li>Efeitos: 
-      <ul>
-        <% skill.effects.each do |effect| %>
-          <li><%= effect.name %></li>
+      <li>Nome: <%= skill.name %></li>
+      <li>Efeitos: 
+        <ul>
+          <% skill.effects.each do |effect| %>
+            <li><%= effect.name %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li>Custo: <%= skill.cost %></li>
+      <li>Descrição: <%= skill.description %></li>    
+      Skill Ups:
+      <ol>
+        <% skill.levels.each do |level| %>
+          <li><%= level %></li>
         <% end %>
-      </ul>
-    </li>
-    <li>Custo: <%= skill.cost %></li>
-    <li>Descrição: <%= skill.description %></li>
+      </ol>
+      <hr>
     <% end %>
   <% end %>
   <%= link_to  "Cadastrar nova skill", new_character_skill_path(@character) %>

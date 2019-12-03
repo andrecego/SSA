@@ -44,14 +44,6 @@ ActiveRecord::Schema.define(version: 2019_11_30_232422) do
     t.index ["skill_id", "effect_id"], name: "index_effects_skills_on_skill_id_and_effect_id"
   end
 
-  create_table "levels", force: :cascade do |t|
-    t.string "text"
-    t.bigint "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["skill_id"], name: "index_levels_on_skill_id"
-  end
-
   create_table "ranks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -62,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_11_30_232422) do
     t.string "name"
     t.string "cost"
     t.text "description"
+    t.string "levels", array: true
     t.bigint "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,7 +89,6 @@ ActiveRecord::Schema.define(version: 2019_11_30_232422) do
 
   add_foreign_key "characters", "constellations"
   add_foreign_key "characters", "ranks"
-  add_foreign_key "levels", "skills"
   add_foreign_key "skills", "characters"
   add_foreign_key "stats", "characters"
 end

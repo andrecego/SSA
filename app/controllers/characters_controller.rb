@@ -24,6 +24,22 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
   end
 
+  def edit
+    @character = Character.find(params[:id])
+  end
+  
+  def update
+    @character = Character.find(params[:id])
+      if @character.update_attributes(character_params)
+        flash[:success] = "Character was successfully updated"
+        redirect_to @character
+      else
+        flash[:error] = "Something went wrong"
+        render 'edit'
+      end
+  end
+  
+
   private
   def character_params
     params.require(:character).permit(:name, :rank_id, :constellation_id)

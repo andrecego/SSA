@@ -12,8 +12,16 @@
   <%= b.label %>
 <% end %>
 
-<%= f.label :level, "Skill" %>
-<%= f.text_field :level %>
-
+<br>
+<%= label_tag 'Skill lv. 1' %>
+<%= text_field_tag "skill[levels][]" %>
+<%= label_tag 'Skill lv. 2' %>
+<%= text_field_tag "skill[levels][]" %>
+<%= label_tag 'Skill lv. 3' %>
+<%= text_field_tag "skill[levels][]" %>
+<%= label_tag 'Skill lv. 4' %>
+<%= text_field_tag "skill[levels][]" %>
+<%= label_tag 'Skill lv. 5' %>
+<%= text_field_tag "skill[levels][]" %>
 
 <%= f.submit 'Enviar' %>
