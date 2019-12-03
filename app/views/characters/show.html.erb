@@ -18,6 +18,7 @@
   <h2>Skills</h2>
   <% if @character.skills %>
     <% @character.skills.each do |skill| %>
+      <%= link_to  "Editar", edit_character_skill_path(@character, skill) %>
       <li>Nome: <%= skill.name %></li>
       <li>Efeitos: 
         <ul>
