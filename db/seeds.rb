@@ -5,10 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# kikibase = BaseAttribute.create(health: '12041', patk: '0', matk: '2280', pdef: '454', mdef: '454', speed: '388')
-# kiki = Character.create(name: 'Kiki', rank: 'B', base_attribute_id: kikibase.id)
 efeitos = ['Ataque Básico', 'Ataque em Área', 'Alvo Único', 'Revidar']
+constelacoes = ['Escorpião', 'Baleia', 'Câncer', 'Libra', 'Sagitário']
+ranks = ['SS', 'S', 'A', 'B', 'C']
+
 
 efeitos.map do |name|
   Effect.create(name: name)
 end
+
+contelacoes.map do |name|
+  Constelattion.create(name: name)
+end
+
+ranks.map do |name| 
+  Rank.create(name: name)
+end
+
