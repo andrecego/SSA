@@ -1,0 +1,2 @@
+class CosmoType < ApplicationRecord
+end

@@ -1,0 +1,11 @@
+<h3>Tipos de cosmo</h3>
+<%= link_to  "Registrar novo cosmo", new_cosmo_type_path %>
+<ul>
+  <% @cosmo_types.each do |type| %>
+    <li>
+      <%= link_to type.name, cosmo_type_path(type) %>
+      | <%= link_to  "Editar", edit_cosmo_type_path(type) %>
+      | <%= link_to  "Deletar", cosmo_type_path(type), method: :delete %>
+    </li>
+  <% end %>
+</ul>

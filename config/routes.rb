@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     resources :stats
     resources :skills
   end
+
+  resources :cosmo_types do
+    resources :cosmos
+  end
 end
