@@ -16,7 +16,6 @@ feature 'User dont see create path' do
     click_on 'Constelações'
 
     expect(page).to_not have_content('Nova Constelação')
-    expect(page).to have_content('Restrito para administradores')
   end
 end
 

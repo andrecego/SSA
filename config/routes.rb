@@ -5,11 +5,9 @@ Rails.application.routes.draw do
 
   resources :ranks 
   resources :constellations 
+  resources :effects
   resources :characters do
     resources :stats
-    resources :skills do
-      resources :effects
-      resources :skill_up
-    end
+    resources :skills
   end
 end

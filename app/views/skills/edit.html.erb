@@ -1,2 +1,32 @@
 <h3>Editando '<%= @skill.name %>' de <%= @character.name %></h3>
-<%= render  "form", skill: @skill, url: character_skill_path %>
+<%= form_for @skill, url: character_skill_path do |f| %>
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :cost, "Custo" %>
+  <%= f.text_field :cost %>
+
+  <%= f.label :description, "Descrição" %>
+  <%= f.text_field :description %>
+
+  <%= f.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
+    <%= b.check_box %>
+    <%= b.label %>
+  <% end %>
+
+  <br>
+  <br>
+
+  <li>Skill ups: </li>
+  <ol>
+    <% @skill.levels.each do |level| %>
+      <li>
+        <%= text_field_tag "skill[levels][]", level %>
+      </li>
+    <% end %>
+  </ol>
+
+  <%= f.submit 'Enviar' %>
+<% end %>
+
+<%= link_to  "Voltar", character_path(@character) %>

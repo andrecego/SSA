@@ -1,2 +1,30 @@
 <h3>Criando uma skill para <%= @character.name %> </h3>
-<%= render  "form", skill: @skill, url: character_skills_path %>
+<%= form_for @skill, url: character_skills_path do |f| %>
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :cost, "Custo" %>
+  <%= f.text_field :cost %>
+
+  <%= f.label :description, "Descrição" %>
+  <%= f.text_field :description %>
+
+  <%= f.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
+    <%= b.check_box %>
+    <%= b.label %>
+  <% end %>
+
+  <br>
+  <%= label_tag 'Skill lv. 1' %>
+  <%= text_field_tag "skill[levels][]" %>
+  <%= label_tag 'Skill lv. 2' %>
+  <%= text_field_tag "skill[levels][]" %>
+  <%= label_tag 'Skill lv. 3' %>
+  <%= text_field_tag "skill[levels][]" %>
+  <%= label_tag 'Skill lv. 4' %>
+  <%= text_field_tag "skill[levels][]" %>
+  <%= label_tag 'Skill lv. 5' %>
+  <%= text_field_tag "skill[levels][]" %>
+
+  <%= f.submit 'Enviar' %>
+<% end %>

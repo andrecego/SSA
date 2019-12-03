@@ -1,3 +1,5 @@
-<%= f.label :name, 'Rank' %>
-<%= f.text_field :name %>
-<%= f.submit 'Enviar' %>
+<%= form_for rank do |f| %>
+  <%= f.label :name, 'Rank' %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Enviar' %>
+<% end %>

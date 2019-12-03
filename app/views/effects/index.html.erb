@@ -1,0 +1,12 @@
+<h3>Lista dos efeitos de skills</h3>
+<%= link_to  "Registrar novo efeito", new_effect_path %>
+
+<ul>
+  <% @effects.each do |effect| %>
+    <li>
+      <%= effect.name %>
+      | <%= link_to  "Editar", edit_effect_path(effect) %>
+      | <%= link_to  "Deletar", effect_path(effect), method: :delete %>
+    </li>
+  <% end %>
+</ul>
