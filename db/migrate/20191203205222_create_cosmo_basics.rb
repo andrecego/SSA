@@ -1,7 +1,7 @@
 class CreateCosmoBasics < ActiveRecord::Migration[5.2]
   def change
     create_table :cosmo_basics do |t|
-      t.string :status
+      t.string :name
 
       t.timestamps
     end

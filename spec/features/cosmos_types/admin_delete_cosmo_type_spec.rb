@@ -5,6 +5,7 @@ feature 'Admin delete cosmo type' do
     CosmoType.create!(name: 'Errei o nome')
 
     visit root_path
+    click_on 'Cosmos'
     click_on 'Tipos de Cosmos'
     click_on 'Deletar'
 

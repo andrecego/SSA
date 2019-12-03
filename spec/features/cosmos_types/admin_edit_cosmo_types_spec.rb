@@ -5,6 +5,7 @@ feature 'Admin edit cosmo type' do
     CosmoType.create!(name: 'Esqueleto')
 
     visit root_path
+    click_on 'Cosmos'
     click_on 'Tipos de Cosmos'
     click_on 'Editar'
     fill_in "Tipo de cosmo",	with: "Caveirinha" 

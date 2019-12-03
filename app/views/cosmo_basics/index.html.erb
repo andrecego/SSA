@@ -1,0 +1,11 @@
+<h3>Cosmos Básicos</h3>
+<%= link_to  "Registrar nova base de cosmo", new_cosmo_basic_path %>
+<ul>
+  <% @cosmo_basics.each do |base| %>
+    <li>
+      <%= base.name %>
+      | <%= link_to  "Editar", edit_cosmo_basic_path(base) %>
+      | <%= link_to  "Deletar", cosmo_basic_path(base), method: :delete %>
+    </li>
+  <% end %>
+</ul>  

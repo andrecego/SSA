@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resources :skills
   end
 
-  resources :cosmo_types do
-    resources :cosmos
-  end
+  resources :cosmo_basics
+  resources :cosmo_types
+  resources :cosmos
+  get '/cosmos/all', to: 'cosmos#all'
 end

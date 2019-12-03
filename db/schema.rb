@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_205230) do
   end
 
   create_table "cosmo_basics", force: :cascade do |t|
-    t.string "status"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
