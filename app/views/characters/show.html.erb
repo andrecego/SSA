@@ -3,7 +3,7 @@
   <li>Nome: <%= @character.name %></li>
   <li>Rank: <%= @character.rank.name %></li>
   <li>Constelação: <%= @character.constellation.name %></li>
-  <h2>Status</h2>
+  <h2>Status - <%= link_to  "Editar", edit_character_stat_path(@character) %></h2>
   <% if @character.stat %>
     <li>Vida: <%= @character.stat.health %></li>
     <li>Ataque: <%= @character.stat.patk %></li>
@@ -15,7 +15,7 @@
     <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
   <% end %>
   
-  <h2>Skills -</h2>
+  <h2>Skills</h2>
   <% if @character.skills %>
     <% @character.skills.each do |skill| %>
       <li>Nome: <%= skill.name %></li>

@@ -16,6 +16,23 @@ class StatsController < ApplicationController
     end
   end
 
+  def edit
+    @character = Character.find(params[:character_id])
+    @stat = @character.stat
+  end
+
+  def update
+    @stat = Stat.find(params[:id])
+    character = Character.find(params[:character_id])
+      if @stat.update_attributes(stat_params)
+        flash[:success] = "Stat was successfully updated"
+        redirect_to character
+      else
+        flash[:error] = "Something went wrong"
+        render :edit
+      end
+  end  
+
   private
   def stat_params
     params.require(:stat).permit(:health, :patk, :pdef, :matk, :mdef, :speed).merge(character_id: params[:character_id])

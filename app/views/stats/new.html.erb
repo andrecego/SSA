@@ -1,5 +1,3 @@
 <h3>Criando os status de <%= @character.name %> </h3>
 
-<%= form_for @stat, url: character_stats_path do |f| %>
-  <%= render  "form", f: f %>
-<% end %>
+<%= render  "form", stat: @stat, url: character_stats_path %>
