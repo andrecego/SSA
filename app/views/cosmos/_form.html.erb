@@ -1,0 +1,16 @@
+<%= form_for cosmo do |f| %>
+
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :cosmo_type, 'Tipo do Cosmo' %>
+  <%= f.collection_select :cosmo_type_id, CosmoType.all, :id, :name %>
+
+  <%= f.collection_check_boxes :cosmo_basic_ids, CosmoBasic.all, :id, :name do |b| %>
+    <%= b.check_box %>
+    <%= b.label %>
+  <% end %>
+
+  <%= f.submit 'Enviar' %>
+
+<% end %>

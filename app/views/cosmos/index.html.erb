@@ -1,5 +1,19 @@
-<h1>Cosmos</h1>
+<h1>Todos Cosmos</h1>
 <ul>
   <li><%= link_to  "Tipos de Cosmos", cosmo_types_path %></li>
   <li><%= link_to  "Cosmos Base", cosmo_basics_path %></li>
 </ul>
+<%= link_to  "Registrar novo cosmo", new_cosmo_path %>
+
+<% @cosmos.each do |cosmo| %>
+  <ul>
+    <li><%= cosmo.name %></li>
+    <li><%= cosmo.cosmo_type.name %></li>
+    <li>Cosmos Base</li>
+        <% cosmo.cosmo_basics.each do |base| %>
+      <ul>
+        <li><%= base.name %></li>    
+      </ul>
+    <% end %>
+  </ul>
+<% end %>
