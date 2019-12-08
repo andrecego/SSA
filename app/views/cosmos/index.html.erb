@@ -9,14 +9,18 @@
   <ul>
     <li><%= link_to  "Editar", edit_cosmo_path(cosmo) %> |
         <%= link_to  "Deletar", cosmo_path(cosmo), method: :delete %></li>
+    <% if cosmo.picture.attached? %>
+      <li><%= image_tag cosmo.picture %></li>
+    <% end %>
     <li>Nome: <%= cosmo.name %></li>
     <li>Tipo: <%= cosmo.cosmo_type.name %></li>
     <li>Cosmos Base: </li>
         <% cosmo.cosmo_basics.each do |base| %>
       <ul>
-        <li><%= base.name %></li>    
+        <li><%= image_tag('/cosmos/' + cosmo.name) %> <%= base.name %></li>    
       </ul>
     <% end %>
     <li>Set Bonus: <%= cosmo.set %></li>
   </ul>
 <% end %>
+

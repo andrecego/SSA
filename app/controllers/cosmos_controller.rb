@@ -10,7 +10,6 @@ class CosmosController < ApplicationController
 
   def create
     @cosmo = Cosmo.new(cosmo_params)
-    byebug
     if @cosmo.save
       flash[:success] = "Cosmo criado com sucesso"
       redirect_to cosmos_path
@@ -49,6 +48,6 @@ class CosmosController < ApplicationController
   private
   def cosmo_params
     params[:cosmo][:cosmo_basic_ids].reject!(&:empty?)
-    params.require(:cosmo).permit(:name, :set, :cosmo_type_id, cosmo_basic_ids: [])
+    params.require(:cosmo).permit(:name, :set, :cosmo_type_id, :picture, cosmo_basic_ids: [])
   end
 end
