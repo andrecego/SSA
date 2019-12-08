@@ -42,6 +42,6 @@ class CharactersController < ApplicationController
 
   private
   def character_params
-    params.require(:character).permit(:name, :rank_id, :constellation_id)
+    params.require(:character).permit(:name, :rank_id, :constellation_id, :picture)
   end
 end

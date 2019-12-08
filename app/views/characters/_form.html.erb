@@ -9,5 +9,8 @@
   <%= f.label :constelattion, 'Constelação' %>
   <%= f.collection_select :constellation_id, Constellation.all, :id, :name %>
 
+  <%= f.label :picture, 'Foto' %>
+  <%= f.file_field :picture %>
+
   <%= f.submit 'Enviar' %>
 <% end %>

@@ -1,6 +1,9 @@
 <h1>Personagem</h1>
 <ul>
   <%= link_to  "Editar", edit_character_path(@character) %>
+  <% if @character.picture.attached? %>
+    <li><%= image_tag @character.picture%></li>
+  <% end %>
   <li>Nome: <%= @character.name %></li>
   <li>Rank: <%= @character.rank.name %></li>
   <li>Constelação: <%= @character.constellation.name %></li>
