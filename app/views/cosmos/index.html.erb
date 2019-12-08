@@ -3,17 +3,20 @@
   <li><%= link_to  "Tipos de Cosmos", cosmo_types_path %></li>
   <li><%= link_to  "Cosmos Base", cosmo_basics_path %></li>
 </ul>
-<%= link_to  "Registrar novo cosmo", new_cosmo_path %>
+<%= link_to  "Registrar novo cosmo  ", new_cosmo_path %>
 
 <% @cosmos.each do |cosmo| %>
   <ul>
-    <li><%= cosmo.name %></li>
-    <li><%= cosmo.cosmo_type.name %></li>
-    <li>Cosmos Base</li>
+    <li><%= link_to  "Editar", edit_cosmo_path(cosmo) %> |
+        <%= link_to  "Deletar", cosmo_path(cosmo), method: :delete %></li>
+    <li>Nome: <%= cosmo.name %></li>
+    <li>Tipo: <%= cosmo.cosmo_type.name %></li>
+    <li>Cosmos Base: </li>
         <% cosmo.cosmo_basics.each do |base| %>
       <ul>
         <li><%= base.name %></li>    
       </ul>
     <% end %>
+    <li>Set Bonus: <%= cosmo.set %></li>
   </ul>
 <% end %>
