@@ -1,15 +1,23 @@
 <h1>Personagem</h1>
 <ul>
-  <%= link_to  "Editar", edit_character_path(@character) %>
+  <li>
+    <%= link_to  "Editar", edit_character_path(@character) %> |
+    <%= link_to  "Deletar", character_path(@character), method: :delete %>
+  </li>
   <% if @character.picture.attached? %>
     <li><%= image_tag @character.picture%></li>
   <% end %>
   <li>Nome: <%= @character.name %></li>
   <li>Rank: <%= @character.rank.name %></li>
   <li>Constelação: <%= @character.constellation.name %></li>
+
+
   <h2>Status</h2>
   <% if @character.stat %>
-    <%= link_to  "Editar", edit_character_stat_path(@character) %>
+    <li>
+      <%= link_to  "Editar", edit_character_stat_path(@character, @character.stat) %> |
+      <%= link_to  "Deletar", character_stat_path(@character, @character.stat), method: :delete %>
+    </li>
     <li>Vida: <%= @character.stat.health %></li>
     <li>Ataque: <%= @character.stat.patk %></li>
     <li>Defesa: <%= @character.stat.pdef %></li>
@@ -23,7 +31,10 @@
   <h2>Skills</h2>
   <% if @character.skills %>
     <% @character.skills.each do |skill| %>
-      <%= link_to  "Editar", edit_character_skill_path(@character, skill) %>
+      <li>
+        <%= link_to  "Editar", edit_character_skill_path(@character, skill) %> |
+        <%= link_to  "Deletar", character_skill_path(@character, skill), method: :delete %>
+      </li>
       <li>Nome: <%= skill.name %></li>
       <li>Efeitos: 
         <ul>

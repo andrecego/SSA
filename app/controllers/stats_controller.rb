@@ -33,6 +33,18 @@ class StatsController < ApplicationController
       end
   end  
 
+  def destroy
+    @stat = Stat.find(params[:id])
+    character = Character.find(params[:character_id])
+    if @stat.destroy
+      flash[:success] = 'Status apagados com êxito'
+      redirect_to character
+    else
+      flash[:error] = 'Houve um erro ao apagar'
+      redirect_to character
+    end
+  end
+
   private
   def stat_params
     params.require(:stat).permit(:health, :patk, :pdef, :matk, :mdef, :speed).merge(character_id: params[:character_id])

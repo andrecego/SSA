@@ -32,6 +32,18 @@ class SkillsController < ApplicationController
         render 'edit'
       end
   end
+
+  def destroy
+    @skill = Skill.find(params[:id])
+    character = Character.find(params[:character_id])
+    if @skill.destroy
+      flash[:success] = 'Skill apagada com êxito'
+      redirect_to character
+    else
+      flash[:error] = 'Houve um erro ao apagar'
+      redirect_to character
+    end
+  end
   
 
   private

@@ -38,6 +38,17 @@ class CharactersController < ApplicationController
         render 'edit'
       end
   end
+
+  def destroy
+    @character = Character.find(params[:id])
+    if @character.destroy
+      flash[:success] = 'Personagem apagado com êxito'
+      redirect_to characters_path
+    else
+      flash[:error] = 'Houve um erro ao apagar'
+      redirect_to characters_path
+    end
+  end
   
 
   private
