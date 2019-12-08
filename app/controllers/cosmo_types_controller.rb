@@ -10,10 +10,10 @@ class CosmoTypesController < ApplicationController
   def create
     @cosmo_type = CosmoType.new(cosmo_type_params)
     if @cosmo_type.save
-      flash[:success] = "CosmoType successfully created"
+      flash[:success] = "Tipo de Cosmo criado com sucesso"
       redirect_to cosmo_types_path
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "Algo deu errado"
       render 'new'
     end
   end
@@ -25,10 +25,10 @@ class CosmoTypesController < ApplicationController
   def update
     @cosmo_type = CosmoType.find(params[:id])
       if @cosmo_type.update_attributes(cosmo_type_params)
-        flash[:success] = "CosmoType was successfully updated"
+        flash[:success] = "Tipo de Cosmo atualizado com sucesso"
         redirect_to cosmo_types_path
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Algo deu errado"
         render 'edit'
       end
   end  
@@ -36,10 +36,10 @@ class CosmoTypesController < ApplicationController
   def destroy
     @cosmo_type = CosmoType.find(params[:id])
     if @cosmo_type.destroy
-      flash[:success] = 'CosmoType was successfully deleted.'
+      flash[:success] = 'Tipo de Cosmo deletado com sucesso'
       redirect_to cosmo_types_url
     else
-      flash[:error] = 'Something went wrong'
+      flash[:error] = 'Algo deu errado'
       redirect_to cosmo_types_url
     end
   end

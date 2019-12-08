@@ -8,7 +8,7 @@ class StatsController < ApplicationController
     @stat = Stat.new(stat_params)
     character = Character.find(params[:character_id])
     if @stat.save
-      flash[:success] = 'Status salvos com êxito'
+      flash[:success] = 'Status criados com sucesso'
       redirect_to character
     else
       flash[:error] = 'Algo deu errado'
@@ -25,10 +25,10 @@ class StatsController < ApplicationController
     @stat = Stat.find(params[:id])
     character = Character.find(params[:character_id])
       if @stat.update_attributes(stat_params)
-        flash[:success] = "Stat was successfully updated"
+        flash[:success] = "Status atualizados com sucesso"
         redirect_to character
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Algo deu errado"
         render :edit
       end
   end  
@@ -37,10 +37,10 @@ class StatsController < ApplicationController
     @stat = Stat.find(params[:id])
     character = Character.find(params[:character_id])
     if @stat.destroy
-      flash[:success] = 'Status apagados com êxito'
+      flash[:success] = 'Status deletados com sucesso'
       redirect_to character
     else
-      flash[:error] = 'Houve um erro ao apagar'
+      flash[:error] = 'Algo deu errado'
       redirect_to character
     end
   end

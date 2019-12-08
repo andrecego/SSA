@@ -10,10 +10,10 @@ class EffectsController < ApplicationController
   def create
     @effect = Effect.new(effect_params)
     if @effect.save
-      flash[:success] = "Effect successfully created"
+      flash[:success] = "Efeito criado com sucesso"
       redirect_to effects_path
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "Algo deu errado"
       render 'new'
     end
   end
@@ -25,10 +25,10 @@ class EffectsController < ApplicationController
   def update
     @effect = Effect.find(params[:id])
       if @effect.update_attributes(effect_params)
-        flash[:success] = "Effect was successfully updated"
+        flash[:success] = "Efeito atualizado com sucesso"
         redirect_to effects_path
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Algo deu errado"
         render 'edit'
       end
   end
@@ -36,10 +36,10 @@ class EffectsController < ApplicationController
   def destroy
     @effect = Effect.find(params[:id])
     if @effect.destroy
-      flash[:success] = 'Effect was successfully deleted.'
+      flash[:success] = 'Efeito deletado com sucesso.'
       redirect_to effects_url
     else
-      flash[:error] = 'Something went wrong'
+      flash[:error] = 'Algo deu errado'
       redirect_to effects_url
     end
   end

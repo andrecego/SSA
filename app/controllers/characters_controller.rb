@@ -5,8 +5,6 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
-    # @stat = @character.build_stat
-    # @skills = @character.skills.build
   end
 
   def create
@@ -31,10 +29,10 @@ class CharactersController < ApplicationController
   def update
     @character = Character.find(params[:id])
       if @character.update_attributes(character_params)
-        flash[:success] = "Character was successfully updated"
+        flash[:success] = "Personagem atualizado com êxito"
         redirect_to @character
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Algo deu errado"
         render 'edit'
       end
   end

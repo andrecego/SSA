@@ -8,10 +8,10 @@ class SkillsController < ApplicationController
     @character = Character.find(params[:character_id])
     @skill = @character.skills.new(skill_params)
     if @skill.save
-      flash[:success] = "Skill successfully created"
+      flash[:success] = "Habilidade criada com sucesso"
       redirect_to @character
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "Algo deu errado"
       render 'new'
     end
   end
@@ -25,10 +25,10 @@ class SkillsController < ApplicationController
     @character = Character.find(params[:character_id])
     @skill = @character.skills.find(params[:id])
       if @skill.update_attributes(skill_params)
-        flash[:success] = "Skill was successfully updated"
+        flash[:success] = "Habilidade atualizada com sucesso"
         redirect_to @character
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Algo deu errado"
         render 'edit'
       end
   end
@@ -37,10 +37,10 @@ class SkillsController < ApplicationController
     @skill = Skill.find(params[:id])
     character = Character.find(params[:character_id])
     if @skill.destroy
-      flash[:success] = 'Skill apagada com êxito'
+      flash[:success] = 'Habilidade deletada com sucesso'
       redirect_to character
     else
-      flash[:error] = 'Houve um erro ao apagar'
+      flash[:error] = 'Algo deu errado'
       redirect_to character
     end
   end

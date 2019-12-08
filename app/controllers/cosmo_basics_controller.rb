@@ -11,10 +11,10 @@ class CosmoBasicsController < ApplicationController
   def create
     @cosmo_basic = CosmoBasic.new(cosmo_basic_params)
     if @cosmo_basic.save
-      flash[:success] = "CosmoBasic successfully created"
+      flash[:success] = "Base de Cosmo criado com sucesso"
       redirect_to cosmo_basics_path
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "Algo deu errado"
       render 'new'
     end
   end
@@ -26,10 +26,10 @@ class CosmoBasicsController < ApplicationController
   def update
     @cosmo_basic = CosmoBasic.find(params[:id])
       if @cosmo_basic.update_attributes(cosmo_basic_params)
-        flash[:success] = "CosmoBasic was successfully updated"
+        flash[:success] = "Base de Cosmo atualizada com sucesso"
         redirect_to cosmo_basics_path
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Algo deu errado"
         render 'edit'
       end
   end
@@ -37,10 +37,10 @@ class CosmoBasicsController < ApplicationController
   def destroy
     @cosmo_basic = CosmoBasic.find(params[:id])
     if @cosmo_basic.destroy
-      flash[:success] = 'CosmoBasic was successfully deleted.'
+      flash[:success] = 'Base de Cosmo deletada com sucesso'
       redirect_to cosmo_basics_url
     else
-      flash[:error] = 'Something went wrong'
+      flash[:error] = 'Algo deu errado'
       redirect_to cosmo_basics_url
     end
   end

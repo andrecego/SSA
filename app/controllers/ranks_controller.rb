@@ -13,7 +13,7 @@ class RanksController < ApplicationController
       flash[:success] = 'Rank criado com sucesso'
       redirect_to ranks_path
     else
-      flash[:error] = 'Aglo deu errado'
+      flash[:error] = 'Algo deu errado'
       render :new
     end
   end
@@ -25,10 +25,10 @@ class RanksController < ApplicationController
   def update
     @rank = Rank.find(params[:id])
       if @rank.update_attributes(rank_params)
-        flash[:success] = "Rank was successfully updated"
+        flash[:success] = "Rank atualizado com sucesso"
         redirect_to ranks_path
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Algo deu errado"
         render 'edit'
       end
   end
@@ -36,10 +36,10 @@ class RanksController < ApplicationController
   def destroy
     @rank = Rank.find(params[:id])
     if @rank.destroy
-      flash[:success] = 'Rank was successfully deleted.'
+      flash[:success] = 'Rank deletado com sucesso'
       redirect_to ranks_url
     else
-      flash[:error] = 'Something went wrong'
+      flash[:error] = 'Algo deu errado'
       redirect_to ranks_url
     end
   end
