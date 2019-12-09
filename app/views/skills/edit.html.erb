@@ -1,14 +1,18 @@
 <h3>Editando '<%= @skill.name %>' de <%= @character.name %></h3>
 <%= form_for @skill, url: character_skill_path do |f| %>
-  <%= f.label :name, "Nome" %>
-  <%= f.text_field :name %>
-
-  <%= f.label :cost, "Custo" %>
-  <%= f.text_field :cost %>
-
-  <%= f.label :description, "Descrição" %>
-  <%= f.text_field :description %>
-
+  <p>
+    <%= f.label :name, "Nome" %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :cost, "Custo" %>
+    <%= f.text_field :cost %>
+  </p>
+  <p>
+    <%= f.label :description, "Descrição" %>
+    <%= f.text_area :description %>
+  </p>
+  
   <%= f.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
     <%= b.check_box %>
     <%= b.label %>
@@ -26,6 +30,9 @@
     <% end %>
   </ol>
 
+  <%= f.label :picture, 'Foto' %>
+  <%= f.file_field :picture %>
+  
   <%= f.submit 'Enviar' %>
 <% end %>
 

@@ -1,26 +1,36 @@
-<nav id="navbar">
-   <ul>
-    <li><%= link_to  "Home", root_path %></li>
-    <li><%= link_to  "Constelações", constellations_path %></li>
-    <li><%= link_to  "Ranks", ranks_path %></li>
-    <li><%= link_to  "Efeitos de skill", effects_path %></li>
-    <li><%= link_to  "Personagens", characters_path %></li>
-    <li><%= link_to  "Cosmos", cosmos_path %></li>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <li>
-      <% if user_signed_in? %>
-        <%= link_to  "Meu Perfil", edit_user_registration_path %>
-        <%= link_to  "Sair", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to  "Registre-se", new_user_registration_path %> |
-        <%= link_to  "Entrar", new_user_session_path %>
-      <% end %>
-    </li>
-  </ul>
-</nav>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="nav navbar-nav mr-auto">
 
-<style>
-#navbar li{
-  display:inline-block;
-}
-</style>
+          <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
+          <li class="nav-item"> <%= link_to  "Constelações", constellations_path, class: "nav-link" %></li>
+          <li class="nav-item"> <%= link_to  "Ranks", ranks_path, class: "nav-link" %></li>
+          <li class="nav-item"> <%= link_to  "Efeitos de skill", effects_path, class: "nav-link" %></li>
+          <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
+      
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cosmos</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <%= link_to  "Todos Cosmos", cosmos_path, class: "dropdown-item" %>
+            <%= link_to  "Cosmos Base", cosmo_basics_path, class: "dropdown-item" %>
+            <%= link_to  "Tipos de Cosmos", cosmo_types_path, class: "dropdown-item" %>
+          </div>
+        </li>
+
+      </ul>
+      <div class="my-2 my-lg-0 nav-link" style="display: inline-block;">
+        <% if user_signed_in? %>
+          <%= link_to  "Meu Perfil", edit_user_registration_path %> |
+          <%= link_to  "Sair", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to  "Entrar", new_user_session_path, class: "btn btn-outline-info" %>
+          <%= link_to  "Registre-se", new_user_registration_path, class: "btn btn-info" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>

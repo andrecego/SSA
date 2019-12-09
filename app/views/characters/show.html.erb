@@ -1,58 +1,111 @@
-<h1>Personagem</h1>
-<ul>
-  <li>
-    <%= link_to  "Editar", edit_character_path(@character) %> |
-    <%= link_to  "Deletar", character_path(@character), method: :delete %>
-  </li>
-  <% if @character.picture.attached? %>
-    <li><%= image_tag @character.picture%></li>
-  <% end %>
-  <li>Nome: <%= @character.name %></li>
-  <li>Rank: <%= @character.rank.name %></li>
-  <li>Constelação: <%= @character.constellation.name %></li>
+<h1 class="text-center"><%= @character.name %> - <%= @character.constellation.name %></h1>
+
+<div class="d-flex card-columns">
+    <div class="card gradient .align-items-lg-start col-4">
+
+      <div class="float-right">
+        <%= link_to  "Editar", edit_character_path(@character) %> |
+        <%= link_to  "Deletar", character_path(@character), method: :delete %>
+      </div>
 
 
-  <h2>Status</h2>
-  <% if @character.stat %>
-    <li>
-      <%= link_to  "Editar", edit_character_stat_path(@character, @character.stat) %> |
-      <%= link_to  "Deletar", character_stat_path(@character, @character.stat), method: :delete %>
-    </li>
-    <li>Vida: <%= @character.stat.health %></li>
-    <li>Ataque: <%= @character.stat.patk %></li>
-    <li>Defesa: <%= @character.stat.pdef %></li>
-    <li>Ataque Mágico: <%= @character.stat.matk %></li>
-    <li>Defesa Mágica: <%= @character.stat.mdef %></li>
-    <li>Velocidade: <%= @character.stat.speed %></li>
-  <% else %>
-    <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
-  <% end %>
+      <% if @character.picture.attached? %>
+        <%= image_tag @character.picture, class: 'card-img-top p-2' %>
+      <% end %>  
   
-  <h2>Skills</h2>
-  <% if @character.skills %>
-    <% @character.skills.each do |skill| %>
-      <li>
-        <%= link_to  "Editar", edit_character_skill_path(@character, skill) %> |
-        <%= link_to  "Deletar", character_skill_path(@character, skill), method: :delete %>
-      </li>
-      <li>Nome: <%= skill.name %></li>
-      <li>Efeitos: 
-        <ul>
-          <% skill.effects.each do |effect| %>
-            <li><%= effect.name %></li>
-          <% end %>
-        </ul>
-      </li>
-      <li>Custo: <%= skill.cost %></li>
-      <li>Descrição: <%= skill.description %></li>    
-      <li>Skill Ups:</li>
-      <ol>
-        <% skill.levels.each do |level| %>
-          <li><%= level %></li>
+      <ul class="list-group list-group-flush">        
+        <% if @character.stat %>
+          <li class="list-group-item"><strong> Vida: </strong><%= @character.stat.health %></li>
+          <li class="list-group-item"><strong> Ataque: </strong><%= @character.stat.patk %></li>
+          <li class="list-group-item"><strong> Defesa: </strong><%= @character.stat.pdef %></li>
+          <li class="list-group-item"><strong> Ataque Mágico: </strong><%= @character.stat.matk %></li>
+          <li class="list-group-item"><strong> Defesa Mágica: </strong><%= @character.stat.mdef %></li>
+          <li class="list-group-item"><strong> Velocidade: </strong><%= @character.stat.speed %></li>
+      </ul>
+
+          <div class="float-right">
+            <%= link_to  "Editar", edit_character_stat_path(@character, @character.stat) %> |
+            <%= link_to  "Deletar", character_stat_path(@character, @character.stat), method: :delete %>
+          </div>          
+        <% else %>
+          <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
         <% end %>
-      </ol>
-      <hr>
-    <% end %>
-  <% end %>
-  <%= link_to  "Cadastrar nova skill", new_character_skill_path(@character) %>
-</ul>
+    </div>
+
+    <div class="col-8">
+
+      <% if @character.skills %>
+      <% @character.skills.each do |skill| %>
+              <div class="card">
+  
+                <div class="card-header row">
+                    <div class="col-2">
+                      <% if skill.picture.attached? %>
+                        <%= image_tag skill.picture%>
+                        <span class="bot-right number">
+                          <%= skill.cost %>
+                        </span>
+                      <% end %>
+                    </div>
+
+                  <div class="col-10">  
+                    <h5 class="card-title"><%= skill.name %></h5>
+                      <ul class="two-columns">
+                        <% skill.effects.each do |effect| %>
+                          <li><%= effect.name %></li>
+                        <% end %>
+                      </ul>
+                  </div>
+                </div>
+
+                
+                <div class="card-body">
+                  <p class="card-text">
+                    <%= skill.description %>
+                  </p>
+                  <hr>
+                  <ol>
+                    <% skill.levels.each do |level| %>
+                      <li><%= level %></li>
+                    <% end %>
+                  </ol>
+                  <span class="float-right">
+                      <%= link_to  "Editar", edit_character_skill_path(@character, skill) %> |
+                      <%= link_to  "Deletar", character_skill_path(@character, skill), method: :delete %>
+                  </span>
+                </div>
+  
+                <br>
+              </div>
+              <% end %>
+            <% end %>
+            <%= link_to  "Cadastrar nova skill", new_character_skill_path(@character) %>
+    </div>
+</div>
+
+  
+  
+<style>
+.bot-right {
+  position: relative;
+  bottom: 20px;
+  left: 80px;
+}
+
+.number {
+  font-size: large;
+}
+
+.card-header {
+  max-height: 120px;
+}
+
+.two-columns {
+  columns: 2;
+}
+
+.gradient {
+  background-image: linear-gradient(#dde4fc, #4c536b);
+}
+
+</style>

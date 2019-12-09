@@ -7,7 +7,7 @@
   <%= f.text_field :cost %>
 
   <%= f.label :description, "Descrição" %>
-  <%= f.text_field :description %>
+  <%= f.text_area :description %>
 
   <%= f.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
     <%= b.check_box %>
@@ -25,6 +25,9 @@
   <%= text_field_tag "skill[levels][]" %>
   <%= label_tag 'Skill lv. 5' %>
   <%= text_field_tag "skill[levels][]" %>
+
+  <%= f.label :picture, 'Foto' %>
+  <%= f.file_field :picture %>
 
   <%= f.submit 'Enviar' %>
 <% end %>
