@@ -1,61 +1,69 @@
 <h1 class="text-center"><%= @character.name %> - <%= @character.constellation.name %></h1>
 
+
 <div class="d-flex card-columns">
-    <div class="card gradient .align-items-lg-start col-4">
 
-      <div class="float-right">
-        <%= link_to  "Editar", edit_character_path(@character) %> |
-        <%= link_to  "Deletar", character_path(@character), method: :delete %>
-      </div>
-
-
-      <% if @character.picture.attached? %>
-        <%= image_tag @character.picture, class: 'card-img-top p-2' %>
-      <% end %>  
+    <div class="col-4">
+      <div class="card">        
+        <div class="gradient p-3">
+          <% if @character.picture.attached? %>
+            <%= image_tag @character.picture, class: 'card-img-top' %>
+          <% end %> 
+        </div> 
+    
+        <ul class="list-group list-group-flush">        
+          <% if @character.stat %>
+            <li class="list-group-item"><strong> Vida: </strong><%= @character.stat.health %></li>
+            <li class="list-group-item"><strong> Ataque: </strong><%= @character.stat.patk %></li>
+            <li class="list-group-item"><strong> Defesa: </strong><%= @character.stat.pdef %></li>
+            <li class="list-group-item"><strong> Ataque Mágico: </strong><%= @character.stat.matk %></li>
+            <li class="list-group-item"><strong> Defesa Mágica: </strong><%= @character.stat.mdef %></li>
+            <li class="list-group-item"><strong> Velocidade: </strong><%= @character.stat.speed %></li>
+        </ul>
   
-      <ul class="list-group list-group-flush">        
-        <% if @character.stat %>
-          <li class="list-group-item"><strong> Vida: </strong><%= @character.stat.health %></li>
-          <li class="list-group-item"><strong> Ataque: </strong><%= @character.stat.patk %></li>
-          <li class="list-group-item"><strong> Defesa: </strong><%= @character.stat.pdef %></li>
-          <li class="list-group-item"><strong> Ataque Mágico: </strong><%= @character.stat.matk %></li>
-          <li class="list-group-item"><strong> Defesa Mágica: </strong><%= @character.stat.mdef %></li>
-          <li class="list-group-item"><strong> Velocidade: </strong><%= @character.stat.speed %></li>
-      </ul>
+           <div class="float-left admin">
+              <%= link_to  "Editar", edit_character_path(@character) %> |
+              <%= link_to  "Deletar", character_path(@character), method: :delete %>
+            </div>
 
-          <div class="float-right">
-            <%= link_to  "Editar", edit_character_stat_path(@character, @character.stat) %> |
-            <%= link_to  "Deletar", character_stat_path(@character, @character.stat), method: :delete %>
-          </div>          
-        <% else %>
-          <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
-        <% end %>
+            <div class="float-right admin">
+              <%= link_to  "Editar", edit_character_stat_path(@character, @character.stat) %> |
+              <%= link_to  "Deletar", character_stat_path(@character, @character.stat), method: :delete %>
+            </div>          
+          <% else %>
+            <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
+          <% end %>
+      </div>
     </div>
 
     <div class="col-8">
 
       <% if @character.skills %>
       <% @character.skills.each do |skill| %>
-              <div class="card">
+              <div class="card mb-4">
   
-                <div class="card-header row">
-                    <div class="col-2">
-                      <% if skill.picture.attached? %>
-                        <%= image_tag skill.picture%>
-                        <span class="bot-right number">
-                          <%= skill.cost %>
-                        </span>
-                      <% end %>
-                    </div>
-
-                  <div class="col-10">  
-                    <h5 class="card-title"><%= skill.name %></h5>
-                      <ul class="two-columns">
-                        <% skill.effects.each do |effect| %>
-                          <li><%= effect.name %></li>
-                        <% end %>
-                      </ul>
-                  </div>
+                <div class="card-header">
+                  <%= image_tag 'frames/top_card.png', class: 'top-card' %>
+                	<div class="row">
+                	    <div class="col-2">
+                	      <% if skill.picture.attached? %>
+                	        <%= image_tag skill.picture, class: "border-black" %>
+                	        <span class="bot-right">
+                	          <%= image_tag "energy_point.png", class: "img-number" %>
+                	          <span class="number"><%= skill.cost %></span>
+                	        </span>
+                	      <% end %>
+                	    </div>
+                
+                	  <div class="col-10">  
+                	    <h5 class="card-title"><%= skill.name %></h5>
+                	      <ul class="two-columns">
+                	        <% skill.effects.each do |effect| %>
+                	          <li><%= effect.name %></li>
+                	        <% end %>
+                	      </ul>
+                	  </div>
+                	</div>
                 </div>
 
                 
@@ -69,7 +77,7 @@
                       <li><%= level %></li>
                     <% end %>
                   </ol>
-                  <span class="float-right">
+                  <span class="float-right admin">
                       <%= link_to  "Editar", edit_character_skill_path(@character, skill) %> |
                       <%= link_to  "Deletar", character_skill_path(@character, skill), method: :delete %>
                   </span>
@@ -83,29 +91,50 @@
     </div>
 </div>
 
+
   
   
 <style>
 .bot-right {
   position: relative;
-  bottom: 20px;
-  left: 80px;
+  bottom: 25px;
+  left: 70px;
+}
+
+.border-black {
+  border: 3px solid black;
+  border-radius: 100px;
 }
 
 .number {
-  font-size: large;
+  font-size: 16px;
+  position: absolute;
+  left: 11px;
+  top: -2px;
+  color: white;
+  text-shadow: 0 0 5px black;
 }
 
 .card-header {
-  max-height: 120px;
+  max-height: 130px;
 }
 
-.two-columns {
+.two-columns{
   columns: 2;
+  list-style-type: none;
 }
 
 .gradient {
   background-image: linear-gradient(#dde4fc, #4c536b);
 }
 
+.admin {
+  display: none;
+}
+
+.top-card{
+  position: absolute;
+  top: -18px;
+  left: 15%;
+}
 </style>
