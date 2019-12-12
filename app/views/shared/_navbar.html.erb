@@ -40,7 +40,7 @@
 <div class="navbar-area">
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
-      <%= image_tag "shared/logo.png" %>
+      <%= image_tag "shared/logo.png", id: 'nav-logo' %>
     </div>
   
     <!-- Menu For Desktop Device -->
@@ -50,97 +50,18 @@
             <%= image_tag "shared/logo.png", id: "nav-logo" %>
           <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+              
+              <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
+              <li class="nav-item"> <%= link_to  "Constelações", constellations_path, class: "nav-link" %></li>
+              <li class="nav-item"> <%= link_to  "Ranks", ranks_path, class: "nav-link" %></li>
+              <li class="nav-item"> <%= link_to  "Efeitos de skill", effects_path, class: "nav-link" %></li>
+              <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
+
               <li class="nav-item">
-                <a href="#" class="nav-link dropdown-toggle active">Home</a>
+                <%= link_to  'Cosmos', cosmos_path, class: 'nav-link dropdown-toggle' %>
                 <ul class="dropdown-menu">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Home Page 2</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Home Page 3</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Home Page 4</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Home Page 5</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">About</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">Services</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">Team</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">Testimonials</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link dropdown-toggle">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Services</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Team</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Testimonials</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Contact</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link dropdown-toggle">Dropdown</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link dropdown-toggle">Submenu 1</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">Item 1</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">Item 2</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link dropdown-toggle">Submenu 2</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">Item 1</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">Item 2</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link dropdown-toggle">Submenu 3</a>
-                        <ul class="dropdown-menu">
-                          <li class="nav-item">
-                            <a href="#" class="nav-link">Item 1</a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="#" class="nav-link">Item 2</a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="#" class="nav-link">Item 3</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
+                    <li class="nav-item"><%= link_to  "Cosmos Base", cosmo_basics_path, class: "dropdown-item" %> </li>
+                    <li class="nav-item"><%= link_to  "Tipos de Cosmos", cosmo_types_path, class: "dropdown-item" %> </li>
                 </ul>
               </li>
             </ul>
