@@ -4,6 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.7'
 
 gem 'activestorage-imgur'
+gem 'aws-sdk-s3', require: false
+gem 'google-cloud-storage', '~> 1.8', require: false
 gem 'bootstrap', '~> 4.4.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'

@@ -1,106 +1,139 @@
 <h1 class="text-center"><%= @character.name %> - <%= @character.constellation.name %></h1>
 
 
-<div class="d-flex card-columns">
+<div class="d-flex row">
 
-    <div class="col-4">
-      <div class="card">        
-        <div class="gradient p-3">
-          <% if @character.picture.attached? %>
-            <%= image_tag @character.picture, class: 'card-img-top' %>
-          <% end %> 
-        </div> 
-    
-        <ul class="list-group list-group-flush">        
-          <% if @character.stat %>
-            <li class="list-group-item"><strong> Vida: </strong><%= @character.stat.health %></li>
-            <li class="list-group-item"><strong> Ataque: </strong><%= @character.stat.patk %></li>
-            <li class="list-group-item"><strong> Defesa: </strong><%= @character.stat.pdef %></li>
-            <li class="list-group-item"><strong> Ataque Mágico: </strong><%= @character.stat.matk %></li>
-            <li class="list-group-item"><strong> Defesa Mágica: </strong><%= @character.stat.mdef %></li>
-            <li class="list-group-item"><strong> Velocidade: </strong><%= @character.stat.speed %></li>
-        </ul>
-  
-           <div class="float-left admin">
-              <%= link_to  "Editar", edit_character_path(@character) %> |
-              <%= link_to  "Deletar", character_path(@character), method: :delete %>
-            </div>
+  <div class="col-md-4">
+    <div class="admin">
+      <%= link_to  "Editar", edit_character_path(@character) %> |
+      <%= link_to  "Deletar", character_path(@character), method: :delete %>
+    </div>
 
-            <div class="float-right admin">
-              <%= link_to  "Editar", edit_character_stat_path(@character, @character.stat) %> |
-              <%= link_to  "Deletar", character_stat_path(@character, @character.stat), method: :delete %>
-            </div>          
-          <% else %>
-            <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
-          <% end %>
+    <div class="card card-glow card-char">        
+      <% if @character.picture.attached? %>
+        <%= image_tag @character.picture, class: 'card-img-top' %>
+      <% end %>
+
+    <% if @character.stat %>
+      <div class="div-table">
+        <div class="tr"> 
+          <div class="td"><%= image_tag 'characters/pv.png', title: 'Pontos de Vida' %><span>Pontos de Vida:</span></div>
+          <div class="td"><strong><%= @character.stat.health %></strong></div>
+        </div>
+        <div class="tr"> 
+          <div class="td"><%= image_tag 'characters/atk_fis.png', title: 'Ataque Físico' %><span>Ataque Físico:</span></div>
+          <div class="td"><strong><%= @character.stat.patk %></strong></div>
+        </div>
+        <div class="tr"> 
+          <div class="td"><%= image_tag 'characters/def_fis.png', title: 'Defesa Física' %><span>Defesa Física:</span></div>
+          <div class="td"><strong><%= @character.stat.pdef %></strong></div>
+        </div>
+        <div class="tr"> 
+          <div class="td"><%= image_tag 'characters/atk_cos.png', title: 'Ataque Cósmico' %><span>Ataque Cósmico:</span></div>
+          <div class="td"><strong><%= @character.stat.matk %></strong></div>
+        </div>
+        <div class="tr"> 
+          <div class="td"><%= image_tag 'characters/def_cos.png', title: 'Defesa Cósmica' %><span>Defesa Cósmica:</span></div>
+          <div class="td"><strong><%= @character.stat.mdef %></strong></div>
+        </div>
+        <div class="tr"> 
+          <div class="td"><%= image_tag 'characters/speed.png', title: 'Velocidade' %><span>Velocidade:</span></div>
+          <div class="td"><strong><%= @character.stat.speed %></strong></div>
+        </div>
       </div>
+
+      <div class="float-right admin">
+        <%= link_to  "Editar", edit_character_stat_path(@character, @character.stat) %> |
+        <%= link_to  "Deletar", character_stat_path(@character, @character.stat), method: :delete %>
+      </div>          
+    <% else %>
+      <%= link_to  "Cadastrar Status", new_character_stat_path(@character) %>
+    <% end %>
+
     </div>
+    <%= link_to  "Cadastrar Set de Cosmos", new_character_cosmos_set_path(@character) %>
+  </div>
 
-    <div class="col-8">
+  <div class="col-md-8">
 
-      <% if @character.skills %>
-      <% @character.skills.each do |skill| %>
-              <div class="card mb-4">
-  
-                <div class="card-header">
-                  <%= image_tag 'frames/top_card.png', class: 'top-card' %>
-                	<div class="row">
-                	    <div class="col-2">
-                	      <% if skill.picture.attached? %>
-                	        <%= image_tag skill.picture, class: "border-black" %>
-                	        <span class="bot-right">
-                	          <%= image_tag "energy_point.png", class: "img-number" %>
-                	          <span class="number"><%= skill.cost %></span>
-                	        </span>
-                	      <% end %>
-                	    </div>
-                
-                	  <div class="col-10">  
-                	    <h5 class="card-title"><%= skill.name %></h5>
-                	      <ul class="two-columns">
-                	        <% skill.effects.each do |effect| %>
-                	          <li><%= effect.name %></li>
-                	        <% end %>
-                	      </ul>
-                	  </div>
-                	</div>
-                </div>
+    <% if @character.skills %>
+    <% @character.skills.each do |skill| %>
+            <div class="card mb-4 card-glow card-rounded">
 
-                
-                <div class="card-body">
-                  <p class="card-text">
-                    <%= skill.description %>
-                  </p>
-                  <hr>
-                  <ol>
-                    <% if skill.levels %>
-                      <% skill.levels.each do |level| %>
-                        <li><%= level %></li>
+              <div class="card-header">
+                <!-- <%= image_tag 'frames/top_card.png', class: 'top-card' %> -->
+                <div class="row">
+                    <div class="col-2">
+                      <% if skill.picture.attached? %>
+                        <%= image_tag skill.picture, class: "border-black" %>
+                        <div class="bot-right">
+                          <%= image_tag "characters/energy_point.png", class: "img-number" %>
+                          <span class="number"><%= skill.cost %></span>
+                        </div>
                       <% end %>
-                    <% end %>
-                  </ol>
-                  <span class="float-right admin">
-                      <%= link_to  "Editar", edit_character_skill_path(@character, skill) %> |
-                      <%= link_to  "Deletar", character_skill_path(@character, skill), method: :delete %>
-                  </span>
+                    </div>
+              
+                  <div class="col-10">  
+                    <h5 class="card-title"><%= skill.name %></h5>
+                      <ul class="two-columns">
+                        <% skill.effects.each do |effect| %>
+                          <li><%= effect.name %></li>
+                        <% end %>
+                      </ul>
+                  </div>
                 </div>
-  
-                <br>
               </div>
-              <% end %>
+
+              
+              <div class="card-body">
+                <p class="card-text">
+                  <%= skill.description %>
+                </p>
+                <hr>
+                <ol>
+                  <% if skill.levels %>
+                    <% skill.levels.each do |level| %>
+                      <li><%= level %></li>
+                    <% end %>
+                  <% end %>
+                </ol>
+                <span class="float-right admin">
+                    <%= link_to  "Editar", edit_character_skill_path(@character, skill) %> |
+                    <%= link_to  "Deletar", character_skill_path(@character, skill), method: :delete,data: {confirm: "Tem certeza?"} %>
+                </span>
+              </div>
+
+              <br>
+            </div>
             <% end %>
-            <%= link_to  "Cadastrar nova skill", new_character_skill_path(@character) %>
-    </div>
+          <% end %>
+          <%= link_to  "Cadastrar nova skill", new_character_skill_path(@character) %>
+  </div>
 </div>
 
-
-  
-  
 <style>
+.admin {
+  display: none;
+}
+@media (max-width: 768px) {
+  .div-table {
+    text-align: center;
+  }
+
+  .div-table .tr {
+    background: rgba(0,0,0,0.5);
+    display: inline-grid;
+  }
+
+  .td span {
+    display: none;
+  }
+}
+
 .bot-right {
   position: relative;
-  bottom: 25px;
-  left: 70px;
+  bottom: 20%;
+  left: 85%;
 }
 
 .border-black {
@@ -110,29 +143,19 @@
 }
 
 .number {
-  font-size: 16px;
+  font-size: 19px;
   position: absolute;
-  left: 11px;
-  top: -2px;
+  left: 10px;
   color: white;
   text-shadow: 0 0 5px black;
 }
 
-.card-header {
-  max-height: 130px;
-}
-
-.two-columns{
-  columns: 2;
-  list-style-type: none;
+.admin {
+  text-align: right;
 }
 
 .gradient {
   background-image: linear-gradient(#dde4fc, #4c536b);
-}
-
-.admin {
-  display: none;
 }
 
 .top-card{
@@ -140,4 +163,66 @@
   top: -18px;
   left: 15%;
 }
+
+.card-glow{
+  background-color: rgba(0,0,0, 0.75);
+  box-shadow: 0px 0px 19px 1px #569eea;
+  color: white;
+  border: none;
+}
+
+.card-glow .card-header {
+    background-color: rgba(0, 100, 255, 0.25);
+    border-bottom: 2px solid silver;
+    border-radius: 15px 50px;
+    max-height: 140px;
+  }
+
+.card-rounded {
+  border-radius: 15px 50px;
+}
+
+.card-glow h5 {
+  font-size: 1.5rem;
+}
+
+
+hr {
+  border-bottom: 1px solid #888;
+}
+
+.div-table {
+    display: table;
+    width: 100%;
+}
+.tr {
+    display: table-row;
+    padding: 5px;
+    background: linear-gradient(to right,  #000 0%,#888 30%,#fff 50%,#888 70%,#000 100%),  rgba(0,0,0,0.5);
+    background-size: 100% 1px, 11px 58px;
+    /* background-position: left bottom, left top; */
+    background-repeat: no-repeat;
+}
+
+.td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5px;
+    margin: 5px;
+    width: auto;
+}
+
+.card-char {
+  border-bottom: 10px solid black;
+  border-radius: 12px;
+}
+
+.two-columns {
+  columns: 2;
+  list-style-type: none;
+}
+
 </style>
+
+<!-- rgba(0,0,0, 0.7)  card-->
+<!-- rgba(0, 100, 255, 0.25) skill card -->

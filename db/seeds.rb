@@ -46,6 +46,8 @@ File.open('db/characters/char_rank_s.json', 'r') do |file|
     char = JSON.parse line
 
     name = char['name']
+    puts name
+
     constellation = char['constellation']
     if Constellation.find_by(name: constellation).blank?
       constellation = Constellation.create!(name: constellation)
@@ -59,7 +61,6 @@ File.open('db/characters/char_rank_s.json', 'r') do |file|
 
     character = Character.new(name: name, constellation: constellation, rank: rank)
     character.picture.attach(io: open(picture), filename: "#{name}.png", content_type: "image/png")
-    sleep(1.0)
     character.save!
 
 
@@ -82,7 +83,6 @@ File.open('db/characters/char_rank_s.json', 'r') do |file|
       new_skill = Skill.new(name: skill_name, cost: cost, description: description, levels: levels, character: character)
 
       new_skill.picture.attach(io: open(skill['picture']), filename: "skill_#{index+1}#{skill['picture'][-4..-1]}", content_type: "image/#{skill['picture'][-3..-1]}")
-      sleep(1.0)
       new_skill.save!
     end
 

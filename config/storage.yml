@@ -13,6 +13,18 @@ imgur:
   access_token: <%= ENV['IMGUR_ACCESS_TOKEN'] %>
   refresh_token: <%= ENV['IMGUR_REFRESH_TOKEN'] %>
 
+amazon:
+  service: S3
+  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  region: us-east-2
+  bucket: <%= ENV['AWS_BUCKET'] %>
+
+google_dev:
+  service: GCS
+  project: saint-seiya-awakening-db
+  credentials: <%= Rails.root.join("config/ssa-db.json") %>
+  bucket: saint-seiya-db
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
