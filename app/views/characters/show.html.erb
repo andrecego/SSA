@@ -9,7 +9,7 @@
       <%= link_to  "Deletar", character_path(@character), method: :delete %>
     </div>
 
-    <div class="card card-glow card-char">        
+    <div class="card card-glow card-char mb-4">        
       <% if @character.picture.attached? %>
         <%= image_tag @character.picture, class: 'card-img-top' %>
       <% end %>
@@ -51,6 +51,24 @@
     <% end %>
 
     </div>
+      <% if @character.cosmos_sets %>
+      <div id="cosmos_set">
+        <h4>Cosmos Recomendados</h4>
+        <% @character.cosmos_sets.each do |cosmos_set| %>
+          <div class="card card-glow mb-4">
+            <div class="row px-3">
+              <% cosmos_set.cosmos.each do |cosmo| %>
+                <div class="col-3 py-2">
+                  <% if cosmo.picture.attached? %>
+                    <%= image_tag cosmo.picture, class: 'img-fluid', title: cosmo.name %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
     <%= link_to  "Cadastrar Set de Cosmos", new_character_cosmos_set_path(@character) %>
   </div>
 
@@ -169,6 +187,7 @@
   box-shadow: 0px 0px 19px 1px #569eea;
   color: white;
   border: none;
+  border-radius: 15px;
 }
 
 .card-glow .card-header {
@@ -220,6 +239,16 @@ hr {
 .two-columns {
   columns: 2;
   list-style-type: none;
+}
+
+#cosmos_set .col-3 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.spacer {
+  border: 0px;
+  margin: 0px;
 }
 
 </style>

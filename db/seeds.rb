@@ -40,6 +40,7 @@ end
 # cosmo_types.map do |name| 
 #   CosmoType.where(name: name).first_or_create
 # end
+cosmo_type = CosmoType.where(name: 'Trocar').first_or_create
 
 File.open('db/characters/char_rank_s.json', 'r') do |file|
   file.each_line do |line|
@@ -65,6 +66,7 @@ File.open('db/characters/char_rank_s.json', 'r') do |file|
 
 
     #status
+    puts '  Status'
     health = char['stats']['health']
     patk = char['stats']['patk']
     pdef = char['stats']['pdef']
@@ -75,7 +77,9 @@ File.open('db/characters/char_rank_s.json', 'r') do |file|
 
 
     #skills
+    puts '  Skills'
     char['skills'].each.with_index do |skill, index|
+      puts "    #{index+1}"
       skill_name = skill['name']
       cost = skill['cost']
       description = skill['description']
@@ -87,13 +91,18 @@ File.open('db/characters/char_rank_s.json', 'r') do |file|
     end
 
     #cosmos
-    # char[:cosmos].each do |cosmo_set|
-    #   cosmo_set.each do |cosmo|
-    #     cosmo[:name]
-      
-    #     cosmo[:uri]
-    #   end
-    # end
+    puts '  Cosmos Sets'
+    char['cosmos'].each do |cosmo_set|
+      cosmo_set.each do |cosmo|
+        next if Cosmo.where(name: cosmo['name']).present?
+
+        new_cosmo = Cosmo.new(name: cosmo['name'], cosmo_type: cosmo_type)
+        new_cosmo.picture.attach(io: open(cosmo['uri']), filename: "#{cosmo['name']}.png", content_type: "image/png")
+        new_cosmo.save!
+      end
+      cosmo_set.map! { |cosmo| Cosmo.find_by(name: cosmo['name']).id }
+      CosmosSet.create!(cosmos_ids: cosmo_set, character: character)
+    end
 
   end
 end

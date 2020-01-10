@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :characters do
     resources :stats
     resources :skills
+    resources :cosmos_sets
   end
 
   resources :cosmo_basics

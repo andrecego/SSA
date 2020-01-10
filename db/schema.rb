@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_112229) do
+ActiveRecord::Schema.define(version: 2020_01_09_151656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,14 @@ ActiveRecord::Schema.define(version: 2019_12_07_112229) do
     t.index ["cosmo_type_id"], name: "index_cosmos_on_cosmo_type_id"
   end
 
+  create_table "cosmos_sets", force: :cascade do |t|
+    t.text "cosmos_ids", array: true
+    t.bigint "character_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_cosmos_sets_on_character_id"
+  end
+
   create_table "effects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -146,6 +154,7 @@ ActiveRecord::Schema.define(version: 2019_12_07_112229) do
   add_foreign_key "characters", "constellations"
   add_foreign_key "characters", "ranks"
   add_foreign_key "cosmos", "cosmo_types"
+  add_foreign_key "cosmos_sets", "characters"
   add_foreign_key "skills", "characters"
   add_foreign_key "stats", "characters"
 end

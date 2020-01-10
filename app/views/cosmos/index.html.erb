@@ -17,7 +17,7 @@
     <li>Cosmos Base: </li>
         <% cosmo.cosmo_basics.each do |base| %>
       <ul>
-        <li><%= image_tag('cosmos/' + base.name + '.png') %> <%= base.name %></li>    
+        <li><%# image_tag('cosmos/' + base.name + '.png') %> <%= base.name %></li>    
       </ul>
     <% end %>
     <li>Set Bonus: <%= cosmo.set %></li>

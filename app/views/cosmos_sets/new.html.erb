@@ -1,0 +1,10 @@
+<h1>Novo Set de Cosmos</h1>
+<div class="card">
+  <%= form_for [@character, @cosmos_set] do |f| %>
+  <%= select_tag "cosmos_set[cosmos_ids][]", options_from_collection_for_select(@legendary, "id", "name")%>
+    <%= select_tag "cosmos_set[cosmos_ids][]", options_from_collection_for_select(@solar, "id", "name")%>
+    <%= select_tag "cosmos_set[cosmos_ids][]", options_from_collection_for_select(@lunar, "id", "name")%>
+    <%= select_tag "cosmos_set[cosmos_ids][]", options_from_collection_for_select(@stellar, "id", "name")%>
+    <%= f.submit 'Enviar' %>
+  <% end %>
+</div
