@@ -42,8 +42,8 @@ end
 # end
 cosmo_type = CosmoType.where(name: 'Trocar').first_or_create
 
-['db/characters/ss_rank_char.json', 'db/characters/s_rank_char.json', 'db/characters/a_rank_char.json', 'db/characters/b_rank_char.json'].each do |path|
-  File.open(path, 'r') do |file|
+['ss', 's', 'a', 'b'].each do |path|
+  File.open("db/characters/#{path}_rank_char.json", 'r') do |file|
     file.each_line do |line|
       char = JSON.parse line
 
@@ -57,7 +57,7 @@ cosmo_type = CosmoType.where(name: 'Trocar').first_or_create
         constellation = Constellation.find_by(name: constellation)
       end
 
-      rank = Rank.find_by(name: 'B')
+      rank = Rank.find_by(name: path.upcase)
 
       picture = char['picture']
 
