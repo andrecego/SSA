@@ -1,6 +1,22 @@
 class CharactersController < ApplicationController
   def index
-    @characters = Character.all
+    @characters = Character.where(rank_id: 2).order(name: :asc)
+  end
+
+  def search
+    @characters = if params[:q]
+                    Character.where("name ILIKE ?", "%#{params[:q]}%")
+                  else
+                    Character.all
+                  end
+    @characters = if params[:order].present?
+                    @characters.joins(:stat).order("#{order_sanitizer} DESC")
+                  else
+                    @characters.order(name: :asc)
+                  end
+    @characters = @characters.where(rank_id: params[:rank_id]) if params[:rank_id].present?
+
+    render json: @characters, each_serializer: CharacterSerializer
   end
 
   def new
@@ -52,5 +68,11 @@ class CharactersController < ApplicationController
   private
   def character_params
     params.require(:character).permit(:name, :rank_id, :constellation_id, :picture)
+  end
+
+  def order_sanitizer
+    return params[:order] if ['health', 'patk', 'pdef', 'matk', 'mdef', 'speed'].include?(params[:order])
+
+    'health'
   end
 end

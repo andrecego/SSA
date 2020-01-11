@@ -11,9 +11,10 @@
 
   <body>
     <%= render  "shared/navbar" %>
-    <%= render "shared/flash" %>
     <div class="container">
+      <%= render "shared/flash" %>
       <%= yield %>
     </div>
   </body>
+  <%= javascript_tag "showOptions()" if current_user.admin? %>
 </html>

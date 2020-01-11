@@ -13,7 +13,11 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery3
+//= require_tree .
 //= require popper
 //= require bootstrap-sprockets
+
+function showOptions() {
+  $(".admin").css("display", "block");
+}

@@ -1,48 +1,11 @@
-<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="nav navbar-nav mr-auto">
-
-          <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
-          <li class="nav-item"> <%= link_to  "Constelações", constellations_path, class: "nav-link" %></li>
-          <li class="nav-item"> <%= link_to  "Ranks", ranks_path, class: "nav-link" %></li>
-          <li class="nav-item"> <%= link_to  "Efeitos de skill", effects_path, class: "nav-link" %></li>
-          <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
-      
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cosmos</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <%= link_to  "Todos Cosmos", cosmos_path, class: "dropdown-item" %>
-            <%= link_to  "Cosmos Base", cosmo_basics_path, class: "dropdown-item" %>
-            <%= link_to  "Tipos de Cosmos", cosmo_types_path, class: "dropdown-item" %>
-          </div>
-        </li>
-
-      </ul>
-      <div class="my-2 my-lg-0 nav-link" style="display: inline-block;">
-        <% if user_signed_in? %>
-          <%= link_to  "Meu Perfil", edit_user_registration_path %> |
-          <%= link_to  "Sair", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to  "Entrar", new_user_session_path, class: "btn btn-outline-info" %>
-          <%= link_to  "Registre-se", new_user_registration_path, class: "btn btn-info" %>
-        <% end %>
-      </div>
-    </div>
-  </nav> -->
-
-
+<% if current_user && current_user.admin? %>
   <!-- Start Navbar Area -->
-<div class="navbar-area">
+  <div class="navbar-area">
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
       <%= image_tag "shared/logo.png", id: 'nav-logo' %>
     </div>
-  
+
     <!-- Menu For Desktop Device -->
     <div class="main-nav">
       <div class="container">
@@ -64,6 +27,10 @@
                     <li class="nav-item"><%= link_to  "Tipos de Cosmos", cosmo_types_path, class: "dropdown-item" %> </li>
                 </ul>
               </li>
+              <li class="nav-item">
+                <%= link_to('Login', new_user_session_path, class: 'nav-link') unless current_user%>
+                <%= link_to('Logout', destroy_user_session_path, class: 'nav-link', method: :delete) if current_user%>
+              </li>
             </ul>
           </div>
         </nav>
@@ -71,4 +38,33 @@
     </div>
   </div>
   <!-- End Navbar Area -->
-  
+<% else %>
+<div class="navbar-area">
+  <!-- Menu For Mobile Device -->
+  <div class="mobile-nav">
+    <%= image_tag "shared/logo.png", id: 'nav-logo' %>
+  </div>
+
+  <!-- Menu For Desktop Device -->
+  <div class="main-nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light">
+          <%= image_tag "shared/logo.png", id: "nav-logo" %>
+        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            
+            <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
+            <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
+            <li class="nav-item"> <%= link_to  'Cosmos', cosmos_path, class: 'nav-link' %> </li>
+            <li class="nav-item">
+              <%= link_to('Login', new_user_session_path, class: 'nav-link') unless current_user%>
+              <%= link_to('Logout', destroy_user_session_path, class: 'nav-link', method: :delete) if current_user%>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+  <!-- End Navbar Area -->
+<% end %>

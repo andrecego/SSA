@@ -1,14 +1,18 @@
 <h1>Todos Cosmos</h1>
-<ul>
-  <li><%= link_to  "Tipos de Cosmos", cosmo_types_path %></li>
-  <li><%= link_to  "Cosmos Base", cosmo_basics_path %></li>
-</ul>
-<%= link_to  "Registrar novo cosmo  ", new_cosmo_path %>
-
-<% @cosmos.each do |cosmo| %>
+<div class="admin">
   <ul>
-    <li><%= link_to  "Editar", edit_cosmo_path(cosmo) %> |
-        <%= link_to  "Deletar", cosmo_path(cosmo), method: :delete %></li>
+    <li><%= link_to  "Tipos de Cosmos", cosmo_types_path %></li>
+    <li><%= link_to  "Cosmos Base", cosmo_basics_path %></li>
+  </ul>
+  <%= link_to  "Registrar novo cosmo  ", new_cosmo_path %>
+</div>
+
+<div class="card text-dark">
+  <div class="row">
+<% @cosmos.each do |cosmo| %>
+
+<div class="col-4" style="border:1px solid black">
+  <ul>
     <% if cosmo.picture.attached? %>
       <li><%= image_tag cosmo.picture %></li>
     <% end %>
@@ -21,6 +25,12 @@
       </ul>
     <% end %>
     <li>Set Bonus: <%= cosmo.set %></li>
+    <span class="admin"><%= link_to  "Editar", edit_cosmo_path(cosmo) %> |
+      <%= link_to  "Deletar", cosmo_path(cosmo), method: :delete, data: {confirm: 'Deseja deletar o cosmos?'} %></span>
   </ul>
+</div>
+
 <% end %>
 
+</div>
+</div>

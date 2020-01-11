@@ -1,12 +1,32 @@
 <h1>Listagem de todos personagens</h1>
-<%= link_to  "Cadastrar novo personagem", new_character_path %>
+<%= link_to("Cadastrar novo personagem", new_character_path) %>
+
 <br>
-<div class="row">
-<% @characters.each do |character| %>
-    <div class="col-6 col-md-4 col-lg-3 mb-3">
-      <%= link_to character do %>
-        <%= image_tag(character.picture, class: 'img-fluid') %>
-      <% end %>
+
+<div class="p-2">
+    <div class="row">
+      <div class="form-group col-6">
+      <%= text_field_tag :q, params[:q], class: 'form-control search_field', placeholder: 'Buscar Personagem' %>
+      <%= content_tag(:button, fa_icon("search 2x"), class: 'form-control-feedback') %>
+      </div>
+      <div class="form-group col-2">
+        <!-- collection_ranks, :first, :second, ao inves de Rank.all para adicionar 'Todos' -->
+      <%= collection_select(nil, :rank_id, collection_ranks, :first, :second, { selected: '2'}, {class: 'form-control', onchange: 'search()'}) %>
+      </div>
+      <div class="form-group col-4">
+      <%= select_tag :order, options_for_select([['Pontos de Vida', 'health'], ['Ataque Físico', 'patk'], ['Defesa Física', 'pdef'], ['Ataque Cósmico', 'matk'], ['Defesa Cósmica', 'mdef'], ['Velocidade', 'speed']]), 
+                     { prompt: 'Ordenar por...', class: 'form-control', selected: params[:order], onchange: 'search()' } %>
+      </div>
     </div>
-    <% end %>
-  </div>
+</div>
+
+<div class="row" id="characters-grid">
+  <%= render @characters %>
+</div>
+
+<script>
+  $('#q').keyup( function() {
+    search_text = $('.search_field').val()
+    if (search_text.length > 2 || search_text.length == 0) { search() }
+  })
+</script>

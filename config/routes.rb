@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :stats
     resources :skills
     resources :cosmos_sets
+    get 'search', on: :collection
   end
 
   resources :cosmo_basics

@@ -1,0 +1,135 @@
+.admin {
+  display: none;
+}
+
+.delete {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+.edit {
+  color: blue;
+  position: relative;
+  bottom: 5px;
+  left: 10px;
+}
+
+@media (max-width: 768px) {
+  .div-table {
+    text-align: center;
+  }
+
+  .div-table .tr {
+    background: rgba(0,0,0,0.5);
+    display: inline-grid;
+  }
+
+  .td span {
+    display: none;
+  }
+}
+
+.bot-right {
+  position: relative;
+  bottom: 20%;
+  left: 85%;
+}
+
+.border-black {
+  border: 3px solid black;
+  border-radius: 100px;
+  width: 125%;
+}
+
+.number {
+  font-size: 24px;
+  position: absolute;
+  left: 0.4em;
+  bottom: 0;
+  color: white;
+  text-shadow: 0 0 5px black;
+  font-family: monospace;
+}
+
+.gradient {
+  background-image: linear-gradient(#dde4fc, #4c536b);
+}
+
+.top-card{
+  position: absolute;
+  top: -18px;
+  left: 15%;
+}
+
+.card-glow{
+  background-color: rgba(0,0,0, 0.75);
+  box-shadow: 0px 0px 19px 1px #569eea;
+  color: white;
+  border: none;
+  border-radius: 15px;
+}
+
+.card-glow .card-header {
+    background-color: rgba(0, 100, 255, 0.25);
+    border-bottom: 2px solid silver;
+    border-radius: 15px 50px;
+    max-height: 140px;
+  }
+
+.card-rounded {
+  border-radius: 15px 50px;
+}
+
+.card-glow h5 {
+  font-size: 1.5rem;
+}
+
+
+hr {
+  border-bottom: 1px solid #888;
+}
+
+.div-table {
+    display: table;
+    width: 100%;
+}
+.tr {
+    display: table-row;
+    padding: 5px;
+    background: linear-gradient(to right,  #000 0%,#888 30%,#fff 50%,#888 70%,#000 100%),  rgba(0,0,0,0.5);
+    background-size: 100% 1px, 11px 58px;
+    /* background-position: left bottom, left top; */
+    background-repeat: no-repeat;
+}
+
+.td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5px;
+    margin: 5px;
+    width: auto;
+}
+
+.card-char {
+  border-bottom: 10px solid black;
+  border-radius: 12px;
+}
+
+.two-columns {
+  columns: 2;
+  list-style-type: none;
+}
+
+#cosmos_set .col-3 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.spacer {
+  border: 0px;
+  margin: 0px;
+}
+
+// rgba(0,0,0, 0.7)  card
+// rgba(0, 100, 255, 0.25) skill card
