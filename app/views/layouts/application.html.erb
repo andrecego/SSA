@@ -16,5 +16,5 @@
       <%= yield %>
     </div>
   </body>
-  <%= javascript_tag "showOptions()" if current_user.admin? %>
+  <%= javascript_tag "showOptions()" if (current_user && current_user.admin?) %>
 </html>
