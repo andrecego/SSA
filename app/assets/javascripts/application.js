@@ -19,5 +19,12 @@
 //= require bootstrap-sprockets
 
 function showOptions() {
-  $(".admin").css("display", "block");
+  $(".admin").css("display", "initial");
 }
+
+$(document).ready(function() {
+  $("#collapseMenu").on("click", function() {
+    console.log('iai');
+      $("nav .nav-menu").toggleClass("showing");
+  });
+});

@@ -1,70 +1,31 @@
-<% if current_user && current_user.admin? %>
-  <!-- Start Navbar Area -->
-  <div class="navbar-area">
-    <!-- Menu For Mobile Device -->
-    <div class="mobile-nav">
-      <%= image_tag "shared/logo.png", id: 'nav-logo' %>
-    </div>
-
-    <!-- Menu For Desktop Device -->
-    <div class="main-nav">
-      <div class="container">
-        <nav class="navbar navbar-expand-md navbar-light">
-            <%= image_tag "shared/logo.png", id: "nav-logo" %>
-          <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              
-              <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
-              <li class="nav-item"> <%= link_to  "Constelações", constellations_path, class: "nav-link" %></li>
-              <li class="nav-item"> <%= link_to  "Ranks", ranks_path, class: "nav-link" %></li>
-              <li class="nav-item"> <%= link_to  "Efeitos de skill", effects_path, class: "nav-link" %></li>
-              <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
-
-              <li class="nav-item">
-                <%= link_to  'Cosmos', cosmos_path, class: 'nav-link dropdown-toggle' %>
-                <ul class="dropdown-menu">
-                    <li class="nav-item"><%= link_to  "Cosmos Base", cosmo_basics_path, class: "dropdown-item" %> </li>
-                    <li class="nav-item"><%= link_to  "Tipos de Cosmos", cosmo_types_path, class: "dropdown-item" %> </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <%= link_to('Login', new_user_session_path, class: 'nav-link') unless current_user%>
-                <%= link_to('Logout', destroy_user_session_path, class: 'nav-link', method: :delete) if current_user%>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
+<nav>
+  <div class="menu-icon">
+    <i class="fa fa-bars fa-2x" id="collapseMenu"></i>
   </div>
-  <!-- End Navbar Area -->
-<% else %>
-<div class="navbar-area">
-  <!-- Menu For Mobile Device -->
-  <div class="mobile-nav">
+  <div class="logo">
     <%= image_tag "shared/logo.png", id: 'nav-logo' %>
   </div>
-
-  <!-- Menu For Desktop Device -->
-  <div class="main-nav">
-    <div class="container">
-      <nav class="navbar navbar-expand-md navbar-light">
-          <%= image_tag "shared/logo.png", id: "nav-logo" %>
-        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            
-            <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
-            <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
-            <li class="nav-item"> <%= link_to  'Cosmos', cosmos_path, class: 'nav-link' %> </li>
-            <li class="nav-item">
-              <%= link_to('Login', new_user_session_path, class: 'nav-link') unless current_user%>
-              <%= link_to('Logout', destroy_user_session_path, class: 'nav-link', method: :delete) if current_user%>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+  <div class="nav-menu">
+    <ul>
+      <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
+      <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
+      <li class="nav-item"> <%= link_to  'Cosmos', cosmos_path, class: 'nav-link' %> </li>
+      <% if current_user && current_user.admin? %>
+        <li class="nav-item dropdown">
+          <%= link_to 'Admin', '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdown', data: { toggle: 'dropdown'} %>
+          <div class="dropdown-menu">
+            <%= link_to "Constelações", constellations_path, class: "dropdown-item" %>
+            <%= link_to "Ranks", ranks_path, class: "dropdown-item" %>
+            <%= link_to "Efeitos de skill", effects_path, class: "dropdown-item" %>
+            <%= link_to "Cosmos Base", cosmo_basics_path, class: "dropdown-item" %> 
+            <%= link_to "Tipos de Cosmos", cosmo_types_path, class: "dropdown-item" %> 
+          </div>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to('Login', new_user_session_path, class: 'nav-link') unless current_user %>
+        <%= link_to('Logout', destroy_user_session_path, class: 'nav-link', method: :delete) if current_user %>
+      </li>
+    </ul>
   </div>
-</div>
-  <!-- End Navbar Area -->
-<% end %>
+</nav>

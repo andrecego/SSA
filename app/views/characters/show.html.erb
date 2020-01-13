@@ -4,12 +4,14 @@
 <div class="d-flex row">
 
   <div class="col-md-4">
-    <div class="admin">
-      <%= link_to fa_icon("edit 2x"), edit_character_path(@character), class: 'admin' %>
-      <%= link_to fa_icon("trash 2x"), character_path(@character), method: :delete, data: {confirm: "Remover o personagem e todas skills?"}, class: 'admin text-danger' %>
-    </div>
+
 
     <div class="card card-glow card-char mb-4">
+      <div class="admin">
+        <%= link_to fa_icon("edit 2x"), edit_character_path(@character), style: 'position: absolute;left:0;top: 0;' %>
+        <%= link_to fa_icon("trash 2x"), character_path(@character), method: :delete, 
+                    data: {confirm: "Remover o personagem e todas skills?"}, class: 'text-danger', style: 'position: absolute;right:0;top: 0;' %>
+      </div>
       <% if @character.picture.attached? %>
         <%= image_tag @character.picture, class: 'card-img-top' %>
       <% end %>
@@ -43,8 +45,9 @@
       </div>
 
       <div class="float-right admin">
-        <%= link_to  fa_icon("edit 2x"), edit_character_stat_path(@character, @character.stat), class: 'admin edit' %>
-        <%= link_to  fa_icon("trash 2x"), character_stat_path(@character, @character.stat), method: :delete, data: {confirm: "Remover os Status?"}, class: 'admin delete text-danger' %>
+        <%= link_to  fa_icon("edit 2x"), edit_character_stat_path(@character, @character.stat), class: 'edit' %>
+        <%= link_to  fa_icon("trash 2x"), character_stat_path(@character, @character.stat), method: :delete, 
+                     data: {confirm: "Remover os Status?"}, class: 'delete text-danger' %>
       </div>          
     <% else %>
       <%= link_to  "Cadastrar Status", new_character_stat_path(@character), class: 'admin' %>
@@ -65,7 +68,8 @@
                 </div>
               <% end %>
               <%= link_to  fa_icon("edit 2x"), edit_character_cosmos_set_path(@character, cosmos_set), class: 'admin edit' %> 
-              <%= link_to  fa_icon("trash 2x"), character_cosmos_set_path(@character, cosmos_set), method: :delete, data: {confirm: "Remover o Set de Cosmos?"}, class: 'admin delete text-danger' %>
+              <%= link_to  fa_icon("trash 2x"), character_cosmos_set_path(@character, cosmos_set), method: :delete, 
+                           data: {confirm: "Remover o Set de Cosmos?"}, class: 'admin delete text-danger' %>
             </div>
           </div>
         <% end %>
@@ -117,10 +121,11 @@
                     <% end %>
                   </ol>
                 <% end %>
-                <span>
-                  <%= link_to  fa_icon("edit 2x"), edit_character_skill_path(@character, skill), class: 'admin edit' %>
-                  <%= link_to  fa_icon("trash 2x"), character_skill_path(@character, skill), method: :delete, data: {confirm: "Remover essa skill?"}, class: 'admin delete text-danger' %>
-                </span>
+                <div class="admin">
+                  <%= link_to fa_icon("edit 2x"), edit_character_skill_path(@character, skill) %>
+                  <%= link_to fa_icon("trash 2x"), character_skill_path(@character, skill), method: :delete, 
+                              data: {confirm: "Remover essa skill?"}, class: 'text-danger float-right' %>
+                </div>
               </div>
 
               <br>

@@ -1,11 +1,21 @@
 .form-control-feedback {
   position: absolute;
-  top: 0.5em;
+  top: 0.4em;
   right: 2em;
   border: 0;
   padding: 0;
   background-color: transparent;
   .fa-2x{
     font-size: 1.5em;
+  }
+}
+
+
+@media(max-width: 786px) {
+  .search-field{
+    height: 3em;
+  }
+  .form-control-feedback {
+    top: 0.8em;
   }
 }

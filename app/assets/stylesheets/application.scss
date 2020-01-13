@@ -4,13 +4,29 @@
 @import "character";
 @import "forms";
 
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500|Source+Code+Pro&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 body {
-  margin-top: 100px;
   background-image: url("https://data.whicdn.com/images/112320164/original.jpg");
-  // background-image: url("https://jooinn.com/images/starry-sky-1.png");
+  font-family: 'Source Code Pro', monospace;
+  font-family: 'Montserrat', sans-serif;
   color: #ddd;
 }
 
 h1 {
   color: #ddd;
+}
+
+@include media-breakpoint-down(md) {
+  .container {
+    width: 100%;
+    max-width: none;
+  }
 }

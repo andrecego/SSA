@@ -1,5 +1,5 @@
 function search() {
-  search_text = $('.search_field').val()
+  search_text = $('.search-field').val()
   rank_id = $('#rank_id').val()
   order = $('#order').val()
   Rails.ajax({
