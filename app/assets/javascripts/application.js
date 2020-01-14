@@ -22,14 +22,8 @@ function showOptions() {
   $(".admin").css("display", "initial");
 }
 
-$(document).ready(function() {
+document.addEventListener('turbolinks:load', function() {
   $("#collapseMenu").on("click", function() {
-    console.log('iai');
       $("nav .nav-menu").toggleClass("showing");
   });
 });
-
-
-var page_y = $(window).height();
-var div_y = $('#character-card div:last').offset().top;
-
