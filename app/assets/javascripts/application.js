@@ -28,3 +28,8 @@ $(document).ready(function() {
       $("nav .nav-menu").toggleClass("showing");
   });
 });
+
+
+let page_y = $(window).height();
+let div_y = $('#character-card div:last').offset().top;
+

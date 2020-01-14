@@ -3,7 +3,7 @@
 
 <div class="d-flex row">
 
-  <div class="col-md-4">
+  <div class="col-md-4" id="character-card">
 
 
     <div class="card card-glow card-char mb-4">
@@ -57,6 +57,7 @@
       <% if @character.cosmos_sets %>
       <div id="cosmos_set">
         <h4>Cosmos Recomendados</h4>
+        <%= link_to  "Cadastrar Set de Cosmos", new_character_cosmos_set_path(@character), class: 'admin' %>
         <% @character.cosmos_sets.each do |cosmos_set| %>
           <div class="card card-glow mb-4">
             <div class="row px-3">
@@ -75,7 +76,6 @@
         <% end %>
       </div>
       <% end %>
-    <%= link_to  "Cadastrar Set de Cosmos", new_character_cosmos_set_path(@character), class: 'admin' %>
   </div>
 
   <div class="col-md-8">

@@ -9,11 +9,11 @@
       <%= text_field_tag :q, params[:q], class: 'form-control search-field', placeholder: 'Buscar Personagem' %>
       <%= content_tag(:button, fa_icon("search 2x"), class: 'form-control-feedback') %>
       </div>
-      <div class="form-group col-lg-2 col-sm-4">
+      <div class="form-group col-lg-2 col-4">
         <!-- collection_ranks, :first, :second, ao inves de Rank.all para adicionar 'Todos' -->
       <%= collection_select(nil, :rank_id, collection_ranks, :first, :second, { selected: '2'}, {class: 'form-control', onchange: 'search()'}) %>
       </div>
-      <div class="form-group col-lg-4 col-sm-8">
+      <div class="form-group col-lg-4 col-8">
       <%= select_tag :order, options_for_select([['Pontos de Vida', 'health'], ['Ataque Físico', 'patk'], ['Defesa Física', 'pdef'], ['Ataque Cósmico', 'matk'], ['Defesa Cósmica', 'mdef'], ['Velocidade', 'speed']]), 
                      { prompt: 'Ordenar por...', class: 'form-control', selected: params[:order], onchange: 'search()' } %>
       </div>
