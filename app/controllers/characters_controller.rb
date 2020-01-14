@@ -1,6 +1,8 @@
 class CharactersController < ApplicationController
+  include Pagy::Backend
+
   def index
-    @characters = Character.where(rank_id: 2).order(name: :asc)
+    @pagy, @characters = pagy(Character.all.order(name: :asc), items: 12)
   end
 
   def search

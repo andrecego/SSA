@@ -7,7 +7,7 @@
     <div class="row">
       <div class="form-group col-lg-2 col-4">
         <!-- collection_ranks, :first, :second, ao inves de Rank.all para adicionar 'Todos' -->
-      <%= collection_select(nil, :rank_id, collection_ranks, :first, :second, { selected: '2'}, {class: 'form-control', onchange: 'search()'}) %>
+      <%= collection_select(nil, :rank_id, collection_ranks, :first, :second, { selected: '0'}, {class: 'form-control', onchange: 'search()'}) %>
       </div>
       <div class="form-group col-lg-4 col-8">
       <%= select_tag :order, options_for_select([['Pontos de Vida', 'health'], ['Ataque Físico', 'patk'], ['Defesa Física', 'pdef'], ['Ataque Cósmico', 'matk'], ['Defesa Cósmica', 'mdef'], ['Velocidade', 'speed']]), 
@@ -22,6 +22,7 @@
 
 <div class="row" id="characters-grid">
   <%= render @characters %>
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>
 
 <script>
