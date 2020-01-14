@@ -13,6 +13,31 @@ html, body {
   width: 100%;
 }
 
+// scrollbar
+body {
+  overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e5c100;
+}
+
 body {
   background-image: url("https://data.whicdn.com/images/112320164/original.jpg");
   font-family: 'Source Code Pro', monospace;

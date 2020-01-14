@@ -87,7 +87,11 @@ nav {
   }
 
   .showing {
-    display: initial;
+    display: block;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    left: 0;
   }
 
   nav ul li {

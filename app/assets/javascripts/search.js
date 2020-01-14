@@ -9,7 +9,7 @@ function search() {
     success: function(data) {
       document.getElementById('characters-grid').innerHTML = "";
       $.each(data, function( index, value ) { 
-        $("#characters-grid").append("<div class='col-6 col-md-4 col-lg-3 mb-3'> <a href='/characters/" + value['id'] + "'> <img src='" + value['picture'] + "' title='" + value['name'] + "' class='img-fluid' </a> </div>")
+        $("#characters-grid").append("<div class='col-6 col-md-4 col-lg-3 my-3'> <a href='/characters/" + value['id'] + "'> <img src='" + value['picture'] + "' title='" + value['name'] + "' class='img-fluid' </a> </div>")
      })
     },
     })

@@ -4,10 +4,10 @@
     <i class="fa fa-bars fa-2x" id="collapseMenu"></i>
   </div>
   <div class="logo">
-    <%= image_tag "shared/logo.png", id: 'nav-logo' %>
+    <%= link_to image_tag("shared/logo.png", id: 'nav-logo'), root_path %>
   </div>
   <div class="nav-menu">
-    <ul>
+    <ul class="p-0">
       <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
       <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
       <li class="nav-item"> <%= link_to  'Cosmos', cosmos_path, class: 'nav-link' %> </li>

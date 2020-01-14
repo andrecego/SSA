@@ -35,16 +35,16 @@
             <div class="td"><strong><%= @character.stat.pdef %></strong></div>
           </div>
           <div class="tr col-4"> 
+            <div class="td"><%= image_tag 'characters/speed.png', title: 'Velocidade' %><span>Velocidade:</span></div>
+            <div class="td"><strong><%= @character.stat.speed %></strong></div>
+          </div>
+          <div class="tr col-4"> 
             <div class="td"><%= image_tag 'characters/atk_cos.png', title: 'Ataque Cósmico' %><span>Ataque Cósmico:</span></div>
             <div class="td"><strong><%= @character.stat.matk %></strong></div>
           </div>
           <div class="tr col-4"> 
             <div class="td"><%= image_tag 'characters/def_cos.png', title: 'Defesa Cósmica' %><span>Defesa Cósmica:</span></div>
             <div class="td"><strong><%= @character.stat.mdef %></strong></div>
-          </div>
-          <div class="tr col-4"> 
-            <div class="td"><%= image_tag 'characters/speed.png', title: 'Velocidade' %><span>Velocidade:</span></div>
-            <div class="td"><strong><%= @character.stat.speed %></strong></div>
           </div>
         </div>
       </div>
@@ -63,10 +63,10 @@
       <div id="cosmos_set">
         <h4>Cosmos Recomendados</h4>
         <%= link_to  "Cadastrar Set de Cosmos", new_character_cosmos_set_path(@character), class: 'admin' %>
-       <div class="row mx-2">
+       <div class="row ml-4 ml-md-0">
         <% @character.cosmos_sets.each do |cosmos_set| %>
-        <div class="card card-glow mb-4 mx-2 col-5 col-md-12">
-          <div class="row px-1 px-md-0">
+        <div class="card-glow mb-5 mb-md-4 mr-5 p-0 col-5 col-md-12">
+          <div class="row m-0 p-0">
             <% cosmos_set.cosmos.each do |cosmo| %>
               <div class="col-6 col-md-3 py-2">
                 <% if cosmo.picture.attached? %>
