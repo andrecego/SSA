@@ -30,6 +30,6 @@ $(document).ready(function() {
 });
 
 
-let page_y = $(window).height();
-let div_y = $('#character-card div:last').offset().top;
+var page_y = $(window).height();
+var div_y = $('#character-card div:last').offset().top;
 
