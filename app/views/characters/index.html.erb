@@ -14,8 +14,8 @@
                      { prompt: 'Ordenar por...', class: 'form-control', selected: params[:order], onchange: 'search()' } %>
       </div>
       <div class="form-group col-lg-6">
-        <%= text_field_tag :q, params[:q], class: 'form-control search-field', placeholder: 'Buscar Personagem' %>
-        <%= content_tag(:button, fa_icon("search 2x"), class: 'form-control-feedback') %>
+        <%= search_field_tag :q, params[:q], class: 'form-control search-field', placeholder: 'Buscar Personagem', onchange: 'search()' %>
+        <%# content_tag(:button, fa_icon("search 2x"), class: 'form-control-feedback') %>
       </div>
     </div>
 </div>
@@ -23,11 +23,11 @@
 <div class="row" id="characters-grid">
   <%= render @characters %>
 </div>
-<%= render partial: 'next_link' %>
+<%= content_tag(:div, render('next_link'), id: 'div_next_link') %>
 
 <script>
-  $('#q').keyup( function() {
-    search_text = $('.search-field').val()
-    if (search_text.length > 2 || search_text.length == 0) { search() }
-  })
+  $('#q').on( 'input', function() { 
+    var search_text = $('#q').val()
+    if (search_text.length > 2 || search_text.length == 0) { search() }  
+  } )
 </script>

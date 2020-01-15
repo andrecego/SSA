@@ -17,8 +17,12 @@ class CharactersController < ApplicationController
                     @characters.order(name: :asc)
                   end
     @characters = @characters.where(rank_id: params[:rank_id]) if params[:rank_id].present?
-
-    render json: @characters, each_serializer: CharacterSerializer
+    @pagy, @characters = pagy_countless(@characters, items: 12, link_extra: 'data-remote="true"')
+    # render json: @characters, each_serializer: CharacterSerializer
+    
+    respond_to do |format|
+      format.js { render 'search' }
+    end
   end
 
   def new
