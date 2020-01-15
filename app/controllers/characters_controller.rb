@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pagy, @characters = pagy(Character.all.order(name: :asc), items: 12)
+    @pagy, @characters = pagy_countless(Character.all.order(name: :asc), items: 12, link_extra: 'data-remote="true"')
   end
 
   def search

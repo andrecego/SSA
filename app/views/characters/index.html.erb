@@ -22,8 +22,8 @@
 
 <div class="row" id="characters-grid">
   <%= render @characters %>
-  <%== pagy_bootstrap_nav(@pagy) %>
 </div>
+<%= render partial: 'next_link' %>
 
 <script>
   $('#q').keyup( function() {
