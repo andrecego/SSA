@@ -26,8 +26,16 @@
 <%= content_tag(:div, render('next_link'), id: 'div_next_link') %>
 
 <script>
+  // call search() on input change
   $('#q').on( 'input', function() { 
     var search_text = $('#q').val()
     if (search_text.length > 2 || search_text.length == 0) { search() }  
-  } )
+  } );
+
+  // lose focus of the field tag
+  $('input').keyup(function(event) {
+  if (event.which === 13) {
+    $(this).blur();
+  }
+});
 </script>
