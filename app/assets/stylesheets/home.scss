@@ -1,0 +1,20 @@
+.image-box {
+  .pos-absolute {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0;
+    h1 {
+      margin: 0;
+      color: #e5c100;
+      padding-top: 2em;
+      font-size: 3rem;
+      font-family: 'Audiowide', cursive;
+      text-shadow: 0 0 20px darkblue;
+      @include media-breakpoint-down(sm) { 
+        font-size: 1.5rem;
+        padding-top: 1em;
+      }
+    }
+  }
+}

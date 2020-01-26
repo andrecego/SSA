@@ -1,21 +1,30 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "navbar";
+@import "footer";
+@import "home";
 @import "character";
 @import "forms";
 
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500|Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
 
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 100%;
 }
 
 // scrollbar
 body {
   overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.container {
+  min-height: 100%;
 }
 
 /* width */

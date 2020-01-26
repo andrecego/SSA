@@ -1,0 +1,25 @@
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-10">
+        <h5>Links</h5>
+        <ul class="list-unstyled text-small">
+          <li><%= link_to 'Home', root_path, class: 'text-muted' %></li>
+          <li><%= link_to 'Personagens', characters_path, class: 'text-muted' %></li>
+          <li><%= link_to 'Login', new_user_session_path, class: 'text-muted' %></li>
+          <li><%= link_to 'Registre-se', new_user_registration_path, class: 'text-muted' %></li>
+        </ul>
+      </div>
+      <div class="col-2 float-right m-auto">
+        <!-- <button onclick="topFunction()">OIE</button> -->
+        <%= button_tag fa_icon("arrow-circle-up 2x"), onclick: "topFunction()",
+                       class: 'btn btn-dark', title: 'Voltar ao topo' %>
+      </div>
+    </div>
+    <hr>
+    <small class="d-block mb-3 text-muted text-center">
+      <%= link_to 'andre gomes', 'https://github.com/andrecego' %> © 2020 
+    </small>
+  </div>
+
+</footer>

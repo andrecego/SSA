@@ -16,6 +16,7 @@
       <%= render "shared/flash" %>
       <%= yield %>
     </div>
+    <%= render "shared/footer" %>
   </body>
   <%= javascript_tag "showOptions()" if (current_user && current_user.admin?) %>
 </html>
