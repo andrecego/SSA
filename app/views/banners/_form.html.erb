@@ -1,0 +1,30 @@
+<%= form_for @banner do |f| %>
+  <div class="row">
+
+    <div class="form-group col-sm-4">
+      <%= f.label :character_id, 'Personagem' %>
+      <%= f.collection_select :character_id, @characters, :id, :uniq_name, {},
+                              { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group col-sm-4">
+      <%= f.label :picture, 'Imagem' %>
+      <%= f.file_field :picture %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :initial_date, 'Data de Início' %>
+      <%= f.datetime_field :initial_date,
+                           value: Date.today.strftime("%Y-%m-%dT10:00"), class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :end_date, 'Data Final' %>
+      <%= f.datetime_field :end_date,
+                           value: 7.days.from_now.strftime("%Y-%m-%dT07:00"), class: 'form-control' %>
+    </div>
+
+  </div>
+  <%= f.submit 'Enviar', class: 'btn btn-primary float-right' %>
+
+<% end %>

@@ -1,11 +1,13 @@
 .admin {
   display: none;
+  z-index: 1;
+  min-width: 100%;
 }
 
 .delete {
-  position: absolute;
+  position: relative;
   bottom: 5px;
-  right: 10px;
+  float: right;
 }
 
 .edit {
@@ -21,6 +23,14 @@
   // left: 85%;
   bottom: 25px;
   left: 70px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  @include media-breakpoint-down(md) {
+    position: relative;
+  }
 }
 
 .border-black {

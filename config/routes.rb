@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :cosmos_sets
     get 'search', on: :collection
   end
+  resources :banners, only: %i[index new create show]
 
   resources :cosmo_basics
   resources :cosmo_types

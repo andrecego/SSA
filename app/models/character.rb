@@ -8,4 +8,8 @@ class Character < ApplicationRecord
   #accepts_nested_attributes_for :stat, :skills
   # validates :name, uniqueness: true
   validates :name, :constellation_id, :rank_id, presence: { message: 'Não pode ter nenhum campo vazio' }
+
+  def uniq_name
+    "#{name} - #{constellation.name}"
+  end
 end

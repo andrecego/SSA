@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_151656) do
+ActiveRecord::Schema.define(version: 2020_01_26_222925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2020_01_09_151656) do
     t.string "key", null: false
     t.string "imgur_id", null: false
     t.index ["key"], name: "index_active_storage_imgur_key_mappings_on_key", unique: true
+  end
+
+  create_table "banners", force: :cascade do |t|
+    t.datetime "initial_date"
+    t.datetime "end_date"
+    t.bigint "character_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_banners_on_character_id"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -151,6 +160,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_151656) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "banners", "characters"
   add_foreign_key "characters", "constellations"
   add_foreign_key "characters", "ranks"
   add_foreign_key "cosmos", "cosmo_types"
