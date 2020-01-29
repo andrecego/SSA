@@ -4,6 +4,8 @@
   </div>
   <%= image_tag 'shared/banner.jpg', class: 'img-fluid card-glow' %>
 </div>
-<hr>
-<h1>Banner da Semana</h1>
-<%= render @banner %>
+<% if @banner %>
+  <hr>
+  <h1>Banner da Semana</h1>
+  <%= render @banner %>
+<% end %>
