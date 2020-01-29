@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 class BannersController < ApplicationController
-  def index; end
+  def index
+    @banners = Banner.all.order(end_date: :asc)
+  end
 
   def new
     @banner = Banner.new
-    @characters = Character.where(rank_id: Rank.where(name: ['S', 'SS']).ids)
+    @characters = Character.where(rank_id: Rank.where(name: %w[S SS]).ids)
                            .order(name: :asc)
   end
-  
+
   def create
     @banner = Banner.new(banner_params)
     if @banner.save

@@ -1,0 +1,21 @@
+<div class="card-glow">
+  <div class="row">
+    <div class="col-md-8">
+      <% if banner.picture.attached? %>
+        <%= image_tag banner.picture, class: 'img-fluid', style: "max-heigth: 300px" %>
+      <% end %>
+    </div>
+    <div class="card-body col-md-4">
+      <p> Invocação Temática: </p>
+      <p><%= link_to banner.character.uniq_name, character_path(banner.character) %></p>
+
+
+      <div class="bottom">
+        <p> <%= "Data de Início: #{banner.initial_date.strftime("%d-%m-%y - %H:%M")}" %> </p>
+        <p> <%= "Data Final: #{banner.end_date.strftime("%d-%m-%y - %H:%M")}" %> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
