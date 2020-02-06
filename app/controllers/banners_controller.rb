@@ -29,7 +29,7 @@ class BannersController < ApplicationController
   private
 
   def banner_params
-    params.require(:banner).permit(:character_id, :initial_date,
-                                   :end_date, :picture)
+    params.require(:banner).permit(:initial_date, :end_date, :picture,
+                                   character_ids: [])
   end
 end

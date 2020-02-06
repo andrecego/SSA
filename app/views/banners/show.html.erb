@@ -8,7 +8,9 @@
     </div>
     <div class="card-body col-md-4">
       <p> Invocação Temática: </p>
-      <p><%= link_to @banner.character.uniq_name, character_path(@banner.character) %></p>
+      <% @banner.characters.each do |character| %>
+        <p><%= link_to character.uniq_name, character_path(character) %></p>
+      <% end %>
 
 
       <div class="bottom">

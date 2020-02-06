@@ -2,9 +2,9 @@
   <div class="row">
 
     <div class="form-group col-sm-4">
-      <%= f.label :character_id, 'Personagem' %>
-      <%= f.collection_select :character_id, @characters, :id, :uniq_name, {},
-                              { class: 'form-control' } %>
+      <%= f.label :character_ids, 'Personagem(s)' %>
+      <%= f.collection_select :character_ids, @characters, :id, :uniq_name, {},
+                              { multiple: true, class: 'form-control custom-select', size: 15 } %>
     </div>
 
     <div class="form-group col-sm-4">
