@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class CosmosSetsController < ApplicationController
-  before_action :char
+  before_action :find_character
   before_action :prepare, only: %i[new edit]
 
   def new
     @cosmos_set = CosmosSet.new
   end
-  
+
   def create
     @cosmos_set = CosmosSet.new(cosmos_set_params)
     character = Character.find(params[:character_id])
@@ -25,10 +27,10 @@ class CosmosSetsController < ApplicationController
   def update
     @cosmos_set = CosmosSet.find(params[:id])
     if @cosmos_set.update_attributes(cosmos_set_params)
-      flash[:success] = "Set de Cosmos atualizado com sucesso"
+      flash[:success] = 'Set de Cosmos atualizado com sucesso'
       redirect_to @character
     else
-      flash[:error] = "Algo deu errado"
+      flash[:error] = 'Algo deu errado'
       render 'edit'
     end
   end
@@ -59,7 +61,7 @@ class CosmosSetsController < ApplicationController
     @legendary = @cosmos.where(cosmo_type: CosmoType.find_by(name: 'Lendário'))
   end
 
-  def char
+  def find_character
     @character = Character.find(params[:character_id])
   end
 end

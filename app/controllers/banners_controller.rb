@@ -2,7 +2,7 @@
 
 class BannersController < ApplicationController
   def index
-    @banners = Banner.all.order(end_date: :asc)
+    @banners = Banner.all.order(end_date: :desc)
   end
 
   def new
