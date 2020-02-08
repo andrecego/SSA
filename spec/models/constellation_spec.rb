@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Constellation, type: :model do
-  
+describe Constellation do
 end

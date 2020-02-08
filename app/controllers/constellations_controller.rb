@@ -1,4 +1,8 @@
-class ConstellationsController < ApplicationController 
+# frozen_string_literal: true
+
+class ConstellationsController < ApplicationController
+  before_action :authenticate_admin
+
   def index
     @constellations = Constellation.all
   end
@@ -41,14 +45,14 @@ class ConstellationsController < ApplicationController
     @constellation = Constellation.find(params[:id])
     if @constellation.destroy
       flash[:success] = 'Constelação apagada com êxito'
-      redirect_to constellations_path
     else
       flash[:error] = 'Houve um erro ao apagar'
-      redirect_to constellations_path
     end
+    redirect_to constellations_path
   end
-  
+
   private
+
   def constellation_params
     params.require(:constellation).permit(:name)
   end
