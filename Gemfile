@@ -30,6 +30,7 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  gem 'rubocop-rails'
 end
 
 group :development do
