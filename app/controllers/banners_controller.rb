@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BannersController < ApplicationController
+  before_action :authenticate_admin, only: %i[new create]
+
   def index
     @banners = Banner.all.order(end_date: :desc)
   end

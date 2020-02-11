@@ -3,6 +3,7 @@
 class HomeController < ApplicationController
   def index
     @banner = Banner.where('initial_date < ? AND end_date > ?',
-                           Time.now, Time.now).order(end_date: :asc).last
+                           Time.zone.now, Time.zone.now)
+                    .order(end_date: :asc).last
   end
 end

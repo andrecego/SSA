@@ -3,6 +3,7 @@
 class CosmosSetsController < ApplicationController
   before_action :find_character
   before_action :prepare, only: %i[new edit]
+  before_action :authenticate_admin
 
   def new
     @cosmos_set = CosmosSet.new
@@ -13,11 +14,10 @@ class CosmosSetsController < ApplicationController
     character = Character.find(params[:character_id])
     if @cosmos_set.save
       flash[:success] = 'Set de Cosmos criado com sucesso'
-      redirect_to character
     else
       flash[:error] = 'Algo deu errado'
-      redirect_to character
     end
+    redirect_to character
   end
 
   def edit
@@ -26,7 +26,7 @@ class CosmosSetsController < ApplicationController
 
   def update
     @cosmos_set = CosmosSet.find(params[:id])
-    if @cosmos_set.update_attributes(cosmos_set_params)
+    if @cosmos_set.update(cosmos_set_params)
       flash[:success] = 'Set de Cosmos atualizado com sucesso'
       redirect_to @character
     else
@@ -39,17 +39,17 @@ class CosmosSetsController < ApplicationController
     @cosmos_set = CosmosSet.find(params[:id])
     if @cosmos_set.destroy
       flash[:success] = 'Set de Cosmos deletado com sucesso.'
-      redirect_to @character
     else
       flash[:error] = 'Algo deu errado'
-      redirect_to @character
     end
+    redirect_to @character
   end
 
   private
 
   def cosmos_set_params
-    params.require(:cosmos_set).permit(cosmos_ids: []).merge(character_id: params[:character_id])
+    params.require(:cosmos_set).permit(cosmos_ids: [])
+          .merge(character_id: params[:character_id])
   end
 
   def prepare

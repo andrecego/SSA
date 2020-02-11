@@ -1,25 +1,24 @@
+# frozen_string_literal: true
+
 class CharactersController < ApplicationController
+  before_action :authenticate_admin, only: %i[new create edit update destroy]
+
   include Pagy::Backend
 
   def index
-    @pagy, @characters = pagy_countless(Character.all.order(name: :asc), items: 12, link_extra: 'data-remote="true"')
+    @pagy, @characters = pagy_countless(Character.all.order(name: :asc),
+                                        items: 12,
+                                        link_extra: 'data-remote="true"')
   end
 
   def search
-    @characters = if params[:q]
-                    Character.where("name ILIKE ?", "%#{params[:q]}%")
-                  else
-                    Character.all
-                  end
-    @characters = if params[:order].present?
-                    @characters.joins(:stat).order("#{order_sanitizer} DESC")
-                  else
-                    @characters.order(name: :asc)
-                  end
-    @characters = @characters.where(rank_id: params[:rank_id]) if params[:rank_id].present?
-    @pagy, @characters = pagy_countless(@characters, items: 12, link_extra: 'data-remote="true"')
-    # render json: @characters, each_serializer: CharacterSerializer
-    
+    character_search_and_order
+    if params[:rank_id].present?
+      @characters = @characters.where(rank_id: params[:rank_id])
+    end
+    @pagy, @characters = pagy_countless(
+      @characters, items: 12, link_extra: 'data-remote="true"'
+    )
     respond_to do |format|
       format.js { render 'search' }
     end
@@ -47,37 +46,52 @@ class CharactersController < ApplicationController
   def edit
     @character = Character.find(params[:id])
   end
-  
+
   def update
     @character = Character.find(params[:id])
-      if @character.update_attributes(character_params)
-        flash[:success] = "Personagem atualizado com êxito"
-        redirect_to @character
-      else
-        flash[:error] = "Algo deu errado"
-        render 'edit'
-      end
+    if @character.update(character_params)
+      flash[:success] = 'Personagem atualizado com êxito'
+      redirect_to @character
+    else
+      flash[:error] = 'Algo deu errado'
+      render 'edit'
+    end
   end
 
   def destroy
     @character = Character.find(params[:id])
     if @character.destroy
       flash[:success] = 'Personagem apagado com êxito'
-      redirect_to characters_path
     else
       flash[:error] = 'Houve um erro ao apagar'
-      redirect_to characters_path
     end
+    redirect_to characters_path
   end
-  
 
   private
+
   def character_params
-    params.require(:character).permit(:name, :rank_id, :constellation_id, :picture)
+    params.require(:character).permit(:name, :rank_id, :constellation_id,
+                                      :picture)
+  end
+
+  def character_search_and_order
+    @characters = if params[:q]
+                    Character.where('name ILIKE ?', "%#{params[:q]}%")
+                  else
+                    Character.all
+                  end
+    @characters = if params[:order].present?
+                    @characters.joins(:stat).order("#{order_sanitizer} DESC")
+                  else
+                    @characters.order(name: :asc)
+                  end
   end
 
   def order_sanitizer
-    return params[:order] if ['health', 'patk', 'pdef', 'matk', 'mdef', 'speed'].include?(params[:order])
+    if %w[health patk pdef matk mdef speed].include?(params[:order])
+      return params[:order]
+    end
 
     'health'
   end

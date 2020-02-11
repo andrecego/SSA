@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 class CosmoBasic < ApplicationRecord
-  has_and_belongs_to_many :cosmos
+  has_many :cosmos, through: :cosmo_basics_cosmos
   validates :name, uniqueness: true
 end
