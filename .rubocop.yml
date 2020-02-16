@@ -35,3 +35,6 @@ Layout/LineLength:
 
 Style/AsciiComments:
   Enabled: false
+
+Rails/HasAndBelongsToMany:
+    Enabled: false
