@@ -8,6 +8,7 @@ class Character < ApplicationRecord
   has_many :banners, through: :banners_characters
   has_many :skills, dependent: :destroy
   has_many :cosmos_sets, dependent: :destroy
+  has_and_belongs_to_many :banners
   # accepts_nested_attributes_for :stat, :skills
   # validates :name, uniqueness: true
   validates :name, :constellation_id, :rank_id,
