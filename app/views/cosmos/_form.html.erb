@@ -6,7 +6,7 @@
   <%= f.label :set, "Efeito de set" %>
   <%= f.text_field :set %>
 
-  <%= f.label :cosmo_type, 'Tipo do Cosmo' %>
+  <%= f.label :cosmo_type_id, 'Tipo do Cosmo' %>
   <%= f.collection_select :cosmo_type_id, CosmoType.all, :id, :name %>
 
   <%= f.collection_check_boxes :cosmo_basic_ids, CosmoBasic.all, :id, :name do |b| %>

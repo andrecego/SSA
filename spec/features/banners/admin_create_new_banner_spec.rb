@@ -15,7 +15,7 @@ feature 'Admin register new banner' do
     select 'Afrodite', from: 'Personagem'
     fill_in 'Data de Início', with: 1.day.from_now
     fill_in 'Data Final', with: 7.days.from_now
-    attach_file('Imagem', Rails.root.join('spec/support/assets/image.png'))
+    attach_file('Imagem', Rails.root.join('spec/support/assets/test-image.png'))
     click_on 'Enviar'
 
     expect(page).to have_link('Afrodite')
@@ -25,7 +25,7 @@ feature 'Admin register new banner' do
     expect(page).to have_content(
       "Data Final: #{7.days.from_now.strftime('%d-%m-%y - %H:%M')}"
     )
-    expect(page).to have_css("img[src*='image.png']")
+    expect(page).to have_css("img[src*='test-image.png']")
   end
 
   scenario 'with multiple characters' do
@@ -46,7 +46,7 @@ feature 'Admin register new banner' do
     select 'Ikki', from: 'Personagem(s)'
     fill_in 'Data de Início', with: 1.day.from_now
     fill_in 'Data Final', with: 7.days.from_now
-    attach_file('Imagem', Rails.root.join('spec/support/assets/image.png'))
+    attach_file('Imagem', Rails.root.join('spec/support/assets/test-image.png'))
     click_on 'Enviar'
 
     expect(page).to have_link('Afrodite')
@@ -58,7 +58,7 @@ feature 'Admin register new banner' do
     expect(page).to have_content(
       "Data Final: #{7.days.from_now.strftime('%d-%m-%y - %H:%M')}"
     )
-    expect(page).to have_css("img[src*='image.png']")
+    expect(page).to have_css("img[src*='test-image.png']")
   end
 
   scenario 'and visited index' do
@@ -79,7 +79,7 @@ feature 'Admin register new banner' do
     select 'Ikki', from: 'Personagem(s)'
     fill_in 'Data de Início', with: 1.day.from_now
     fill_in 'Data Final', with: 7.days.from_now
-    attach_file('Imagem', Rails.root.join('spec/support/assets/image.png'))
+    attach_file('Imagem', Rails.root.join('spec/support/assets/test-image.png'))
     click_on 'Enviar'
 
     visit banners_path
@@ -93,6 +93,6 @@ feature 'Admin register new banner' do
     expect(page).to have_content(
       "Data Final: #{7.days.from_now.strftime('%d-%m-%y - %H:%M')}"
     )
-    expect(page).to have_css("img[src*='image.png']")
+    expect(page).to have_css("img[src*='test-image.png']")
   end
 end

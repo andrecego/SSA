@@ -15,11 +15,15 @@ class CosmosController < ApplicationController
     @cosmo = Cosmo.new(cosmo_params)
     if @cosmo.save
       flash[:success] = 'Cosmo criado com sucesso'
-      redirect_to cosmos_path
+      redirect_to @cosmo
     else
       flash[:error] = 'Algo deu errado'
       render 'new'
     end
+  end
+
+  def show
+    @cosmo = Cosmo.find(params[:id])
   end
 
   def edit
