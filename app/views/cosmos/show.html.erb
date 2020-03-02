@@ -1,0 +1,8 @@
+<h1><%= @cosmo.name %></h1>
+<%= image_tag @cosmo.picture_url %>
+<p><%= "Tipo: #{@cosmo.cosmo_type.name}" %></p>
+<ul>
+  <% @cosmo.cosmo_basics.each do |cosmo_basic| %>
+    <li><%= cosmo_basic.name %></li>
+  <% end %>
+</ul>
