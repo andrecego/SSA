@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   resources :cosmo_basics
   resources :cosmo_types
   resources :cosmos
-  get '/cosmos/all', to: 'cosmos#all'
+  get 'eighth_sense', to: 'home#eighth_sense'
 end
