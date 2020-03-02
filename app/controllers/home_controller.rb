@@ -6,4 +6,6 @@ class HomeController < ApplicationController
                            Time.zone.now, Time.zone.now)
                     .order(end_date: :asc).last
   end
+
+  def eighth_sense; end
 end
