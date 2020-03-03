@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    model:
+      constellation: Constelação
+    attributes:
+      constellation:
+        name: Nome

@@ -1,16 +1,27 @@
 <%= form_with model: character, local: true do |f| %>
 
-  <%= f.label :name, 'Nome' %>
-  <%= f.text_field :name %>
+  <div class="row">
+    <div class="form-group col-lg-6">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
 
-  <%= f.label :rank, 'Rank' %>
-  <%= f.collection_select :rank_id, Rank.all, :id, :name %>
+    <div class="form-group col-lg-2">
+    <%= f.label :rank_id, 'Rank' %>
+    <%= f.collection_select :rank_id, Rank.all, :id, :name, {}, class: 'form-control' %>
+    </div>
 
-  <%= f.label :constelattion, 'Constelação' %>
-  <%= f.collection_select :constellation_id, Constellation.all, :id, :name %>
+    <div class="form-group col-lg-4">
+    <%= f.label :constellation_id %>
+    <%= f.collection_select :constellation_id, Constellation.all, :id, :name, {}, class: 'form-control' %>
+    </div>
 
-  <%= f.label :picture, 'Foto' %>
-  <%= f.file_field :picture %>
+    <div class="form-group col-lg-6">
+    <%= f.label :picture, 'Foto' %>
+    <%= f.file_field :picture, class: 'form-control-file' %>
+    </div>
+  </div>
 
-  <%= f.submit 'Enviar' %>
+  <%= link_to 'Voltar', characters_path, class: 'btn btn-danger' %>
+  <%= f.submit 'Enviar', class: 'btn btn-success float-right' %>
 <% end %>

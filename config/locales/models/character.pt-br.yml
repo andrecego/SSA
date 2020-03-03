@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    model:
+      character: Personagem
+    attributes:
+      character:
+        name: Nome
+        rank_id: Rank
+        constellation_id: Constelação
+        picture: Foto

@@ -34,7 +34,7 @@ class CharactersController < ApplicationController
       flash[:success] = 'Personagem salvo com êxito'
       redirect_to @character
     else
-      flash[:error] = 'Algo deu errado'
+      flash[:error] = 'Não foi possível cadastrar o personagem'
       render :new
     end
   end
