@@ -31,6 +31,6 @@ feature 'Admin edit constellation' do
     fill_in 'Nome', with: ''
     click_on 'Cadastrar'
 
-    expect(page).to have_content('Name can\'t be blank')
+    expect(page).to have_content('Nome não pode ficar em branco ')
   end
 end
