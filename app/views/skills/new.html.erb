@@ -1,33 +1,53 @@
-<h3>Criando uma skill para <%= @character.name %> </h3>
-<%= form_for @skill, url: character_skills_path do |f| %>
-  <%= f.label :name, "Nome" %>
-  <%= f.text_field :name %>
+<%= render 'shared/errors', object: @skill %>
+<h1 class="text-center">Criando uma skill para <%= @character.name %> </h1>
+<div class="card text-dark">
+  <div class="p-5">
+    <%= form_for @skill, url: character_skills_path do |f| %>
+      <div class="row">
+        <div class="form-group col-10">
+          <%= f.label :name, "Nome", class: 'h3' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
 
-  <%= f.label :cost, "Custo" %>
-  <%= f.text_field :cost %>
+        <div class="form-group col-2">
+          <%= f.label :cost, "Custo", class: 'h3' %>
+          <%= f.text_field :cost, class: 'form-control' %>
+        </div>
 
-  <%= f.label :description, "Descrição" %>
-  <%= f.text_area :description %>
+        <div class="form-group col-12">
+          <%= f.label :picture, 'Foto', class: 'h3' %>
+          <%= f.file_field :picture, class: 'form-control-file' %>
+        </div>
 
-  <%= f.collection_check_boxes :effect_ids, Effect.all, :id, :name do |b| %>
-    <%= b.check_box %>
-    <%= b.label %>
-  <% end %>
+        <div class="form-group col-12">
+          <%= f.label :description, "Descrição", class: 'h3' %>
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
 
-  <br>
-  <%= label_tag 'Skill lv. 1' %>
-  <%= text_field_tag "skill[levels][]" %>
-  <%= label_tag 'Skill lv. 2' %>
-  <%= text_field_tag "skill[levels][]" %>
-  <%= label_tag 'Skill lv. 3' %>
-  <%= text_field_tag "skill[levels][]" %>
-  <%= label_tag 'Skill lv. 4' %>
-  <%= text_field_tag "skill[levels][]" %>
-  <%= label_tag 'Skill lv. 5' %>
-  <%= text_field_tag "skill[levels][]" %>
+        <h3 class="my-3">Efeitos:</h3>
+        <div style='columns: 4;' class="col-12">
+          <% if @effects %>
+            <%= f.collection_check_boxes :effect_ids, @effects, :id, :name do |b| %>
+              <div class="form-check">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= link_to 'Adicionar mais efeitos', new_effect_path %>
+        </div>
 
-  <%= f.label :picture, 'Foto' %>
-  <%= f.file_field :picture %>
+        <h3 class="my-3">Skill ups:</h3>
+        <% 1.upto(5) do |n| %>
+          <div class="form-group col-12">
+            <%= f.label :levels, "Skill lv. #{n}", value: n %>
+            <%= f.text_field :levels, id: "skill_levels_#{n}", multiple: true, class: 'form-control m-2' %>
+          </div>
+        <% end %>
 
-  <%= f.submit 'Enviar' %>
-<% end %>
+      </div>
+    <%= link_to  "Voltar", character_path(@character), class: 'btn btn-primary' %>
+    <%= f.submit 'Enviar', class: 'btn btn-success float-right' %>
+    <% end %>
+  </div>
+</div>
