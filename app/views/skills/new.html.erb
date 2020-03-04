@@ -5,22 +5,22 @@
     <%= form_for @skill, url: character_skills_path do |f| %>
       <div class="row">
         <div class="form-group col-10">
-          <%= f.label :name, "Nome", class: 'h3' %>
+          <%= f.label :name, class: 'h3' %>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
 
         <div class="form-group col-2">
-          <%= f.label :cost, "Custo", class: 'h3' %>
+          <%= f.label :cost, class: 'h3' %>
           <%= f.text_field :cost, class: 'form-control' %>
         </div>
 
         <div class="form-group col-12">
-          <%= f.label :picture, 'Foto', class: 'h3' %>
+          <%= f.label :picture, class: 'h3' %>
           <%= f.file_field :picture, class: 'form-control-file' %>
         </div>
 
         <div class="form-group col-12">
-          <%= f.label :description, "Descrição", class: 'h3' %>
+          <%= f.label :description, class: 'h3' %>
           <%= f.text_area :description, class: 'form-control' %>
         </div>
 

@@ -17,7 +17,8 @@ class SkillsController < ApplicationController
       redirect_to @character
     else
       flash[:error] = 'Não foi possível criar habilidade'
-      render 'new'
+      @effects = Effect.all.order(name: :asc)
+      render :new
     end
   end
 

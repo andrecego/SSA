@@ -17,7 +17,7 @@ feature 'Admin register new skill for character' do
     click_on 'Cadastrar nova skill'
     fill_in 'Nome', with: 'Meteoro de Pegasus'
     fill_in 'Custo', with: '31235468'
-    attach_file('Foto', Rails.root.join('spec/support/assets/skill-img.png'))
+    attach_file('Imagem', Rails.root.join('spec/support/assets/skill-img.png'))
     fill_in 'Descrição', with: 'Dá muito dano'
     check 'Adormecer'
     check 'Veneno'
