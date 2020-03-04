@@ -6,6 +6,7 @@ class SkillsController < ApplicationController
   def new
     @character = Character.find(params[:character_id])
     @skill = Skill.new
+    @effects = Effect.all.order(name: :asc)
   end
 
   def create
@@ -15,7 +16,7 @@ class SkillsController < ApplicationController
       flash[:success] = 'Habilidade criada com sucesso'
       redirect_to @character
     else
-      flash[:error] = 'Algo deu errado'
+      flash[:error] = 'Não foi possível criar habilidade'
       render 'new'
     end
   end
@@ -23,6 +24,7 @@ class SkillsController < ApplicationController
   def edit
     @character = Character.find(params[:character_id])
     @skill = @character.skills.find(params[:id])
+    @effects = Effect.all.order(name: :asc)
   end
 
   def update

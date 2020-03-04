@@ -22,7 +22,7 @@
     </p>
     
     <div style="columns: 4;">
-      <%= f.collection_check_boxes :effect_ids, Effect.all.order(name: :asc), :id, :name do |b| %>
+      <%= f.collection_check_boxes :effect_ids, @effects, :id, :name do |b| %>
       <div class="form-check">
         <%= b.check_box %>
         <%= b.label %>
