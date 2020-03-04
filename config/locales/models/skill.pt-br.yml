@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    model:
+      skill: Habilidade
+    attributes:
+      skill:
+        name: Nome
+        cost: Custo
+        description: Descrição
+        picture: Imagem
