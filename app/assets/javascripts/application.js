@@ -22,9 +22,9 @@ function showOptions() {
   $(".admin").css("display", "initial");
 }
 
-document.addEventListener('turbolinks:load', function() {
-  $("#collapseMenu").on("click", function() {
-      $("nav .nav-menu").toggleClass("showing");
+document.addEventListener('turbolinks:load', function () {
+  $("#collapseMenu").on("click", function () {
+    $("nav .nav-menu").toggleClass("showing");
   });
 });
 
@@ -33,4 +33,8 @@ document.addEventListener('turbolinks:load', function() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+}
+
+function toogleCloth() {
+  $("#cloth").toggle();
 }
