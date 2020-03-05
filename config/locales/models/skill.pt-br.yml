@@ -9,3 +9,4 @@ pt-BR:
         description: Descrição
         picture: Imagem
         kind: Tipo
+        order: Ordem

@@ -1,6 +1,8 @@
 #cloth {
-  background-color: purple;
   display: none;
+  .card-header {
+    background-color: rgba(150, 0, 255, 0.25);
+  }
 }
 
 .admin {
