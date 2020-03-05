@@ -5,6 +5,41 @@
   }
 }
 
+.cloth-button {
+  border-radius: 50%;
+  border: 2px solid #dfab61;
+  background-image: radial-gradient(#eff9ff, #eff9ff, #7c7c7c); ;
+  // background-image: radial-gradient(black, black, #555); ;
+  width: 15%;
+  height: 11%;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  margin-right: 15px;
+  outline: none !important;
+  svg {
+    height: 100%;
+    width: 100%;
+    fill: #5410a7;
+    &:hover {
+      fill: #000;
+    }
+  }
+  @media (max-width: 767px) {
+    width: 20%;
+    height: 15%;
+  }
+}
+
+.cloth-toggle {
+  svg {
+    fill: #000;
+    &:hover {
+      fill: #5410a7;
+    }
+  }
+}
+
 .admin {
   display: none;
   z-index: 1;
