@@ -1,58 +1,72 @@
-<h1>Editando '<%= @skill.name %>' de <%= @character.name %></h1>
+<h1 class="text-center">Editando '<%= @skill.name %>' de <%= @character.name %></h1>
+<%= render 'shared/errors', object: @skill %>
 <div class="card text-dark">
   <div class="p-5">
-    <%= form_for @skill, url: character_skill_path do |f| %>
-    <div class="row">
-      <div class="form-group col-10">
-        <%= f.label :name, "Nome", class: 'h3' %>
-        <%= f.text_field :name, class: 'form-control' %>
-      </div>
-      <div class="form-group col-2">
-        <%= f.label :cost, "Custo", class: 'h3' %>
-        <%= f.text_field :cost, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :picture, 'Foto', class: 'h3' %>
-      <%= f.file_field :picture, class: 'form-control-file' %>
-    </div>
-    <p>
-      <%= f.label :description, "Descrição", class: 'h3' %>
-      <%= f.text_area :description, class: 'form-control', rows: '6;' %>
-    </p>
-    
-    <div style="columns: 4;">
-      <%= f.collection_check_boxes :effect_ids, @effects, :id, :name do |b| %>
-      <div class="form-check">
-        <%= b.check_box %>
-        <%= b.label %>
-      </div>
-    <% end %>
-    </div>
-    <br>
-    <%= link_to 'Adicionar mais efeitos', new_effect_path %>
+    <%= form_for [@character, @skill] do |f| %>
+      <div class="row">
+        <div class="form-group col-10">
+          <%= f.label :name, class: 'h3' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
 
-    <br>
+        <div class="form-group col-2">
+          <%= f.label :cost, class: 'h3' %>
+          <%= f.text_field :cost, class: 'form-control' %>
+        </div>
 
-    <h3>Skill ups: </h3>
-    <ol>
-    <% if @skill.levels.present? %>
-        <% @skill.levels.each do |level| %>
-          <li>
-            <%= text_area_tag "skill[levels][]", level, class: 'form-control m-2' %>
-          </li>
+        <div class="form-group col-7">
+          <%= f.label :picture, class: 'h3' %>
+          <%= f.file_field :picture, class: 'form-control-file' %>
+        </div>
+
+        <div class="form-group col-2">
+          <%= f.label :order, class: 'h3' %>
+          <%= f.number_field :order, class: 'form-control' %>
+        </div>
+
+        <div class="form-group col-3">
+          <%= f.label :kind, class: 'h3' %>
+          <%= f.collection_select :kind, Skill.kinds, :first, :first, {}, class: 'form-control' %>
+        </div>
+
+        <div class="form-group col-12">
+          <%= f.label :description, class: 'h3' %>
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+
+        <h3 class="my-3">Efeitos:</h3>
+        <div style='columns: 4;' class="col-12">
+          <% if @effects %>
+            <%= f.collection_check_boxes :effect_ids, @effects, :id, :name do |b| %>
+              <div class="form-check">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= link_to 'Adicionar mais efeitos', new_effect_path %>
+        </div>
+
+        <h3 class="my-3">Skill ups: </h3>
+        <ol class="col-12">
+        <% if @skill.levels.present? %>
+            <% @skill.levels.each do |level| %>
+              <li class="form-group">
+                <%= text_area_tag "skill[levels][]", level, class: 'form-control m-2' %>
+              </li>
+            <% end %>
+        <% else %>
+          <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
+          <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
+          <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
+          <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
+          <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
         <% end %>
-    <% else %>
-      <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
-      <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
-      <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
-      <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
-      <li> <%= text_area_tag "skill[levels][]", nil, class: 'form-control m-2' %> </li>
-    <% end %>
-  </ol>
+      </ol>
 
+      </div>
     <%= link_to  "Voltar", character_path(@character), class: 'btn btn-primary' %>
     <%= f.submit 'Enviar', class: 'btn btn-success float-right' %>
-  <% end %>
-  </p>
+    <% end %>
+  </div>
 </div>

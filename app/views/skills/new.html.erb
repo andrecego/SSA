@@ -14,9 +14,14 @@
           <%= f.text_field :cost, class: 'form-control' %>
         </div>
 
-        <div class="form-group col-9">
+        <div class="form-group col-7">
           <%= f.label :picture, class: 'h3' %>
           <%= f.file_field :picture, class: 'form-control-file' %>
+        </div>
+
+        <div class="form-group col-2">
+          <%= f.label :order, class: 'h3' %>
+          <%= f.number_field :order, class: 'form-control' %>
         </div>
 
         <div class="form-group col-3">

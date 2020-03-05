@@ -36,5 +36,6 @@ function topFunction() {
 }
 
 function toogleCloth() {
-  $("#cloth").toggle();
+  var skill_number = $('#cloth').attr('class').split(' ').slice(-1).join();
+  $("." + skill_number).toggle();
 }

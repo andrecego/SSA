@@ -18,6 +18,7 @@ feature 'Admin register new cloth skill for character' do
     fill_in 'Nome', with: 'Meteoro de Pegasus com cloth'
     fill_in 'Custo', with: '31235468'
     attach_file('Imagem', Rails.root.join('spec/support/assets/skill-img.png'))
+    fill_in 'Ordem', with: '2'
     fill_in 'Descrição', with: 'Dá muito dano'
     select 'cloth', from: 'Tipo'
     check 'Adormecer'
@@ -34,6 +35,7 @@ feature 'Admin register new cloth skill for character' do
     expect(page).to have_content('Meteoro de Pegasus com cloth')
     expect(page).to have_content('31235468')
     expect(page).to have_css("img[src*='skill-img.png']")
+    expect(page).to have_css('.skill-2')
     expect(page).to have_content('Dá muito dano')
     expect(page).to have_content('Adormecer')
     expect(page).to have_content('Veneno')

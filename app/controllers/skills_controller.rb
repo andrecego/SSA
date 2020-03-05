@@ -58,6 +58,6 @@ class SkillsController < ApplicationController
     params[:skill][:effect_ids].reject!(&:empty?)
     params[:skill][:levels].reject!(&:empty?)
     params.require(:skill).permit(:name, :cost, :description, :picture, :kind,
-                                  effect_ids: [], levels: [])
+                                  :order, effect_ids: [], levels: [])
   end
 end
