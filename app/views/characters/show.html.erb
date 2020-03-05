@@ -18,6 +18,9 @@
           <% if @character.picture.attached? %>
             <%= image_tag @character.picture, class: 'card-img-top' %>
           <% end %>
+          <div class="cloth-toggle">
+            <%= button_tag 'Cloth', class: 'float-right', onclick: 'toogleCloth()' %>
+          </div>
         </div>
 
         <% if @character.stat %>
@@ -89,7 +92,7 @@
 
     <% if @character.skills %>
     <% @character.skills.order(id: :asc).each do |skill| %>
-            <div class="card mb-4 card-glow card-rounded">
+            <div class="card mb-4 card-glow card-rounded" <%= 'id=cloth' if skill.cloth? %>>
 
               <div class="card-header">
                 <div class="row">
