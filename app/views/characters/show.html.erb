@@ -1,4 +1,4 @@
-<h1 class="text-center"><%= @character.name %> - <%= @character.constellation.name %></h1>
+<h1 class="text-center"><%= @character.name %></h1>
 
 
 <div class="d-flex row">
@@ -32,11 +32,15 @@
 
         <div class="div-table row col-6 col-md-12">
           <%= render @stat || 'shared/links/new_char_stats' %>
+          <div class="tr">
+            <div class="td"><%= image_tag 'characters/constellation.png', title: 'Constelação', size: 50 %><span>Constelação:</span></div>
+            <div class="td"> <%= @character.constellation.name %></div>
+          </div>
         </div>
       </div>
-      
-
     </div>
+
+
       <% if @character.cosmos_sets %>
       <div id="cosmos_set">
         <h4 class="text-center">Cosmos Recomendados</h4>
