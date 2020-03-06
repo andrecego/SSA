@@ -15,14 +15,14 @@
 
       <div class="row">
         <div class="char-img col-6 col-md-12">
-          <!-- Character Portrait Box -->
           <% if @character.picture.attached? %>
+          
+          <!-- Character Portrait Box -->
+          <div class="char-portrait-box" style="position: relative;">
+            <!-- Character Portrait Image -->
+            <%= image_tag @character.picture, class: 'card-img-top' %>
 
-          <!-- Character Portrait Image -->
-            <div class="char-portrait-box">
-              <%= image_tag @character.picture, class: 'card-img-top' %>
-            </div>
-          <!-- Cloth Repair Button -->
+            <!-- Cloth Repair Button -->
             <% if @character.skills.any?(&:cloth?) %>
               <%= button_tag class: 'cloth-button', onclick: 'toogleCloth()', title:'Cloth Repair' do %>
                 <div class="cloth-toggle" id="cloth-toggle">
@@ -30,16 +30,20 @@
                 </div>
               <% end %>
             <% end %>
-          <!-- \Cloth Repair Button -->
+            <!-- /Cloth Repair Button -->
+          </div>
+          <!-- /Character Portrait Box -->
           <% end %>
         </div>
 
         <div class="div-table row col-6 col-md-12">
-          <%= render @stat || 'shared/links/new_char_stats' %>
+          <%= render 'stats/stats', stats: @stats %>
+
           <div class="tr">
             <div class="td"><%= image_tag 'characters/constellation.png', title: 'Constelação', size: 50 %><span>Constelação:</span></div>
             <div class="td"> <%= @character.constellation.name %></div>
           </div>
+
         </div>
       </div>
     </div>

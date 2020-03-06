@@ -1,27 +1,38 @@
-<%= form_for stat, url: url do |f| %>
-  <p>
-    <%= f.label :health, 'Vida' %>
-    <%= f.text_field :health %>
-  </p>
-  <p>
-    <%= f.label :patk, 'Ataque Físico' %>
-    <%= f.text_field :patk %>
-  </p>
-  <p>
-    <%= f.label :pdef, 'Defesa Física' %>
-    <%= f.text_field :pdef %>
-  </p>
-  <p>
-    <%= f.label :matk, 'Ataque Mágico' %>
-    <%= f.text_field :matk %>
-  </p>
-  <p>
-    <%= f.label :mdef, 'Defesa Mágica' %>
-    <%= f.text_field :mdef %>
-  </p>
-  <p>
-    <%= f.label :speed, 'Velocidade' %>
-    <%= f.text_field :speed %>
-  </p>
-  <%= f.submit 'Enviar' %>
+<%= render 'shared/errors', object: stat %>
+<%= form_for [@character, stat] do |f| %>
+<div class="p-5">
+  <div class="row">
+    <div class="form-group col-12">
+      <%= f.label :kind %>
+      <%= f.collection_select :kind, Skill.kinds, :first, :first, {}, class: 'form-control' %>
+    </div>
+    <div class='form-group col-12'>
+      <%= f.label :health, 'Vida' %>
+      <%= f.text_field :health, class: 'form-control' %>
+    </div>
+    <div class='form-group col-12'>
+      <%= f.label :patk, 'Ataque Físico' %>
+      <%= f.text_field :patk, class: 'form-control' %>
+    </div>
+    <div class='form-group col-12'>
+      <%= f.label :pdef, 'Defesa Física' %>
+      <%= f.text_field :pdef, class: 'form-control' %>
+    </div>
+    <div class='form-group col-12'>
+      <%= f.label :matk, 'Ataque Cósmico' %>
+      <%= f.text_field :matk, class: 'form-control' %>
+    </div>
+    <div class='form-group col-12'>
+      <%= f.label :mdef, 'Defesa Cósmica' %>
+      <%= f.text_field :mdef, class: 'form-control' %>
+    </div>
+    <div class='form-group col-12'>
+      <%= f.label :speed, 'Velocidade' %>
+      <%= f.text_field :speed, class: 'form-control' %>
+    </div>
+  </div>
+  <%= link_to 'Voltar', @character, class: 'btn btn-primary' %>
+  <%= f.submit 'Enviar', class: 'btn btn-success float-right' %>
+</div>
 <% end %>
+

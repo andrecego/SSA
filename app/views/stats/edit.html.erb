@@ -1,3 +1,5 @@
-<h1>Editando os status de <%= @character.name %></h1>
+<div class="col-md-8 card-glow py-3 mx-auto">
+  <h3 class='text-center'>Editando os status de <%= @character.name %> </h3>
 
-<%= render  "form", stat: @stat, url: character_stat_path %>
+  <%= render 'form', stat: @stat %>
+</div>
