@@ -35,7 +35,10 @@
         </div>
 
         <div class="div-table row col-6 col-md-12">
-          <%= render @stat || 'shared/links/new_char_stats' %>
+          <%= render @stat %>
+          <div class="tr">
+            <%= link_to("Cadastrar Status", new_character_stat_path(@character), class: 'td admin') %>
+          </div>
           <div class="tr">
             <div class="td"><%= image_tag 'characters/constellation.png', title: 'Constelação', size: 50 %><span>Constelação:</span></div>
             <div class="td"> <%= @character.constellation.name %></div>

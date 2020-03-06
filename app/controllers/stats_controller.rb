@@ -15,6 +15,7 @@ class StatsController < ApplicationController
       flash[:success] = 'Status criados com sucesso'
       redirect_to character
     else
+      @character = Character.find(params[:character_id])
       flash[:error] = 'Algo deu errado'
       render :new
     end
@@ -27,10 +28,10 @@ class StatsController < ApplicationController
 
   def update
     @stat = Stat.find(params[:id])
-    character = Character.find(params[:character_id])
+    @character = Character.find(params[:character_id])
     if @stat.update(stat_params)
       flash[:success] = 'Status atualizados com sucesso'
-      redirect_to character
+      redirect_to @character
     else
       flash[:error] = 'Algo deu errado'
       render :edit
@@ -51,7 +52,8 @@ class StatsController < ApplicationController
   private
 
   def stat_params
-    params.require(:stat).permit(:health, :patk, :pdef, :matk, :mdef, :speed)
+    params.require(:stat)
+          .permit(:health, :patk, :pdef, :matk, :mdef, :speed, :kind)
           .merge(character_id: params[:character_id])
   end
 end
