@@ -2,7 +2,7 @@
   <h4 class="text-center">Cosmos Recomendados</h4>
   <%= link_to  "Cadastrar Set de Cosmos", new_character_cosmos_set_path(@character), class: 'admin' %>
 
-  <% @character.cosmos_sets.each do |cosmos_set| %>
+  <% cosmos_sets.each do |cosmos_set| %>
   <div class="card-glow mb-4 mx-auto p-1" style="max-width: 300px;">
     <div class="row m-0 p-0">
 
