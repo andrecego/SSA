@@ -15,19 +15,23 @@
 
       <div class="row">
         <div class="char-img col-6 col-md-12">
+          <!-- Character Portrait Box -->
           <% if @character.picture.attached? %>
-            <%= image_tag @character.picture, class: 'card-img-top' %>
-          <% end %>
 
-        <% if @character.skills.any?(&:cloth?) %>
-
-          <%= button_tag class: 'cloth-button', onclick: 'toogleCloth()', title:'Cloth Repair' do %>
-            <div class="cloth-toggle" id="cloth-toggle">
-              <%= show_svg('characters/cloth.svg') %>
+          <!-- Character Portrait Image -->
+            <div class="char-portrait-box">
+              <%= image_tag @character.picture, class: 'card-img-top' %>
             </div>
+          <!-- Cloth Repair Button -->
+            <% if @character.skills.any?(&:cloth?) %>
+              <%= button_tag class: 'cloth-button', onclick: 'toogleCloth()', title:'Cloth Repair' do %>
+                <div class="cloth-toggle" id="cloth-toggle">
+                  <%= show_svg('characters/cloth.svg') %>
+                </div>
+              <% end %>
+            <% end %>
+          <!-- \Cloth Repair Button -->
           <% end %>
-
-        <% end %>
         </div>
 
         <div class="div-table row col-6 col-md-12">
@@ -41,30 +45,8 @@
     </div>
 
 
-      <% if @character.cosmos_sets %>
-      <div id="cosmos_set">
-        <h4 class="text-center">Cosmos Recomendados</h4>
-        <%= link_to  "Cadastrar Set de Cosmos", new_character_cosmos_set_path(@character), class: 'admin' %>
-        <% @character.cosmos_sets.each do |cosmos_set| %>
-        <div class="card-glow mb-4 mx-auto p-1" style="max-width: 300px;">
-          <div class="row m-0 p-0">
-            <% cosmos_set.cosmos.each do |cosmo| %>
-              <div class="col-3 py-2">
-                <% if cosmo.picture.attached? %>
-                  <%= image_tag cosmo.picture, class: 'img-fluid', title: cosmo.name %>
-                <% end %>
-              </div>
-            <% end %>
-            <div class="admin">
-              <%= link_to  fa_icon("edit 2x"), edit_character_cosmos_set_path(@character, cosmos_set), class: 'edit' %>
-              <%= link_to  fa_icon("trash 2x"), character_cosmos_set_path(@character, cosmos_set), method: :delete,
-              data: {confirm: "Remover o Set de Cosmos?"}, class: 'delete text-danger' %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      </div>
-      <% end %>
+      <%= render @cosmos_sets %>
+
   </div>
 
   <div class="col-md-8">
