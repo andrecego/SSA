@@ -39,4 +39,6 @@ function toogleCloth() {
   var skill_number = $('#cloth').attr('class').split(' ').slice(-1).join();
   $("." + skill_number).slideToggle("fast");
   $("#cloth-toggle").toggleClass("cloth-toggle")
+  $('.stat-default').toggle();
+  $('.stat-cloth').toggle();
 }

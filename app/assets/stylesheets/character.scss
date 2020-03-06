@@ -6,22 +6,19 @@
 }
 
 .cloth-button {
+  position: absolute;
   border-radius: 50%;
   border: 3px solid #dfab61;
   background-image: radial-gradient(#F5F5F5, #F5F5F5, #d6d6d6);
-  // background-color: #F5F5F5;
   width: 15%;
   height: 11%;
-  position: absolute;
   bottom: 15px;
-  right: 15px;
+  right: 0;
   margin-right: 15px;
   outline: none !important;
   &:hover {
     background-image: radial-gradient(#fff, #fff, #e4e4e4);
     border: 3px solid #f3b35f;
-    // background-color: #fff;
-    // border: 3px solid black;
   }
   svg {
     height: 100%;
@@ -32,8 +29,9 @@
     }
   }
   @media (max-width: 767px) {
-    width: 20%;
-    height: 15%;
+    width: 30%;
+    height: 23%;
+    position: absolute;
   }
 }
 
@@ -159,6 +157,11 @@ hr {
 
 .td:nth-child(2){
   text-align: center;
+}
+
+.stat-cloth{
+  color: #a25af1;
+  display: none;
 }
 
 .card-char {
