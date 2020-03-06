@@ -41,6 +41,9 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find(params[:id])
+    @skills = @character.skills.order(order: :asc, kind: :asc)
+    @stat = @character.stat
+    @cosmos_sets = @character.cosmos_sets
   end
 
   def edit

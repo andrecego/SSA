@@ -1,0 +1,54 @@
+<div class='card mb-4 card-glow card-rounded <%= "skill-#{skill.order}" %>' 
+       <%= 'id=cloth' if skill.cloth? %> >
+
+<!-- Skill Header -->
+  <div class="card-header">
+    <div class="row">
+    <!-- Skill Image and cost -->
+      <div class="col-4 col-md-3 col-lg-2">
+        <% if skill.picture.attached? %>
+          <%= image_tag skill.picture, class: "border-black" %>
+          <div class="bot-right">
+            <%= image_tag "characters/energy_point.png", class: "img-number" %>
+            <span class="number"><%= skill.cost %></span>
+          </div>
+        <% end %>
+      </div>
+
+    <!-- Skill name and effects -->
+      <div class="col-8 col-md-9 col-lg-10">  
+        <h5 class="card-title"><%= skill.name %></h5>
+          <ul class="skill-effects">
+            <% skill.effects.each do |effect| %>
+              <li><%= effect.name %></li>
+            <% end %>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- Skill Body -->
+  <div class="card-body">
+    <!-- Skill description -->
+    <p class="card-text">
+      <%= skill.description %>
+    </p>
+
+    <!-- Skill levels -->
+    <% if skill.levels.present? %>
+      <hr>
+      <ol>
+        <% skill.levels.each do |level| %>
+          <li><%= level %></li>
+        <% end %>
+      </ol>
+    <% end %>
+
+    <!-- Skill admin panel -->
+    <div class="admin">
+      <%= link_to fa_icon("edit 2x"), edit_character_skill_path(@character, skill) %>
+      <%= link_to fa_icon("trash 2x"), character_skill_path(@character, skill), method: :delete,
+                  data: {confirm: "Remover essa skill?"}, class: 'text-danger float-right' %>
+    </div>
+  </div>
+</div>
