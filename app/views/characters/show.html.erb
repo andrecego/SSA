@@ -30,43 +30,11 @@
         <% end %>
         </div>
 
-        <% if @character.stat %>
         <div class="div-table row col-6 col-md-12">
-          <div class="tr col-4"> 
-            <div class="td"><%= image_tag 'characters/pv.png', title: 'Pontos de Vida' %><span>Pontos de Vida:</span></div>
-            <div class="td"><strong><%= @character.stat.health %></strong></div>
-          </div>
-          <div class="tr col-4"> 
-            <div class="td"><%= image_tag 'characters/atk_fis.png', title: 'Ataque Físico' %><span>Ataque Físico:</span></div>
-            <div class="td"><strong><%= @character.stat.patk %></strong></div>
-          </div>
-          <div class="tr col-4"> 
-            <div class="td"><%= image_tag 'characters/def_fis.png', title: 'Defesa Física' %><span>Defesa Física:</span></div>
-            <div class="td"><strong><%= @character.stat.pdef %></strong></div>
-          </div>
-          <div class="tr col-4"> 
-            <div class="td"><%= image_tag 'characters/speed.png', title: 'Velocidade' %><span>Velocidade:</span></div>
-            <div class="td"><strong><%= @character.stat.speed %></strong></div>
-          </div>
-          <div class="tr col-4"> 
-            <div class="td"><%= image_tag 'characters/atk_cos.png', title: 'Ataque Cósmico' %><span>Ataque Cósmico:</span></div>
-            <div class="td"><strong><%= @character.stat.matk %></strong></div>
-          </div>
-          <div class="tr col-4"> 
-            <div class="td"><%= image_tag 'characters/def_cos.png', title: 'Defesa Cósmica' %><span>Defesa Cósmica:</span></div>
-            <div class="td"><strong><%= @character.stat.mdef %></strong></div>
-          </div>
+          <%= render @stat || 'shared/links/new_char_stats' %>
         </div>
       </div>
-
-      <div class="float-right admin">
-        <%= link_to  fa_icon("edit 2x"), edit_character_stat_path(@character, @character.stat), class: 'edit' %>
-        <%= link_to  fa_icon("trash 2x"), character_stat_path(@character, @character.stat), method: :delete, 
-                     data: {confirm: "Remover os Status?"}, class: 'delete text-danger' %>
-      </div>
-    <% else %>
-      <%= link_to  "Cadastrar Status", new_character_stat_path(@character), class: 'admin' %>
-    <% end %>
+      
 
     </div>
       <% if @character.cosmos_sets %>
@@ -96,59 +64,7 @@
   </div>
 
   <div class="col-md-8">
-
-    <% if @character.skills %>
-    <% @character.skills.order(order: :asc, kind: :asc).each do |skill| %>
-            <div class='card mb-4 card-glow card-rounded <%= "skill-#{skill.order}" %>' 
-                 <%= 'id=cloth' if skill.cloth? %>>
-
-              <div class="card-header">
-                <div class="row">
-                    <div class="col-4 col-md-3 col-lg-2">
-                      <% if skill.picture.attached? %>
-                        <%= image_tag skill.picture, class: "border-black" %>
-                        <div class="bot-right">
-                          <%= image_tag "characters/energy_point.png", class: "img-number" %>
-                          <span class="number"><%= skill.cost %></span>
-                        </div>
-                      <% end %>
-                    </div>
-              
-                  <div class="col-8 col-md-9 col-lg-10">  
-                    <h5 class="card-title"><%= skill.name %></h5>
-                      <ul class="skill-effects">
-                        <% skill.effects.each do |effect| %>
-                          <li><%= effect.name %></li>
-                        <% end %>
-                      </ul>
-                  </div>
-                </div>
-              </div>
-
-              
-              <div class="card-body">
-                <p class="card-text">
-                  <%= skill.description %>
-                </p>
-                <% if skill.levels.present? %>
-                  <hr>
-                  <ol>
-                    <% skill.levels.each do |level| %>
-                      <li><%= level %></li>
-                    <% end %>
-                  </ol>
-                <% end %>
-                <div class="admin">
-                  <%= link_to fa_icon("edit 2x"), edit_character_skill_path(@character, skill) %>
-                  <%= link_to fa_icon("trash 2x"), character_skill_path(@character, skill), method: :delete, 
-                              data: {confirm: "Remover essa skill?"}, class: 'text-danger float-right' %>
-                </div>
-              </div>
-
-              <br>
-            </div>
-            <% end %>
-          <% end %>
-          <%= link_to  "Cadastrar nova skill", new_character_skill_path(@character), class: 'admin' %>
+    <%= render @skills %>
+    <%= link_to  "Cadastrar nova skill", new_character_skill_path(@character), class: 'admin' %>
   </div>
 </div>
