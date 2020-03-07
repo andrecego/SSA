@@ -10,8 +10,8 @@
   border-radius: 50%;
   border: 3px solid #dfab61;
   background-image: radial-gradient(#F5F5F5, #F5F5F5, #d6d6d6);
-  width: 15%;
-  height: 11%;
+  width: 19%;
+  height: 13%;
   bottom: 15px;
   right: 0;
   margin-right: 15px;
@@ -30,7 +30,7 @@
   }
   @media (max-width: 767px) {
     width: 30%;
-    height: 23%;
+    height: 20%;
     position: absolute;
   }
 }
@@ -48,6 +48,11 @@
   display: none;
   z-index: 1;
   min-width: 100%;
+  li {
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+  }
 }
 
 .delete {
@@ -160,7 +165,7 @@ hr {
 }
 
 .stat-cloth{
-  color: #a25af1;
+  color: #b877ff;
   display: none;
 }
 

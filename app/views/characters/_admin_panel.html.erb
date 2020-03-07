@@ -1,0 +1,23 @@
+<div class="card-glow mb-4">
+  <div class="admin p-3">
+    <h3 class="text-center">Painel Admin</h3>
+    <hr class="gradient">
+    <li><%= link_to 'Editar Personagem', edit_character_path(@character) %></li>
+    <li><%= link_to 'Remover Personagem', character_path(@character), method: :delete,
+                    data: {confirm: 'Remover o personagem e todas skills?'}, class: 'text-danger' %></li>
+
+    <li><%= link_to 'Cadastrar Status', new_character_stat_path(@character) %></li>
+
+    <% if @stats.default.present? %>
+      <li><%= link_to 'Editar Status Padrão', edit_character_stat_path(@character, @stats.default.first) %></li>
+      <li><%= link_to 'Deletar Status Padrão', character_stat_path(@character, @stats.default.first), method: :delete,
+                      data: { confirm: 'Remover esses status?' }, class: 'text-danger' %></li>
+    <% end %>
+
+    <% if @stats.cloth.present? %>
+      <li><%= link_to 'Editar Status Cloth', edit_character_stat_path(@character, @stats.cloth.first) %></li>
+      <li><%= link_to 'Deletar Status Cloth', character_stat_path(@character, @stats.cloth.first), method: :delete,
+                      data: { confirm: 'Remover esses status?' }, class: 'text-danger' %></li>
+    <% end %>
+  </div>
+</div>

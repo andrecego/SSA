@@ -42,27 +42,3 @@
     </div>
   </div>
 <% end %>
-
-<div class="">
-  <%= link_to('Cadastrar Status', new_character_stat_path(@character), class: 'admin') %>
-</div>
-
-<% if stats.default.present? %>
-<div class="">
-  <%= link_to('Editar Status Padrão', edit_character_stat_path(@character, stats.default.first), class: 'admin') %>
-</div>
-<div class="">
-  <%= link_to 'Deletar Status Padrão', character_stat_path(@character, stats.default.first), method: :delete,
-              data: {confirm: "Remover esses status?"}, class: 'text-danger admin' %>
-</div>
-<% end %>
-
-<% if stats.cloth.present? %>
-<div class="">
-  <%= link_to('Editar Status Cloth', edit_character_stat_path(@character, stats.cloth.first), class: 'admin') %>
-</div>
-<div class="">
-  <%= link_to 'Deletar Status Cloth', character_stat_path(@character, stats.cloth.first), method: :delete,
-              data: {confirm: "Remover esses status?"}, class: 'text-danger admin' %>
-</div>
-<% end %>

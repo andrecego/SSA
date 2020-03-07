@@ -7,16 +7,14 @@
 
 
     <div class="card card-glow card-char mb-4">
-      <div class="admin">
-        <%= link_to fa_icon("edit 2x"), edit_character_path(@character), style: 'position: absolute;left:0;top: 0;' %>
-        <%= link_to fa_icon("trash 2x"), character_path(@character), method: :delete, 
-                    data: {confirm: "Remover o personagem e todas skills?"}, class: 'text-danger', style: 'position: absolute;right:0;top: 0;' %>
-      </div>
-
       <div class="row">
+
         <div class="char-img col-6 col-md-12">
-          <% if @character.picture.attached? %>
+
           
+
+          <% if @character.picture.attached? %>
+
           <!-- Character Portrait Box -->
           <div class="char-portrait-box" style="position: relative;">
             <!-- Character Portrait Image -->
@@ -36,6 +34,8 @@
           <% end %>
         </div>
 
+
+
         <div class="div-table row col-6 col-md-12">
           <%= render 'stats/stats', stats: @stats %>
 
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-
+    <%= render 'characters/admin_panel' %>
 
     <%= render 'cosmos_sets/cosmos_sets', cosmos_sets: @cosmos_sets %>
 
