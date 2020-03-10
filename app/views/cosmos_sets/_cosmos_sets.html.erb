@@ -15,8 +15,8 @@
       <% end %>
 
       <div class="admin">
-        <%= link_to  fa_icon("edit 2x"), edit_character_cosmos_set_path(@character, cosmos_set), class: 'edit' %>
-        <%= link_to  fa_icon("trash 2x"), character_cosmos_set_path(@character, cosmos_set), method: :delete,
+        <%= link_to 'Editar', edit_character_cosmos_set_path(@character, cosmos_set), class: 'edit' %>
+        <%= link_to 'Deletar', character_cosmos_set_path(@character, cosmos_set), method: :delete,
         data: {confirm: "Remover o Set de Cosmos?"}, class: 'delete text-danger' %>
       </div>
     </div>
