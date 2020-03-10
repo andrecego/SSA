@@ -17,5 +17,5 @@ RUN yarn install --check-files
 
 ADD . /ssa
 
-EXPOSE 3000:3000
+EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
