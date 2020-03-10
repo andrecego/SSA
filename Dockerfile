@@ -13,7 +13,7 @@ WORKDIR /ssa
 COPY Gemfile.lock Gemfile package.json yarn.lock ./
 
 RUN bundle install
-RUN yarn install --no-lockfile
+RUN yarn install --check-files
 
 ADD . /ssa
 
