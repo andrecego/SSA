@@ -9,7 +9,7 @@
         <% if skill.picture.attached? %>
           <%= image_tag skill.picture, class: "border-black" %>
           <div class="bot-right">
-            <%= image_tag "/assets/characters/energy_point.png", class: "img-number" %>
+            <%= image_pack_tag 'media/images/characters/energy_point.png', class: 'img-number' %>
             <span class="number"><%= skill.cost %></span>
           </div>
         <% end %>

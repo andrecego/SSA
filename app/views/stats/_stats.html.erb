@@ -1,41 +1,41 @@
 <% if stats.default.present? %>
   <div class="tr col-4"> 
-    <div class="td"><%= image_tag '/assets/characters/pv.png', title: 'Pontos de Vida' %><span>Pontos de Vida:</span></div>
+    <div class="td"><%= image_pack_tag 'media/images/characters/pv.png', title: 'Pontos de Vida' %><span>Pontos de Vida:</span></div>
     <div class="td">
       <strong class="stat-default"> <%= stats.default.first.health %> </strong>
       <strong class="stat-cloth"> <%= stats.sum(&:health) %> </strong>
     </div>
   </div>
   <div class="tr col-4"> 
-    <div class="td"><%= image_tag '/assets/characters/atk_fis.png', title: 'Ataque Físico' %><span>Ataque Físico:</span></div>
+    <div class="td"><%= image_pack_tag 'media/images/characters/atk_fis.png', title: 'Ataque Físico' %><span>Ataque Físico:</span></div>
     <div class="td">
       <strong class="stat-default"> <%= stats.default.first.patk %> </strong>
       <strong class="stat-cloth"> <%= stats.sum(&:patk) %> </strong>
     </div>
   </div>
   <div class="tr col-4"> 
-    <div class="td"><%= image_tag '/assets/characters/def_fis.png', title: 'Defesa Física' %><span>Defesa Física:</span></div>
+    <div class="td"><%= image_pack_tag 'media/images/characters/def_fis.png', title: 'Defesa Física' %><span>Defesa Física:</span></div>
     <div class="td">
       <strong class="stat-default"> <%= stats.default.first.pdef %> </strong>
       <strong class="stat-cloth"> <%= stats.sum(&:pdef) %> </strong>
     </div>
   </div>
   <div class="tr col-4"> 
-    <div class="td"><%= image_tag '/assets/characters/speed.png', title: 'Velocidade' %><span>Velocidade:</span></div>
+    <div class="td"><%= image_pack_tag 'media/images/characters/speed.png', title: 'Velocidade' %><span>Velocidade:</span></div>
     <div class="td">
       <strong class="stat-default"> <%= stats.default.first.speed %> </strong>
       <strong class="stat-cloth"> <%= stats.sum(&:speed) %> </strong>
     </div>
   </div>
   <div class="tr col-4"> 
-    <div class="td"><%= image_tag '/assets/characters/atk_cos.png', title: 'Ataque Cósmico' %><span>Ataque Cósmico:</span></div>
+    <div class="td"><%= image_pack_tag 'media/images/characters/atk_cos.png', title: 'Ataque Cósmico' %><span>Ataque Cósmico:</span></div>
     <div class="td">
       <strong class="stat-default"> <%= stats.default.first.matk %> </strong>
       <strong class="stat-cloth"> <%= stats.sum(&:matk) %> </strong>
     </div>
   </div>
   <div class="tr col-4"> 
-    <div class="td"><%= image_tag '/assets/characters/def_cos.png', title: 'Defesa Cósmica' %><span>Defesa Cósmica:</span></div>
+    <div class="td"><%= image_pack_tag 'media/images/characters/def_cos.png', title: 'Defesa Cósmica' %><span>Defesa Cósmica:</span></div>
     <div class="td">
       <strong class="stat-default"> <%= stats.default.first.mdef %> </strong>
       <strong class="stat-cloth"> <%= stats.sum(&:mdef) %> </strong>

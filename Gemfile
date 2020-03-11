@@ -7,6 +7,7 @@ ruby '2.6.5'
 
 gem 'devise'
 gem 'google-cloud-storage', '~> 1.8', require: false
+gem 'inline_svg'
 gem 'jbuilder', '~> 2.7'
 gem 'pagy', '~> 3.5'
 gem 'pg', '>= 0.18', '< 2.0'
