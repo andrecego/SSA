@@ -68,12 +68,12 @@ cosmo_type = CosmoType.where(name: 'Trocar').first_or_create
 
       #status
       puts '  Status'
-      health = char['stats']['health']
-      patk = char['stats']['patk']
-      pdef = char['stats']['pdef']
-      matk = char['stats']['matk']
-      mdef = char['stats']['mdef']
-      speed = char['stats']['speed']
+      health = char['stats']['health'].to_i
+      patk = char['stats']['patk'].to_i
+      pdef = char['stats']['pdef'].to_i
+      matk = char['stats']['matk'].to_i
+      mdef = char['stats']['mdef'].to_i
+      speed = char['stats']['speed'].to_i
       Stat.create!(health: health, patk: patk, pdef: pdef, matk: matk, mdef: mdef, speed: speed, character: character)
 
 

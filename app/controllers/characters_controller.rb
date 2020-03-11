@@ -41,7 +41,7 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find(params[:id])
-    @skills = @character.skills.order(order: :asc, kind: :asc)
+    @skills = @character.skills.order(order: :asc, kind: :desc)
     @stats = @character.stats
     @cosmos_sets = @character.cosmos_sets
   end
@@ -85,7 +85,8 @@ class CharactersController < ApplicationController
                     Character.all
                   end
     @characters = if params[:order].present?
-                    @characters.joins(:stat).order("#{order_sanitizer} DESC")
+                     @characters.joins(:stats).where(stats: {kind: 'default'})
+                                .order("#{order_sanitizer} DESC")
                   else
                     @characters.order(name: :asc)
                   end

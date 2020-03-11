@@ -22,9 +22,9 @@
 
             <!-- Cloth Repair Button -->
             <% if @character.skills.any?(&:cloth?) %>
-              <%= button_tag class: 'cloth-button', onclick: 'toogleCloth()', title:'Cloth Repair' do %>
+              <%= button_tag class: 'cloth-button', id: 'cloth-button', title:'Cloth Repair' do %>
                 <div class="cloth-toggle" id="cloth-toggle">
-                  <%= show_svg('characters/cloth.svg') %>
+                  <%= inline_svg_pack_tag 'media/images/characters/cloth.svg' %>
                 </div>
               <% end %>
             <% end %>
@@ -40,7 +40,7 @@
           <%= render 'stats/stats', stats: @stats %>
 
           <div class="tr">
-            <div class="td"><%= image_tag 'characters/constellation.png', title: 'Constelação', size: 50 %><span>Constelação:</span></div>
+            <div class="td"><%= image_pack_tag 'media/images/characters/constellation.png', title: 'Constelação', size: 50 %><span>Constelação:</span></div>
             <div class="td"> <%= @character.constellation.name %></div>
           </div>
 

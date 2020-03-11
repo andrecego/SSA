@@ -8,6 +8,6 @@ class Cosmo < ApplicationRecord
   def picture_url
     return picture if picture.attached?
 
-    'placeholders/cosmo-placeholder.png'
+    '/assets/placeholders/cosmo-placeholder.png'
   end
 end

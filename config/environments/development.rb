@@ -2,7 +2,7 @@
 
 Rails.application.configure do
   config.before_configuration do
-    env_file = File.join(Rails.root, 'config', 'local_env.yml')
+    env_file = Rails.root.join('config/local_env.yml')
     if File.exist?(env_file)
       YAML.safe_load(File.open(env_file)).each do |key, value|
         ENV[key.to_s] = value
@@ -27,6 +27,7 @@ Rails.application.configure do
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
+    config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
@@ -38,11 +39,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Store uploaded files on the local file system (see config/storage.yml for options)
+  # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
-  # config.active_storage.service = :imgur
-  # config.active_storage.service = :amazon
-  # config.active_storage.service = :google_dev
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -66,7 +64,7 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Raises error for missing translations
+  # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
