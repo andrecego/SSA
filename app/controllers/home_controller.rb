@@ -8,4 +8,6 @@ class HomeController < ApplicationController
   end
 
   def eighth_sense; end
+
+  def summon; end
 end

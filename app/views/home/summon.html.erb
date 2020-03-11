@@ -1,0 +1,58 @@
+<div id="viewer"></div>
+<div class="cross">+
+  <div class="coordinates">
+    <div class="latitude"></div>
+    <div class="longitude"></div>
+  </div>
+</div>
+
+<style>
+  .psv-navbar{
+    background: none;
+  }
+  #viewer {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .cross{
+    position: fixed;
+    right: 48vw;
+    bottom: 44vh;
+    font-size: 16px;
+    color: white;
+    height: auto; 
+    width: auto;
+    padding: 0;
+  }
+
+  .coordinates {
+    position: relative;
+    top: -36px;
+    right: -15px;
+  }
+
+  .summon {
+    width: 128px;
+    height: 128px;
+    background-image: url('../media/images/360/summon.png');
+    padding: 0;
+    position: fixed;
+    right: 47vw;
+    bottom: 0vh;
+  }
+
+  .summon:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+  }
+
+  #yield{
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    margin-top: -16px;
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.18/chance.min.js"></script>

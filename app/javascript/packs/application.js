@@ -27,6 +27,7 @@ import 'bootstrap'
 import './admins'
 import './pagination'
 import './search'
+import './photo-sv'
 
 // CSS
 import '../stylesheets/application'
