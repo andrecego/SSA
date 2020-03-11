@@ -21,9 +21,9 @@ google_dev:
 
 google:
   service: GCS
-  project: ssawakening-staging 
+  project: saint-seiya-awakening-db
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
-  bucket: saint-seiya-db-staging 
+  bucket: saint-seiya-db
   
 
   # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
