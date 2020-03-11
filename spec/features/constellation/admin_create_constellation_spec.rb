@@ -42,6 +42,21 @@ feature 'Admin create a constellation' do
     expect(page).to have_content('Andrômeda')
   end
 
+  scenario 'with an image' do
+    admin = create(:user, :admin)
+    login_as(admin, scope: :user)
+
+    visit root_path
+    click_on 'Constelações'
+    click_on 'Cadastar nova constelação'
+    fill_in 'Nome', with: 'Andrômeda'
+    attach_file('Imagem', 'spec/support/assets/andromeda.png')
+    click_on 'Cadastrar'
+
+    expect(page).to have_content('Andrômeda')
+    expect(page).to have_css("img[src*='andromeda.png']")
+  end
+
   scenario 'and fill in less than the minimum' do
     admin = create(:user, :admin)
     login_as(admin, scope: :user)

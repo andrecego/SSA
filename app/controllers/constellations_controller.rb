@@ -54,6 +54,6 @@ class ConstellationsController < ApplicationController
   private
 
   def constellation_params
-    params.require(:constellation).permit(:name)
+    params.require(:constellation).permit(:name, :picture)
   end
 end
