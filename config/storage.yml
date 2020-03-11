@@ -13,13 +13,6 @@ imgur:
   access_token: <%= ENV['IMGUR_ACCESS_TOKEN'] %>
   refresh_token: <%= ENV['IMGUR_REFRESH_TOKEN'] %>
 
-amazon:
-  service: S3
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-  region: us-east-2
-  bucket: <%= ENV['AWS_BUCKET'] %>
-
 google_dev:
   service: GCS
   project: saint-seiya-awakening-db
@@ -28,11 +21,12 @@ google_dev:
 
 google:
   service: GCS
-  project: saint-seiya-awakening-db
+  project: ssawakening-staging 
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
-  bucket: saint-seiya-db
+  bucket: saint-seiya-db-staging 
+  
 
-# Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
+  # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
 #   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
