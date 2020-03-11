@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem 'active_model_serializers'
 gem 'devise'
 gem 'google-cloud-storage', '~> 1.8', require: false
 gem 'inline_svg'
