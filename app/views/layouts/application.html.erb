@@ -18,6 +18,12 @@
     </div>
     <%= render "shared/footer" %>
   </body>
-  <%# javascript_tag "showOptions()" if (current_user && current_user.admin?) %>
 
+  <% if (current_user && current_user.admin?) %>
+    <script>
+      $(document).on('turbolinks:load', function () {
+        $(".admin").css("display", "initial");
+      });
+    </script>
+  <% end %>
 </html>
