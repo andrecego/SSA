@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_115237) do
+ActiveRecord::Schema.define(version: 2020_03_12_130812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2020_03_10_115237) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "latitude", precision: 3, scale: 2, default: "0.0"
+    t.decimal "longitude", precision: 3, scale: 2, default: "0.0"
   end
 
   create_table "cosmo_basics", force: :cascade do |t|

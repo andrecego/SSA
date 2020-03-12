@@ -4,7 +4,7 @@ class ConstellationsController < ApplicationController
   before_action :authenticate_admin
 
   def index
-    @constellations = Constellation.all
+    @constellations = Constellation.all.order(name: :asc)
   end
 
   def new
@@ -54,6 +54,7 @@ class ConstellationsController < ApplicationController
   private
 
   def constellation_params
-    params.require(:constellation).permit(:name, :picture)
+    params.require(:constellation).permit(:name, :picture, :latitude,
+                                          :longitude)
   end
 end

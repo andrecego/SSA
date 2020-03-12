@@ -85,8 +85,8 @@ class CharactersController < ApplicationController
                     Character.all
                   end
     @characters = if params[:order].present?
-                     @characters.joins(:stats).where(stats: {kind: 'default'})
-                                .order("#{order_sanitizer} DESC")
+                    @characters.joins(:stats).where(stats: { kind: 'default' })
+                               .order("#{order_sanitizer} DESC")
                   else
                     @characters.order(name: :asc)
                   end

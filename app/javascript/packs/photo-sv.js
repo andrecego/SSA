@@ -2,15 +2,6 @@ import PhotoSphereViewer from "photo-sphere-viewer"
 import galaxy from '../images/360/galaxy.jpg'
 
 $(document).on('turbolinks:load', function () {
-  var constellations = [{
-    // id: "pegasus",
-    // image: '../images/placeholders/cosmo-placeholder.png',
-    // tooltip: 'Constelação de Pegasus',
-    // width: 256,
-    // height: 256,
-    // latitude: -0.55770,
-    // longitude: 0.5
-  }]
 
   function summon() {
     locate(1000)
@@ -47,12 +38,6 @@ $(document).on('turbolinks:load', function () {
     panorama: galaxy,
     navbar: [
       'markers',
-      // {
-      //   id: 'cross',
-      //   title: 'Cross',
-      //   className: 'cross',
-      //   content: '+'
-      // },
       {
         id: 'summon',
         title: 'Summon',
@@ -63,12 +48,12 @@ $(document).on('turbolinks:load', function () {
     time_anim: false,
     min_fov: 89.99,
     mousewheel: false,
-    // markers: constellations,
+    markers: constellations,
     lang: {
       autorotate: 'Rotação Automática',
       zoom: 'Zoom',
-      zoomOut: 'Zoom out',
-      zoomIn: 'Zoom in',
+      zoomOut: 'Menos zoom',
+      zoomIn: 'Mais zoom',
       download: 'Download',
       fullscreen: 'Tela Cheia',
       markers: 'Marcadores',

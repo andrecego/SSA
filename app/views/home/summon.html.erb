@@ -1,8 +1,9 @@
-<div id="viewer"></div>
-<div class="cross">+
-  <div class="coordinates">
-    <div class="latitude"></div>
-    <div class="longitude"></div>
+<div id="viewer">
+  <div class="cross">+
+    <div class="coordinates">
+      <div class="latitude"></div>
+      <div class="longitude"></div>
+    </div>
   </div>
 </div>
 
@@ -16,14 +17,15 @@
   }
 
   .cross{
-    position: fixed;
-    right: 48vw;
-    bottom: 44vh;
+    position: absolute;
+    top: 56%;
+    right: 50%;
     font-size: 16px;
     color: white;
     height: auto; 
     width: auto;
     padding: 0;
+    z-index: 20;
   }
 
   .coordinates {
@@ -59,4 +61,19 @@
   }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.18/chance.min.js"></script>
+<script>
+  var constellations = [
+  <% @constellations.each do |constellation| %>
+  {
+    id: '<%= constellation.name %>',
+    image: '<%= url_for constellation.picture %>',
+    tooltip: 'Constelação de <%= constellation.name %>',
+    width: 256,
+    height: 256,
+    latitude: <%= constellation.latitude %>,
+    longitude: <%= constellation.longitude %>
+  },
+  <% end %>
+ ]
+
+</script>
