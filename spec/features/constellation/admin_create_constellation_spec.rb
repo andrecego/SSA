@@ -9,7 +9,7 @@ feature 'User dont see create path' do
 
     visit constellations_path
 
-    expect(current_path).to_not eq(root_path)
+    expect(current_path).to eq(root_path)
     expect(page).to_not have_content('Nova Constelação')
   end
 end

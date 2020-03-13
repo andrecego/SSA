@@ -27,22 +27,6 @@
 </style>
 
 <script>
-  var constellations = [
-  <% @constellations.each do |constellation| %>
-  {
-    id: '<%= constellation.name %>',
-    image: '<%= url_for constellation.picture %>',
-    tooltip: 'Constelação de <%= constellation.name %>',
-    width: 256,
-    height: 256,
-    latitude: <%= constellation.latitude %>,
-    longitude: <%= constellation.longitude %>,
-    content: '<h1>Personagens</h1><hr> ' +
-              '<% constellation.characters.each do |char| %>' +
-                '<%= content_tag(:li, link_to(char.name, character_path(char))) %>' +
-              '<% end %>'
-  },
-  <% end %>
- ]
+
 
 </script>
