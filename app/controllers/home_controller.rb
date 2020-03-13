@@ -9,7 +9,5 @@ class HomeController < ApplicationController
 
   def eighth_sense; end
 
-  def summon
-    @constellations = Constellation.joins(:picture_attachment)
-  end
+  def summon; end
 end

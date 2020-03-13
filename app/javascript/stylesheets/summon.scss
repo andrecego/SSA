@@ -1,0 +1,40 @@
+  .psv-navbar{
+    background: none;
+  }
+  #viewer {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .cross{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 16px;
+    color: white;
+    height: auto; 
+    width: auto;
+    padding: 0;
+    z-index: 20;
+  }
+
+  .coordinates {
+    position: relative;
+    top: -36px;
+    right: -15px;
+  }
+
+  .summon {
+    width: 128px;
+    height: 128px;
+    background-image: url('../images/360/sumo.png');
+    padding: 0;
+    position: absolute;
+    left: 45%;
+    bottom: 15px;
+  }
+
+  .summon:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+  }

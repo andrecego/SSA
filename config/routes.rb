@@ -21,4 +21,10 @@ Rails.application.routes.draw do
   resources :cosmo_types
   resources :cosmos
   get 'eighth_sense', to: 'home#eighth_sense'
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      get 'summon/markers', to: 'summon#markers'
+    end
+  end
 end
