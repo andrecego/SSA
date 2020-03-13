@@ -1,5 +1,10 @@
+<% content_for :head do %>
+  <meta name="turbolinks-visit-control" content="reload">
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
 <div id="viewer">
-  <div class="cross">+
+  <div class="cross"><span>+</span>
     <div class="coordinates">
       <div class="latitude"></div>
       <div class="longitude"></div>
@@ -8,46 +13,6 @@
 </div>
 
 <style>
-  .psv-navbar{
-    background: none;
-  }
-  #viewer {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .cross{
-    position: absolute;
-    top: 56%;
-    right: 50%;
-    font-size: 16px;
-    color: white;
-    height: auto; 
-    width: auto;
-    padding: 0;
-    z-index: 20;
-  }
-
-  .coordinates {
-    position: relative;
-    top: -36px;
-    right: -15px;
-  }
-
-  .summon {
-    width: 128px;
-    height: 128px;
-    background-image: url('../media/images/360/summon.png');
-    padding: 0;
-    position: fixed;
-    right: 47vw;
-    bottom: 0vh;
-  }
-
-  .summon:hover {
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
-  }
-
   #yield{
     max-width: 100%;
     margin: 0;
@@ -71,7 +36,11 @@
     width: 256,
     height: 256,
     latitude: <%= constellation.latitude %>,
-    longitude: <%= constellation.longitude %>
+    longitude: <%= constellation.longitude %>,
+    content: '<h1>Personagens</h1><hr> ' +
+              '<% constellation.characters.each do |char| %>' +
+                '<%= content_tag(:li, link_to(char.name, character_path(char))) %>' +
+              '<% end %>'
   },
   <% end %>
  ]

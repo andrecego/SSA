@@ -3,73 +3,101 @@ import galaxy from '../images/360/galaxy.jpg'
 
 $(document).on('turbolinks:load', function () {
 
+  // Only runs on specific pages
+  var psvContainer = document.getElementById('viewer');
+  if (psvContainer !== null) {
+
+    var viewer = new PhotoSphereViewer({
+      container: psvContainer,
+      panorama: galaxy,
+      navbar: [
+        'markers',
+        {
+          id: 'summon',
+          title: 'Summon',
+          className: 'summon',
+          onClick: summon
+        },
+      ],
+      sphere_correction: { pan: 0, tilt: 0, roll: '30deg' },
+      time_anim: false,
+      min_fov: 89.99,
+      mousewheel: false,
+      markers: constellations,
+      lang: {
+        autorotate: 'Rotação Automática',
+        zoom: 'Zoom',
+        zoomOut: 'Menos zoom',
+        zoomIn: 'Mais zoom',
+        download: 'Download',
+        fullscreen: 'Tela Cheia',
+        markers: 'Marcadores',
+        gyroscope: 'Giroscópio',
+        stereo: 'Stereo view',
+        stereo_notification: 'Click anywhere to exit stereo view.',
+        please_rotate: ['Por favor vire seu dispositivo', '(ou toque para continuar)'],
+        two_fingers: ['Use dois dedos para navegar']
+      }
+    });
+
+    viewer.on("position-updated", function () {
+      var lat = viewer.getPosition()["latitude"].toFixed(4)
+      var lon = viewer.getPosition()["longitude"];
+      $('.latitude').html(lat);
+      $('.longitude').html(hourConvertor(lon));
+    });
+
+  }
+
   function summon() {
-    locate(1000)
-    setTimeout(locate(900), 1000)
-    setTimeout(locate(900), 1800)
+    $("#viewer").get(0).scrollIntoView(); // scroll to top of the element
 
-    // setTimeout(function () {
-    //   viewer.animate({
-    //     longitude: chance.floating({ min: 0, max: 6.28, fixed: 5 }),
-    //     latitude: chance.floating({ min: -1.57, max: 1.57, fixed: 5 })
-    //   }, 900);
-    // }, 1000);
+    locate(500)
+    setTimeout(function () {
+      console.log('passo');
+      viewer.animate({
+        longitude: Math.random() * 6.28,
+        latitude: Math.random() * 1.57
+      }, 500);
+    }, 501);
 
-    // setTimeout(function () {
-    //   viewer.animate({
-    //     longitude: rand["longitude"],
-    //     latitude: rand["latitude"]
-    //   }, 900);
-    // }, 1800);
+
+
+
+
+
+    setTimeout(function () {
+      var rand = constellations[Math.floor(Math.random() * constellations.length)]
+      viewer.animate({
+        longitude: rand["longitude"],
+        latitude: rand["latitude"]
+      }, 900);
+      console.log('passo');
+    }, 1001);
 
   };
 
   function locate(speed) {
-    var rand = constellations[chance.floating({ min: 0, max: constellations.length - 1, fixed: 0 })]
+    console.log('passo');
     viewer.animate({
-      longitude: rand["longitude"],
-      latitude: rand["latitude"]
+      longitude: Math.random() * 6.28,
+      latitude: Math.random() * 1.57
     }, speed);
   }
 
+  function hourConvertor(radians) {
+    var remainder = radians * 12 / Math.PI;
 
-  var viewer = new PhotoSphereViewer({
-    container: 'viewer',
-    panorama: galaxy,
-    navbar: [
-      'markers',
-      {
-        id: 'summon',
-        title: 'Summon',
-        className: 'summon',
-        onClick: summon
-      },
-    ],
-    time_anim: false,
-    min_fov: 89.99,
-    mousewheel: false,
-    markers: constellations,
-    lang: {
-      autorotate: 'Rotação Automática',
-      zoom: 'Zoom',
-      zoomOut: 'Menos zoom',
-      zoomIn: 'Mais zoom',
-      download: 'Download',
-      fullscreen: 'Tela Cheia',
-      markers: 'Marcadores',
-      gyroscope: 'Giroscópio',
-      stereo: 'Stereo view',
-      stereo_notification: 'Click anywhere to exit stereo view.',
-      please_rotate: ['Por favor vire seu dispositivo', '(ou toque para continuar)'],
-      two_fingers: ['Use dois dedos para navegar']
-    }
-  });
+    var hours = ~~(remainder);
+    remainder -= hours;
 
-  viewer.on("position-updated", function () {
-    var lat = viewer.getPosition()["latitude"].toFixed(4)
-    var lon = viewer.getPosition()["longitude"].toFixed(4)
-    $('.latitude').html(lat);
-    $('.longitude').html(lon);
-  });
+    remainder *= 15;
+    var minutes = ~~(remainder);
+    remainder -= minutes;
 
+    var seconds = ~~(remainder * 60).toFixed(2);
+
+    return hours + 'h' + minutes + 'm' + seconds + 's'
+  }
 });
+
