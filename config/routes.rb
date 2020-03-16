@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'home#index'
+  get '/summon', to: 'home#summon'
 
   resources :ranks
   resources :constellations
@@ -20,4 +21,11 @@ Rails.application.routes.draw do
   resources :cosmo_types
   resources :cosmos
   get 'eighth_sense', to: 'home#eighth_sense'
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      get 'summon/markers', to: 'summon#markers'
+      get 'summon/random', to: 'summon#random'
+    end
+  end
 end

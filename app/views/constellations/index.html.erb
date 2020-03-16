@@ -7,7 +7,7 @@
   <% @constellations.each do |constellation| %>
     <div class="list">
       <li>
-        <%= constellation.name %> 
+        <%= link_to constellation.name, constellation_path(constellation) %> 
         | <%= link_to  "Editar", edit_constellation_path(constellation) %>
         | <%= link_to  "Deletar", constellation_path(constellation), method: :delete %>
       </li>

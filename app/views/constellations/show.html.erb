@@ -1,1 +1,9 @@
 <h1>Constelação de <%= @constellation.name %></h1>
+<div class="coordinates">
+  <h3>Coordenadas: </h3>
+  <p>Latitude: <%= number_with_precision @constellation.latitude, precision: 2 %></p>
+  <p>Longitude: <%= number_with_precision @constellation.longitude, precision: 2 %></p>
+</div>
+<% if @constellation.picture.present? %>
+  <%= image_tag @constellation.picture %>
+<% end %>

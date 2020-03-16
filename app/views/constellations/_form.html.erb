@@ -1,3 +1,26 @@
-<%= f.label :name, 'Nome' %>
-<%= f.text_field :name %>
-<%= f.submit 'Cadastrar' %>
+<div class="card text-dark card-body mb-4">
+  <div class="form-group">
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-4">
+      <%= f.label :picture, 'Imagem' %>
+      <%= f.file_field :picture, class: 'form-control-file' %>
+    </div>
+
+    <div class="form-group col-4">
+      <%= f.label :longitude, 'Longitude' %> (0 - 6.28)
+      <%= f.number_field :longitude, class: 'form-control', min:0, max:6.28, step: 0.01 %>
+    </div>
+
+    <div class="form-group col-4">
+      <%= f.label :latitude, 'Latitude' %> (-1.57 - 1.57)
+      <%= f.number_field :latitude, class: 'form-control', min:-1.57, max:1.57, step: 0.01 %>
+    </div>
+  </div>
+
+</div>
+<%= f.submit 'Cadastrar', class: 'btn btn-success float-right' %>
+<%= link_to 'Voltar', constellations_path, class: 'btn btn-primary' %>

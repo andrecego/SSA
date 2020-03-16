@@ -9,6 +9,7 @@
   <div class="nav-menu">
     <ul class="p-0">
       <li class="nav-item"> <%= link_to  "Home", root_path, class: "nav-link" %></li>
+      <li class="nav-item"> <%= link_to  "Summon", summon_path, class: "nav-link" %></li>
       <li class="nav-item"> <%= link_to  "Personagens", characters_path, class: "nav-link" %></li>
       <li class="nav-item"> <%= link_to  "8º Sentido", eighth_sense_path, class: "nav-link" %></li>
       <% if current_user && current_user.admin? %>
