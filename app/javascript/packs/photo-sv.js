@@ -22,6 +22,11 @@ $(document).on('turbolinks:load', function () {
             className: 'summon',
             onClick: summon
           },
+          {
+            id: 'speed',
+            title: 'Velocidade',
+            className: 'summon-speed',
+          },
         ],
         sphere_correction: { pan: 0, tilt: 0, roll: '30deg' },
         time_anim: false,
@@ -44,6 +49,10 @@ $(document).on('turbolinks:load', function () {
         }
       })
     }).done(function () {
+      // Loads speed slider
+      $('.summon-speed').html('<input type="range" min="500" max="5000" value="1500" class="slider" id="slider-speed">')
+
+      // Updates center coordinates
       viewer.on("position-updated", function () {
         var lat = viewer.getPosition()["latitude"];
         var lon = viewer.getPosition()["longitude"];
@@ -61,7 +70,7 @@ $(document).on('turbolinks:load', function () {
 
     // Dibre
     for (i = 0; i <= numberTimes; i++) {
-      await move(1500);
+      await move();
     }
 
     // Summon
@@ -74,7 +83,9 @@ $(document).on('turbolinks:load', function () {
 
   };
 
-  const move = async function (speed, latitude, longitude) {
+  const move = async function (latitude, longitude) {
+    // Speed
+    var speed = parseInt($('#slider-speed')[0].value)
     // optional params
     latitude = latitude || Math.random() * 1.57;
     longitude = longitude || Math.random() * 6.28;
@@ -87,7 +98,7 @@ $(document).on('turbolinks:load', function () {
   }
 
   function getCharacter(character) {
-    move(1500, character["constellation"]["latitude"], character["constellation"]["longitude"])
+    move(character["constellation"]["latitude"], character["constellation"]["longitude"])
       .then(function () {
         modal.style.display = "block";
         $('#character .char-modal').html('<img src=' + character.image + ' style="width:300px"></img>' +
