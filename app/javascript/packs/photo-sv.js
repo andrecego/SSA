@@ -53,38 +53,46 @@ $(document).on('turbolinks:load', function () {
     });
   } // If end
 
-  function summon() {
+  const summon = async function () {
     $("#viewer").get(0).scrollIntoView(); // scroll to top of the element
 
-    locate(2500, viewer.speedToDuration(200, 2));
-    setTimeout(function () {
-      $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: '/api/v1/summon/random',
-        success: getCharacter
-      });
-    }, 2400);
+    var i;
+    var numberTimes = Math.floor(Math.random() * 3); // Random 1-3
+
+    // Dibre
+    for (i = 0; i <= numberTimes; i++) {
+      await move(1500);
+    }
+
+    // Summon
+    await $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: '/api/v1/summon/random',
+      success: getCharacter
+    });
+
   };
 
-  function locate(speed, delta) {
-    viewer.animate({
-      longitude: Math.random() * 6.28,
-      latitude: Math.random() * 1.57,
-      delay: 2000
+  const move = async function (speed, latitude, longitude) {
+    // optional params
+    latitude = latitude || Math.random() * 1.57;
+    longitude = longitude || Math.random() * 6.28;
+
+    await viewer.animate({
+      latitude: latitude,
+      longitude: longitude,
+      easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
     }, speed);
   }
 
   function getCharacter(character) {
-    viewer.animate({
-      longitude: character["constellation"]["longitude"],
-      latitude: character["constellation"]["latitude"],
-      easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
-    }, 2000).then(function () {
-      modal.style.display = "block";
-      $('#character .char-modal').html('<img src=' + character.image + ' style="width:300px"></img>' +
-        '<p><a class="modal-link" href="/characters/' + character.id + '">' + character.name + '</a></p>')
-    });
+    move(1500, character["constellation"]["latitude"], character["constellation"]["longitude"])
+      .then(function () {
+        modal.style.display = "block";
+        $('#character .char-modal').html('<img src=' + character.image + ' style="width:300px"></img>' +
+          '<p><a class="modal-link" href="/characters/' + character.id + '">' + character.name + '</a></p>')
+      });
   }
 
 
