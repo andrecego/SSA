@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get 'summon/markers', to: 'summon#markers'
+      get 'summon/random', to: 'summon#random'
     end
   end
 end

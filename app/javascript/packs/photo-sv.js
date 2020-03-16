@@ -1,14 +1,13 @@
 import PhotoSphereViewer from "photo-sphere-viewer"
 import galaxy from '../images/360/galaxy.jpg'
 
-
-
 $(document).on('turbolinks:load', function () {
+
   // Only runs on specific pages
   var psvContainer = document.getElementById('viewer');
   if (psvContainer !== null) {
 
-    var viewer;
+    var viewer; // Needed for 'position-updated' listener
 
     $.getJSON('/api/v1/summon/markers', function (constellations) {
 
@@ -46,51 +45,56 @@ $(document).on('turbolinks:load', function () {
       })
     }).done(function () {
       viewer.on("position-updated", function () {
-        var lat = viewer.getPosition()["latitude"].toFixed(4)
+        var lat = viewer.getPosition()["latitude"];
         var lon = viewer.getPosition()["longitude"];
         $('.latitude').html(radConvertor(lat));
         $('.longitude').html(hourConvertor(lon));
       });
-
     });
-
-
-  }
+  } // If end
 
   function summon() {
     $("#viewer").get(0).scrollIntoView(); // scroll to top of the element
 
-    locate(500)
+    locate(2500, viewer.speedToDuration(200, 2));
     setTimeout(function () {
-      console.log('passo');
-      viewer.animate({
-        longitude: Math.random() * 6.28,
-        latitude: Math.random() * 1.57
-      }, 500);
-    }, 501);
-
-
-
-
-
-
-    setTimeout(function () {
-      var rand = constellations[Math.floor(Math.random() * constellations.length)]
-      viewer.animate({
-        longitude: rand["longitude"],
-        latitude: rand["latitude"]
-      }, 900);
-      console.log('passo');
-    }, 1001);
-
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: '/api/v1/summon/random',
+        success: getCharacter
+      });
+    }, 2400);
   };
 
-  function locate(speed) {
-    console.log('passo');
+  function locate(speed, delta) {
     viewer.animate({
       longitude: Math.random() * 6.28,
-      latitude: Math.random() * 1.57
+      latitude: Math.random() * 1.57,
+      delay: 2000
     }, speed);
+  }
+
+  function getCharacter(character) {
+    viewer.animate({
+      longitude: character["constellation"]["longitude"],
+      latitude: character["constellation"]["latitude"],
+      easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+    }, 2000).then(function () {
+      modal.style.display = "block";
+      $('#character .char-modal').html('<img src=' + character.image + ' style="width:300px"></img>' +
+        '<p><a class="modal-link" href="/characters/' + character.id + '">' + character.name + '</a></p>')
+    });
+  }
+
+
+
+  var modal = document.getElementById("character");
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
   }
 
   function hourConvertor(radians) {
@@ -124,4 +128,3 @@ $(document).on('turbolinks:load', function () {
     return hours + 'º' + minutes + '\'' + seconds + '\'\''
   }
 });
-
