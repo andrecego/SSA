@@ -81,6 +81,10 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    database_cleaner (1.8.3)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
     devise (4.7.1)
@@ -325,6 +329,7 @@ DEPENDENCIES
   active_model_serializers
   byebug
   capybara (>= 2.15)
+  database_cleaner-active_record
   devise
   factory_bot_rails
   google-cloud-storage (~> 1.8)
