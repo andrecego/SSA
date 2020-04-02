@@ -7,10 +7,12 @@ class Api::V1::SummonController < Api::V1::ApiController
 
   def random
     chances = { ss: 2, s: 3, a: 27, b: 268 }
-    rank = random_weighted(chances).to_s.upcase
-    constellations = Constellation.joins(:picture_attachment)
-    @characters = Character.where(constellation: constellations)
-    @character = @characters.joins(:rank).where(ranks: { name: rank }).sample
+    @rank = random_weighted(chances).to_s.upcase
+    constellations_with_picture
+    return if @constellations.blank?
+
+    characters_with_picture
+    @character = @characters.joins(:rank).where(ranks: { name: @rank }).sample
   end
 
   private
@@ -27,5 +29,22 @@ class Api::V1::SummonController < Api::V1::ApiController
 
   def sum_of_weights(weighted)
     weighted.inject(0) { |sum, (_item, weight)| sum + weight }
+  end
+
+  def constellations_with_picture
+    @constellations = Constellation.joins(:picture_attachment)
+    return if @constellations.present?
+
+    render(json: { message: 'Nenhuma constelação com imagem disponível' },
+           status: :not_found)
+  end
+
+  def characters_with_picture
+    @characters = Character.joins(:picture_attachment)
+                           .where(constellation: @constellations)
+    return if @characters.present?
+
+    render(json: { message: 'Nenhum personagem com imagem disponível' },
+           status: :not_found)
   end
 end

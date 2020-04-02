@@ -5,7 +5,6 @@ class Character < ApplicationRecord
   belongs_to :constellation
   has_one_attached :picture
   has_many :stats, dependent: :destroy
-  has_many :banners, through: :banners_characters
   has_many :skills, dependent: :destroy
   has_many :cosmos_sets, dependent: :destroy
   has_and_belongs_to_many :banners
