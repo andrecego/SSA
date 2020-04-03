@@ -23,6 +23,7 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'database_cleaner-active_record'
   gem 'factory_bot_rails'
+  gem 'poltergeist'
   gem 'rspec-rails'
   gem 'rubocop-rails'
   gem 'shoulda-matchers'

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :constellation do
-    name { 'Peixes' }
+    sequence(:name) { |n| "Peixes-#{n}" }
 
     trait :with_picture do
       picture_path = Rails.root.join('spec/support/assets/character-image.png')
