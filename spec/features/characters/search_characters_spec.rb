@@ -15,7 +15,7 @@ feature 'Guest search for a character' do
         click_on 'Personagens'
       end
       select 'S', from: 'rank_id'
-      sleep(1)
+      wait_turbolinks
 
       expect(page).to have_css("img[title='Afrodite']")
       expect(page).to_not have_css("img[title='Seiya']")
@@ -33,7 +33,7 @@ feature 'Guest search for a character' do
         click_on 'Personagens'
       end
       select 'SS', from: 'rank_id'
-      sleep(1)
+      wait_turbolinks
 
       expect(page).to_not have_css("img[title='Afrodite']")
       expect(page).to_not have_css("img[title='Seiya']")
@@ -51,7 +51,7 @@ feature 'Guest search for a character' do
         click_on 'Personagens'
       end
       fill_in 'q', with: 'Afrodite'
-      sleep(1)
+      wait_turbolinks
 
       expect(page).to have_css("img[title='Afrodite']")
       expect(page).to_not have_css("img[title='Seiya']")
@@ -68,7 +68,7 @@ feature 'Guest search for a character' do
       end
       fill_in 'q', with: 'Af'
       find('#q').native.send_keys(:return)
-      sleep(1)
+      wait_turbolinks
 
       expect(page).to have_css("img[title='Afrodite']")
       expect(page).to_not have_css("img[title='Seiya']")
@@ -84,7 +84,7 @@ feature 'Guest search for a character' do
         click_on 'Personagens'
       end
       fill_in 'q', with: 'Pikachu'
-      sleep(1)
+      wait_turbolinks
 
       expect(page).to_not have_css("img[title='Afrodite']")
       expect(page).to_not have_css("img[title='Seiya']")
